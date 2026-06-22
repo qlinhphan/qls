@@ -1,6 +1,7 @@
 import json
 import os
 import threading
+import unicodedata
 from contextlib import asynccontextmanager
 from typing import Any, Dict, List
 
@@ -28,12 +29,65 @@ load_dotenv()
 
 DEFAULT_MIN_SCORE = float(os.getenv("MIN_SCORE_RECHIEVAL", "0.55"))
 API_VERSION = "2026-06-22-cors-5173"
+IDENTITY_ANSWER = "Tôi là trợ lý AI y tế hỗ trợ trích xuất phác đồ điều trị."
+CREATOR_ANSWER = (
+    "Tôi được tạo ra bởi Phòng CNTT thuộc Bệnh viện Đa khoa Quốc tế Bắc Hà."
+)
+GREETING_ANSWER = "Xin chào, tôi có thể hỗ trợ bác sĩ tra cứu hướng xử trí từ dữ liệu hiện có."
+THANKS_ANSWER = "Rất vui được hỗ trợ bác sĩ."
+
+
+def _normalize_intent_text(value: str) -> str:
+    value = value.lower().strip()
+    value = unicodedata.normalize("NFD", value)
+    value = "".join(char for char in value if unicodedata.category(char) != "Mn")
+    return " ".join(value.replace("đ", "d").split())
+
+
+def _quick_answer(question: str) -> str | None:
+    normalized = _normalize_intent_text(question)
+    compact = normalized.strip(" ?!.:,;")
+
+    identity_questions = {
+        "Bạn là ai",
+        "Bạn là gì",
+        "Mày là ai",
+        "Em là ai",
+        "Chatbot là ai",
+        "Trợ lý là ai",
+    }
+    creator_keywords = (
+        "Ai tạo ra bạn",
+        "Ai làm ra bạn",
+        "Bạn được tạo ra bởi ai",
+        "Bạn đến từ đâu",
+    )
+    greeting_words = {"Xin chào", "Chào", "Hello", "Hi"}
+    thanks_words = {"Cảm ơn", "Thank You", "Thanks", "Tks"}
+
+    if compact in identity_questions:
+        return IDENTITY_ANSWER
+    if any(keyword in normalized for keyword in creator_keywords):
+        return CREATOR_ANSWER
+    if compact in greeting_words:
+        return GREETING_ANSWER
+    if compact in thanks_words:
+        return THANKS_ANSWER
+
+    return None
 
 
 def _stringify_for_history(value: Any) -> str:
     if isinstance(value, str):
         return value
     return json.dumps(value, ensure_ascii=False)
+
+
+def _save_thread_history(thread_id: str, question: str, answer: Any) -> None:
+    answer_text = _stringify_for_history(answer)
+    with app.state.thread_lock:
+        history = list(app.state.thread_histories.get(thread_id, []))
+        app.state.thread_histories[thread_id] = history + [[question, answer_text]]
 
 
 def bootstrap_resources(postgre_cursor) -> Dict[str, Any]:
@@ -116,6 +170,15 @@ def chat(payload: ChatRequest) -> Dict[str, Any]:
     if not question:
         raise HTTPException(status_code=400, detail="message khong duoc de trong")
 
+    quick_answer = _quick_answer(question)
+    if quick_answer:
+        _save_thread_history(payload.thread_id, question, quick_answer)
+        return {
+            "thread_id": payload.thread_id,
+            "question": question,
+            "answer": quick_answer,
+        }
+
     question_vector = get_embedding(question)
     if question_vector is None:
         raise HTTPException(status_code=502, detail="Khong tao duoc embedding")
@@ -133,11 +196,7 @@ def chat(payload: ChatRequest) -> Dict[str, Any]:
 
     answer = llama_clients(llama_clients_prompt, knowledge, history, question)
 
-    answer_text = _stringify_for_history(answer)
-    updated_history = history + [[question, answer_text]]
-
-    with app.state.thread_lock:
-        app.state.thread_histories[payload.thread_id] = updated_history
+    _save_thread_history(payload.thread_id, question, answer)
 
     return {
         "thread_id": payload.thread_id,
