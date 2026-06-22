@@ -6,6 +6,31 @@ from dotenv import load_dotenv
 load_dotenv()
 import os
 
+
+def _read_ollama_response(response):
+    response.raise_for_status()
+
+    content_type = response.headers.get("content-type", "")
+    if "application/x-ndjson" not in content_type:
+        try:
+            return response.json().get("response", "")
+        except json.JSONDecodeError:
+            pass
+
+    parts = []
+    for line in response.iter_lines(decode_unicode=True):
+        if not line:
+            continue
+
+        data = json.loads(line)
+        parts.append(data.get("response", ""))
+
+        if data.get("done"):
+            break
+
+    return "".join(parts)
+
+
 def extract_json(text):
     match = re.search(r"```json(.*?)```", text, re.DOTALL)
     if match:
@@ -33,10 +58,15 @@ def llama_clients(llama_clients_prompt, knowledge, context, q):
         json={
             'model': os.getenv("MODEL_CHAT"),
             'prompt': prompt,
-            'stream': False
-        }
+            'stream': True,
+            'options': {
+                'num_predict': 256,
+                'temperature': 0
+            }
+        },
+        stream=True,
     )
-    res  = response.json()['response']
+    res = _read_ollama_response(response)
 
     
     if '{' in res and '}' in res:
