@@ -109,10 +109,11 @@ services:
       HOST_POSTGRE: host.docker.internal
       PORT_POSTGRE: 5432
       # 🚀 ĐÃ SỬA: Đổi tên thành "wiki_db" (Hãy đổi lại đúng tên DB của bạn nếu nó khác nhé)
-      DATABASE_PORTGRE: wiki_db
+      DATABASE_PORTGRE: ${DATABASE_PORTGRE:-WikiDB}
       USER_POSTGRE: ${USER_POSTGRE:-admin}
       PASSWORD_POSTGRE: ${PASSWORD_POSTGRE:-admin123}
       PYTHONUNBUFFERED: 1
+      TZ: "Asia/Ho_Chi_Minh"
     volumes:
       - ./back:/app
 
