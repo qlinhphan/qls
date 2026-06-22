@@ -1,3 +1,71 @@
+# version: '3.9'
+
+# services:
+#   api:
+#     build:
+#       context: ./back
+#       dockerfile_inline: |
+#         FROM python:3.11-slim
+
+#         ENV PYTHONDONTWRITEBYTECODE=1
+#         ENV PYTHONUNBUFFERED=1
+
+#         WORKDIR /app
+
+#         RUN apt-get update \
+#             && apt-get install -y --no-install-recommends build-essential \
+#             && rm -rf /var/lib/apt/lists/*
+
+#         COPY requirements.txt .
+#         RUN pip install --no-cache-dir -r requirements.txt
+
+#         COPY . .
+
+#         EXPOSE 8001
+
+#         CMD ["python", "-m", "uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8001"]
+#     container_name: bacha_api
+#     restart: unless-stopped
+#     ports:
+#       - "8001:8001"
+#     environment:
+#       MODEL_CHAT: ${MODEL_CHAT:-qwen2.5:14b}
+#       MODEL_EMB: ${MODEL_EMB:-bge-m3}
+#       CHAT_API_SERVER: ${CHAT_API_SERVER:-http://10.10.61.29:11434/api/generate}
+#       EMBED_API_SERVER: ${EMBED_API_SERVER:-http://10.10.61.29:11434/api/embed}
+#       MIN_SCORE_RECHIEVAL: ${MIN_SCORE_RECHIEVAL:-0.55}
+#       HOST_POSTGRE: ${HOST_POSTGRE:-10.10.50.226}
+#       PORT_POSTGRE: ${PORT_POSTGRE:-5432}
+#       DATABASE_PORTGRE: ${DATABASE_PORTGRE:-WikiDB}
+#       USER_POSTGRE: ${USER_POSTGRE:-admin}
+#       PASSWORD_POSTGRE: ${PASSWORD_POSTGRE:-admin123}
+#       PYTHONUNBUFFERED: 1
+#     volumes:
+#       - ./back:/app
+
+#   front:
+#     build:
+#       context: ./front
+#       dockerfile_inline: |
+#         FROM node:20-alpine
+
+#         WORKDIR /app
+#         COPY package*.json ./
+#         RUN npm install
+#         COPY . .
+
+#         EXPOSE 4173
+
+#         CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+#     container_name: bacha_front
+#     restart: unless-stopped
+#     ports:
+#       - "4173:5173"
+#     volumes:
+#       - ./front:/app
+#       - /app/node_modules
+#     depends_on:
+#       - api 
 version: '3.9'
 
 services:
@@ -28,15 +96,20 @@ services:
     restart: unless-stopped
     ports:
       - "8001:8001"
+    # 🚀 ĐÃ THÊM: Định nghĩa đường đi tắt ra máy thật không qua IP public để tránh UFW chặn
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     environment:
       MODEL_CHAT: ${MODEL_CHAT:-qwen2.5:14b}
       MODEL_EMB: ${MODEL_EMB:-bge-m3}
       CHAT_API_SERVER: ${CHAT_API_SERVER:-http://10.10.61.29:11434/api/generate}
       EMBED_API_SERVER: ${EMBED_API_SERVER:-http://10.10.61.29:11434/api/embed}
       MIN_SCORE_RECHIEVAL: ${MIN_SCORE_RECHIEVAL:-0.55}
-      HOST_POSTGRE: ${HOST_POSTGRE:-10.10.50.226}
-      PORT_POSTGRE: ${PORT_POSTGRE:-5432}
-      DATABASE_PORTGRE: ${DATABASE_PORTGRE:-WikiDB}
+      # 🚀 ĐÃ SỬA: Trỏ kết nối về đường đi tắt nội bộ vừa tạo ở trên
+      HOST_POSTGRE: host.docker.internal
+      PORT_POSTGRE: 5432
+      # 🚀 ĐÃ SỬA: Đổi tên thành "wiki_db" (Hãy đổi lại đúng tên DB của bạn nếu nó khác nhé)
+      DATABASE_PORTGRE: wiki_db
       USER_POSTGRE: ${USER_POSTGRE:-admin}
       PASSWORD_POSTGRE: ${PASSWORD_POSTGRE:-admin123}
       PYTHONUNBUFFERED: 1
@@ -65,4 +138,4 @@ services:
       - ./front:/app
       - /app/node_modules
     depends_on:
-      - api 
+      - api
