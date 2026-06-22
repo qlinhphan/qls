@@ -117,7 +117,7 @@ def bootstrap_resources(postgre_cursor) -> Dict[str, Any]:
 class ChatRequest(BaseModel):
     thread_id: str = Field(..., min_length=1, description="ID de ghi nho hoi thoai")
     message: str = Field(..., min_length=1, description="Cau hoi cua nguoi dung")
-    top_k: int = Field(default=10, ge=1, le=50)
+    top_k: int = Field(default=3, ge=1, le=50)
     min_score: float = Field(default=DEFAULT_MIN_SCORE, ge=0.0, le=1.0)
 
 
