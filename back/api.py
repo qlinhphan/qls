@@ -1,6 +1,5 @@
 import json
 import os
-import re
 import threading
 from contextlib import asynccontextmanager
 from typing import Any, Dict, List
@@ -13,8 +12,8 @@ from pydantic import BaseModel, Field
 
 from chunking.chunks import load_data
 from embedding.embedder import get_embedding
-from llm.llama_client import llama_clients, llama_guardrail, llama_summary_conversation
-from prompts.prompt_temp import guardrail_prompt, llama_clients_prompt, llama_summary_conversation_prompt
+from llm.llama_client import llama_clients, llama_summary_conversation
+from prompts.prompt_temp import llama_clients_prompt, llama_summary_conversation_prompt
 from rechieval.rechieval import rechieval_data
 from vectordb.postgre import (
     create_table_postgre,
@@ -29,36 +28,12 @@ load_dotenv()
 
 DEFAULT_MIN_SCORE = float(os.getenv("MIN_SCORE_RECHIEVAL", "0.55"))
 API_VERSION = "2026-06-22-cors-5173"
-GUARDRAIL_FALLBACK_ANSWER = (
-    "Xin lỗi, tôi không tìm thấy hướng điều trị phù hợp dựa trên kiến thức hiện có."
-)
 
 
 def _stringify_for_history(value: Any) -> str:
     if isinstance(value, str):
         return value
     return json.dumps(value, ensure_ascii=False)
-
-
-def _parse_guardrail_result(value: Any) -> Dict[str, Any]:
-    if isinstance(value, dict):
-        return value
-
-    if not isinstance(value, str):
-        return {"check": "fail", "reason": "guardrail response is not a string or dict"}
-
-    json_block = re.search(r"```json(.*?)```", value, re.DOTALL)
-    if json_block:
-        value = json_block.group(1)
-
-    json_object = re.search(r"\{.*\}", value, re.DOTALL)
-    if json_object:
-        value = json_object.group(0)
-
-    try:
-        return json.loads(value)
-    except json.JSONDecodeError:
-        return {"check": "fail", "reason": "guardrail response is not valid JSON", "raw": value}
 
 
 def bootstrap_resources(postgre_cursor) -> Dict[str, Any]:
@@ -130,6 +105,7 @@ def health_check() -> Dict[str, str]:
     return {
         "status": "ok",
         "version": API_VERSION,
+        "gio": "10:47"
     }
 
 
@@ -155,14 +131,6 @@ def chat(payload: ChatRequest) -> Dict[str, Any]:
     )
 
     answer = llama_clients(llama_clients_prompt, knowledge, history, question)
-
-    if isinstance(answer, dict):
-        guardrail_result = _parse_guardrail_result(
-            llama_guardrail(guardrail_prompt, answer, knowledge)
-        )
-        guardrail_check = str(guardrail_result.get("check", "")).strip().lower()
-        if guardrail_check != "pass":
-            answer = GUARDRAIL_FALLBACK_ANSWER
 
     answer_text = _stringify_for_history(answer)
     updated_history = history + [[question, answer_text]]

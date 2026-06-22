@@ -72,17 +72,24 @@ def main():
         # print("CHECK KNOW: ", response)
         res = llama_clients(llama_clients_prompt, response, context, q)
         context.append([q, res])
+        print("res: ", res)
+        print(type(res))
 
-        if isinstance(res, dict):
-            guardrail_res = llama_guardrail(guardrail_prompt, res, response)
-            guardrail_res = extract_json(guardrail_res)
-            if guardrail_res['check'] == "pass":
-                print("AI: ",res)
-            else:
-                print("AI: ", "Xin lỗi, tôi không tìm thấy hướng điều trị phù hợp dựa trên kiến thức hiện có.")
 
-        if isinstance(res, str):
-            print("AI: ",res)
+        # if isinstance(res, dict):
+        #     guardrail_res = llama_guardrail(guardrail_prompt, res, response)
+        #     guardrail_res = extract_json(guardrail_res)
+        #     if guardrail_res['check'] == "pass":
+        #         print("AI: ",res)
+        #     else:
+        #         print("AI: ", "Xin lỗi, tôi không tìm thấy hướng điều trị phù hợp dựa trên kiến thức hiện có.")
+
+        # if isinstance(res, str):
+        #     print("AI: ",res)
+
+
+
+
 
     # summarize = llama_summary_conversation(llama_summary_conversation_prompt, context)
 
