@@ -1,0 +1,16 @@
+python-dotenv
+openai
+langchain-core
+langchain-community
+langchain-text-splitters
+faiss-cpu==1.14.3
+numpy==2.4.6
+fastapi
+uvicorn[standard]
+requests
+psycopg2-binary
+python-docx
+pandas
+matplotlib
+pymongo
+pydantic

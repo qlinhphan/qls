@@ -1,0 +1,190 @@
+{
+    "data": [
+        {
+            "dau_hieu": "Da nổi mày đay, ngứa, phù mạch.Khó thở nhanh nông, tức ngực, khàn tiếng, chảy nước mũi.Đau bụng, nôn, ỉa chảy.Huyết áp chưa tụt hoặc tăng, nhịp tim nhanh hoặc loạn nhịp",
+            "chunk": 0,
+            "phuong_phap": "Hỏi nhanh NB/ NN người bệnh Quan sát NB",
+            "ghi_chu": "Theo dõiSốc phản vệ"
+        },
+        {
+            "dau_hieu": "Đau thắt ngực, đau sau xương ức. Đau lan lên hàm dưới, vai trái, tay trái.Đau kiểu đè ép, co thắt. Cơn đau kéo dài trên ½ giờ hoặc nhiều giờ (Khám cấp cứu) Tiền sử cao HA, đái đường, mỡ máu hoặc chưa phát hiện",
+            "chunk": 1,
+            "phuong_phap": "Hỏi nhanh người bệnh Quan sát NB",
+            "ghi_chu": "Theo dõiNhồi máu cơ tim cấp"
+        },
+        {
+            "dau_hieu": "Mất ý thức, ngừng thở, tím tái, gọi hỏi cấu véo không đáp ứng  Mạch nhanh, HA tụt hoặc không đo đượcCo giật, vật vãNgộ độc thuốc ngủ, thuốc an thần, thuốc gây nghiện, ma túy, thuốc chuộtTiền sử đái tháo đường",
+            "chunk": 2,
+            "phuong_phap": "Hỏi nhanh người nhà NBQuan sát NB",
+            "ghi_chu": "Theo dõiHôn mê"
+        },
+        {
+            "dau_hieu": "Người bệnh đột ngột mất ý thức, mắt trợn ngược, toàn thân và tay chân co cứngSau đó xuất hiện co giật toàn, sùi bọt mép, hai hàm nghiến chặtHết cơn co giật dừng lại, cơ thể mềm ra, người bệnh lơ mơ, thở sâu",
+            "chunk": 3,
+            "phuong_phap": "Hỏi nhanh người nhà/người bệnh Quan sát người bệnh",
+            "ghi_chu": "Theo dõiĐộng kinh"
+        },
+        {
+            "dau_hieu": "Rối loạn ý thức, tinh thần lơ mơ, u ám, có khi vật vãĐái ỉa không tự chủCó thể yếu hoặc liệt ½ người, méo miệngNói ngọng hoặc không nói được, chảy nước dãi",
+            "chunk": 4,
+            "phuong_phap": "Hỏi nhanh người nhà NBQuan sát NB",
+            "ghi_chu": "Theo dõiTai biến mạch máu não"
+        },
+        {
+            "dau_hieu": "Tiền sử: hen phế quảnHo, khò khè, khó thở tăng rõ rệt, khó thở cả khi nghỉ, chỉ nói từng từ ngắt quãng, thậm chí không nói đượcCo keó cơ hô hấp phụLo lắng, hốt hoảng, nặng có thể lơ mơ, lú lẫn",
+            "chunk": 5,
+            "phuong_phap": "Theo dõiCơn hen phế quản",
+            "ghi_chu": "Theo dõiHen phế quản cấp"
+        },
+        {
+            "dau_hieu": "Tê bì, cảm giác kim châm ở đầu chi, quanh môi, lưỡi,..Co quắp tay chân, dấu hiệu bàn tay đỡ đẻCo thắt thanh quản, khó thở, thở rít",
+            "chunk": 6,
+            "phuong_phap": "Hỏi nhanh người nhà/NBQuan sát người bệnh",
+            "ghi_chu": "Theo dõi Hạ Calci máu"
+        },
+        {
+            "dau_hieu": "Hôn mê yên tĩnh, tụt huyết áp, thở yếu hoặc ngừng thở (thuốc ngủ, an thần)Hôn mê, thở chậm hoặc ngừng thở, đồng tử 2 bên co nhỏ (Thuốc phiện, heroin)Co giật, suy tim và rối loạn nhịp tim (Thuốc chuột)Da tái lạnh, ẩm, mạch chậm, đồng tử 2 bên co nhỏ, tăng tiết đờm dãi, co thắt phế quảnMáy cơ, co giật có thể liệt cơ. Rối loạn ý thức, hôn mêMùi thuốc trừ sâu",
+            "chunk": 7,
+            "phuong_phap": "Hỏi nhanh người nhà NBQuan sát NB",
+            "ghi_chu": "Theo dõiNgộ độc cấp"
+        },
+        {
+            "dau_hieu": "Chấn thương nặng, mất máuHôn mêNgưng thở, ngưng tim,...Mạch nhanh, HA tụt hoặc không đo đượcSốt cao, rét run",
+            "chunk": 8,
+            "phuong_phap": "Quan sát NB",
+            "ghi_chu": "Theo dõiĐa chấn thươngĐiện giật Đuối nướcSốc nặng"
+        },
+        {
+            "dau_hieu": "Người bệnh thấy bồn chồn, mất ngủ, có lúc thảng thốt, lo âu, buồn bã hoặc nói nhiều,...Chán ăn, mệt mỏi, đau mỏi cơ bắpTinh thần hốt hoảng, mắt long sọc, dấu hiệu sợ gió (thít lên khi có quạt, gió)Tiền sử chó cắn/mèo cắn/chuột cắn",
+            "chunk": 9,
+            "phuong_phap": "Hỏi nhanh người bệnhQuan sát NB",
+            "ghi_chu": "Theo dõi Bệnh dại lên cơn"
+        },
+        {
+            "dau_hieu": "Khó há miệng, khó nhai, đau hai bên quai hàmCứng hàm, răng khít khó há miệngBộ mặt nhăn nhúm, bộ mặt “Già trước tuổi”Dáng đi cứng đơ",
+            "chunk": 10,
+            "phuong_phap": "Hỏi nhanh người bệnhQuan sát NB",
+            "ghi_chu": "Theo dõi   Uốn ván"
+        },
+        {
+            "dau_hieu": "Đau bụng: đau vùng hạ vị, đau âm ỉ, có khi thành cơnRa huyết rỉ rả kéo dài: thường sau chậm kinh vài ngày, huyết ra thường ít, màu nâuDa xanh, niêm mạc nhợt, chân tay lạnh, mạch nhanh, huyết áp tụt",
+            "chunk": 11,
+            "phuong_phap": "Hỏi nhanh người bệnhQuan sát NB",
+            "ghi_chu": "Theo dõi Chửa ngoài tử cung vỡ"
+        },
+        {
+            "dau_hieu": "Đau bụng dữ dội vùng thượng vị và dưới xương ức - vị trí của tuyến tụy. Cơn đau có thể lan ra sau lưng, ít gặp hơn nếu đau ở vùng bụng dưới.  Kết mạc có màu vàng (Có thể khám nội khoa, ngoại khoa, cấp cứu)",
+            "chunk": 12,
+            "phuong_phap": "Hỏi nhanh người bệnh",
+            "ghi_chu": "Theo dõiViêm tụy cấp"
+        },
+        {
+            "dau_hieu": "Nhức đầu, nhất là về ban đêm kèm theo có chóng mặt, mờ mắt, ù tai, buồn nôn, nôn mửa (tiền chứng)Đột ngột: Đau đầu dữ dội, ý thức thu hẹp, yếu người (làm rơi đồ vật khi đang cầm), có thể ngã vật ra,..(Tiền phát, toàn phát)",
+            "chunk": 13,
+            "phuong_phap": "Hỏi nhanh người bệnhQuan sát NB",
+            "ghi_chu": "Theo dõi Nguy cơ Đột quỵ"
+        },
+        {
+            "dau_hieu": "Đau bụng, kèm đã có kết quả siêu âm, chụp CT Scanner, chụp cộng hưởng từ (MRI) (kết quả cũ):Sỏi tụySỏi đường mậtSỏi tiết niệuĐã có chẩn đoán viêm tụy cấp: do sỏi đường mật, túi mật, sỏi tụy (của các lần trước)",
+            "chunk": 14,
+            "phuong_phap": "Hỏi nhanh NBKiểm tra kết quả XN cũ",
+            "ghi_chu": "Theo dõi Bệnh do sỏi"
+        },
+        {
+            "dau_hieu": "U phì đại tuyến tiền liệt: Đi tiểu đêm nhiều lần ≥ 4 lần/đêm Đứng lâu, tia tiểu nhỏ Buồn đi tiểu liên tục",
+            "chunk": 15,
+            "phuong_phap": "Hỏi nhanh NB hoặc người bệnh mô tả lại",
+            "ghi_chu": "Theo dõi Bệnh Tuyến tiền liệt"
+        },
+        {
+            "dau_hieu": "Đau bụng dữ dội vùng thượng vị và dưới xương ức - vị trí của tuyến tụy. Cơn đau có thể lan ra sau lưng, ít gặp hơn nếu đau ở vùng bụng dưới.  Kết mạc có màu vàng",
+            "chunk": 16,
+            "phuong_phap": "Hỏi nhanh NB",
+            "ghi_chu": "Theo dõiBệnh viêm tụy cấp"
+        },
+        {
+            "dau_hieu": "Đau vùng hạ sườn phải, cơn đau quặn, có thể lan ra sau lưng hoặc lên vai phải. Bệnh nhân có thể sốt nhẹ, NB mô tả ấn vào thành bụng có phản ứng",
+            "chunk": 17,
+            "phuong_phap": "Hỏi nhanh NB",
+            "ghi_chu": "Theo dõiBệnh viêm túi mật"
+        },
+        {
+            "dau_hieu": "Đau bụng có kèm theo các khối lồi ở thành bụng, bẹn (nhất là tư thế đứng) hoặc siêu âm, CT Scanner đã có thoát vị cơ hoành cũ",
+            "chunk": 18,
+            "phuong_phap": "Hỏi người bệnh Kiểm tra kết quả XN cũ",
+            "ghi_chu": "Theo dõi Thoát vị bẹn, Thoát vị thành bụng"
+        },
+        {
+            "dau_hieu": "Đau bụng âm ỉ, liên tục vùng hố chậu phảiBệnh nhân có thể có sốt nhẹ",
+            "chunk": 19,
+            "phuong_phap": "Hỏi nhanh NBQuan sát NB",
+            "ghi_chu": "Theo dõiViêm ruột thừa"
+        },
+        {
+            "dau_hieu": "Đau bụng âm ỉ, liên tục vùng Mạn sườn phải; Hạ sườn phải. Da và mắt có thể vàng(Nếu chưa rõ ràng triệu chứng có thể khám nội khoa)",
+            "chunk": 20,
+            "phuong_phap": "Hỏi nhanh NBQuan sát NB",
+            "ghi_chu": "Theo dõiÁp xe gan"
+        },
+        {
+            "dau_hieu": "Đau quặn bụng, dữ dội và nôn liên tục (có thể tắc ruột, lồng ruột,….)",
+            "chunk": 21,
+            "phuong_phap": "Hỏi nhanh NBQuan sát NB",
+            "ghi_chu": "Theo dõi Tắc ruột, Lồng ruột"
+        },
+        {
+            "dau_hieu": "Đau bụng dữ dội vùng thượng vị hoặc đau quanh vùng rốn, đau như dao đâm (theo mô tả); Sắc mặt nhợt nhạt, ôm bụng, vẻ mặt biểu hiện quá đau,..Nôn ra máu/dịch nâu đen",
+            "chunk": 22,
+            "phuong_phap": "Hỏi nhanh NBQuan sát NB",
+            "ghi_chu": "Theo dõiThủng tạng rỗng"
+        },
+        {
+            "dau_hieu": "Đau bụng, chướng bụng từng cơn, đột ngột hoặc dữ dội rồi giảm dần và cứ khoảng 2 - 3 phút lại tái phátBuồn nôn, nôn liên tục. Bụng căng, khát nước, khô môi, da nhăn, tiểu ít,..",
+            "chunk": 23,
+            "phuong_phap": "Hỏi nhanh NBQuan sát NB",
+            "ghi_chu": "Theo dõiTắc ruột"
+        },
+        {
+            "dau_hieu": "Đau, thường dữ dội và lan khắp bụng; Đau quặn ở vùng bụng; Đầy hơi, hoặc căng cứng bụng; Buồn nôn và nôn; Chảy máu từ hậu môn",
+            "chunk": 24,
+            "phuong_phap": "Hỏi nhanh NBQuan sát NB",
+            "ghi_chu": "Theo dõiThủng đại tràng"
+        },
+        {
+            "dau_hieu": " Đau bụng: cảm giác đau sâu vùng bụng, đau kiểu nội tạng, đau ở vùng khối phìnhVùng bụng xuất hiện khối phình, NB nhận thấy được ổ đập bất thường ở bụng.Tiền sử xơ vữa động mạch",
+            "chunk": 25,
+            "phuong_phap": "Hỏi nhanh NBQuan sát NB",
+            "ghi_chu": "Theo dõiPhình -Tách động mạch chủ bụng"
+        },
+        {
+            "dau_hieu": "Bầm tím vị trí, chân tay không cử động, đau, lủng lẳng, chảy máu hoặc không,...",
+            "chunk": 26,
+            "phuong_phap": "Hỏi nhanh NBQuan sát NB",
+            "ghi_chu": "Theo dõiGãy xương kín, gãy xương hở"
+        },
+        {
+            "dau_hieu": "Bầm tím, rách, chảy máu trên cơ thể Đau đầu, nôn, rách/rập nát một hay nhiều vị trí trên cơ thể(Tai nạn lao động, tai nạn giao thông, đánh nhau,..)",
+            "chunk": 27,
+            "phuong_phap": "Hỏi nhanh NBQuan sát NB",
+            "ghi_chu": "Theo dõiChấn thương;Chấn thương sọ não"
+        },
+        {
+            "dau_hieu": "Chấn thương cột sống, đau cột sống Đau lưng, tê lan xuống chân",
+            "chunk": 28,
+            "phuong_phap": "Hỏi nhanh NBQuan sát NB",
+            "ghi_chu": "Theo dõiChấn thương CS Thoát vị đĩa đệm"
+        },
+        {
+            "dau_hieu": "Đau bụng: thường là một bên đau cơn dữ dội, đau lan ra sau lưng, lan xuống bộ phận sinh dục ngoài (nếu sỏi vùng thấp)Vị trí đau phụ thuộc vào vị trí sỏi và sự di chuyển của sỏi.Đái máu: đại thể, vi thể hoặc có thể không có.Có thể buồn nôn, nôn; đái khó, đái rắt (sỏi thấp).Tiền sử có sỏi thận",
+            "chunk": 29,
+            "phuong_phap": "Hỏi nhanh người bệnh",
+            "ghi_chu": "Theo dõiCơn đau quặn thận"
+        },
+        {
+            "dau_hieu": "Mụn nhọt vùng nách, lưng, đùi chưa có mủ hoặc chưa vỡ (Có thể kèm theo sốt nhẹ)",
+            "chunk": 30,
+            "phuong_phap": "Hỏi nhanh người bệnh",
+            "ghi_chu": "Theo dõiMụn nhọt/áp xe/viêm nang lông"
+        }
+    ]
+}
