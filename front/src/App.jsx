@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Send, Stethoscope } from 'lucide-react';
 
-const API_URL = 'http://localhost:8001/chat';
+const API_URL = 'http://10.10.50.226:8001/chat';
 const THREAD_STORAGE_KEY = 'medical-chat-thread-id';
 const welcomeMessage =
   'Xin chào, tôi là trợ lý AI của bạn, sẽ giúp đỡ bạn hôm nay.';
