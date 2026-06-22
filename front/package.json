@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "vite",
+    "dev": "chmod +x ./node_modules/.bin/vite && vite --host 0.0.0.0",
     "build": "vite build",
     "preview": "vite preview"
   },
