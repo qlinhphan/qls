@@ -34,36 +34,14 @@ services:
       CHAT_API_SERVER: ${CHAT_API_SERVER:-http://10.10.61.29:11434/api/generate}
       EMBED_API_SERVER: ${EMBED_API_SERVER:-http://10.10.61.29:11434/api/embed}
       MIN_SCORE_RECHIEVAL: ${MIN_SCORE_RECHIEVAL:-0.55}
-      HOST_POSTGRE: postgres
-      PORT_POSTGRE: 5432
-      DATABASE_PORTGRE: WikiDB
-      USER_POSTGRE: admin
-      PASSWORD_POSTGRE: admin123
+      HOST_POSTGRE: ${HOST_POSTGRE:-10.10.50.226}
+      PORT_POSTGRE: ${PORT_POSTGRE:-5432}
+      DATABASE_PORTGRE: ${DATABASE_PORTGRE:-WikiDB}
+      USER_POSTGRE: ${USER_POSTGRE:-admin}
+      PASSWORD_POSTGRE: ${PASSWORD_POSTGRE:-admin123}
       PYTHONUNBUFFERED: 1
     volumes:
       - ./back:/app
-    depends_on:
-      postgres:
-        condition: service_healthy
-
-  postgres:
-    image: postgres:16
-    container_name: postgres_wiki_db
-    restart: unless-stopped
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin123
-      POSTGRES_DB: WikiDB
-      TZ: Asia/Ho_Chi_Minh
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U admin -d WikiDB"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
 
   front:
     build:
@@ -88,7 +66,3 @@ services:
       - /app/node_modules
     depends_on:
       - api
-
-volumes:
-  pgdata:
-    name: postgres_wiki_data
