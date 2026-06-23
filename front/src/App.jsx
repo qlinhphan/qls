@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Send, Settings, Stethoscope } from 'lucide-react';
 
 const API_URL = 'http://10.10.50.226:8001/chat';
+const SYSTEM_PROMPT_API_URL = 'http://10.10.50.226:8001/system-prompt';
 const THREAD_STORAGE_KEY = 'medical-chat-thread-id';
 const welcomeMessage =
   'Xin chào, tôi là trợ lý AI của bạn, sẽ giúp đỡ bạn hôm nay.';
@@ -65,6 +66,10 @@ export default function App() {
   const [isSending, setIsSending] = useState(false);
   const [threadId] = useState(getThreadId);
   const [typedWelcome, setTypedWelcome] = useState('');
+  const [isPromptOpen, setIsPromptOpen] = useState(false);
+  const [systemPrompt, setSystemPrompt] = useState('');
+  const [isPromptLoading, setIsPromptLoading] = useState(false);
+  const [promptStatus, setPromptStatus] = useState('');
 
   const modeTitle = useMemo(
     () => modes.find((mode) => mode.id === activeMode)?.label ?? modes[0].label,
@@ -135,6 +140,58 @@ export default function App() {
     }
   }
 
+  async function openPromptSettings() {
+    setIsPromptOpen(true);
+    setIsPromptLoading(true);
+    setPromptStatus('');
+
+    try {
+      const response = await fetch(SYSTEM_PROMPT_API_URL);
+      if (!response.ok) {
+        throw new Error(`API trả về lỗi ${response.status}`);
+      }
+
+      const data = await response.json();
+      setSystemPrompt(data.prompt ?? '');
+    } catch (error) {
+      setPromptStatus(`Không thể tải prompt: ${error.message}`);
+    } finally {
+      setIsPromptLoading(false);
+    }
+  }
+
+  async function saveSystemPrompt() {
+    const value = systemPrompt.trim();
+    if (!value || isPromptLoading) return;
+
+    setIsPromptLoading(true);
+    setPromptStatus('');
+
+    try {
+      const response = await fetch(SYSTEM_PROMPT_API_URL, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          prompt: value,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`API trả về lỗi ${response.status}`);
+      }
+
+      const data = await response.json();
+      setSystemPrompt(data.prompt ?? value);
+      setPromptStatus('Đã lưu prompt hệ thống.');
+    } catch (error) {
+      setPromptStatus(`Không thể lưu prompt: ${error.message}`);
+    } finally {
+      setIsPromptLoading(false);
+    }
+  }
+
   return (
     <main className="app-shell">
       <aside className="sidebar">
@@ -172,7 +229,7 @@ export default function App() {
           <div className="chat-title">
             <div className="chat-title-row">
               <p className="section-label">Đang dùng</p>
-              <button className="prompt-settings-button" type="button">
+              <button className="prompt-settings-button" onClick={openPromptSettings} type="button">
                 <Settings aria-hidden="true" size={16} />
                 <span>Thiết lập prompt</span>
               </button>
@@ -219,6 +276,39 @@ export default function App() {
           </form>
         </footer>
       </section>
+
+      {isPromptOpen && (
+        <div className="prompt-modal-backdrop">
+          <section className="prompt-modal" aria-label="Thiết lập prompt hệ thống">
+            <header className="prompt-modal-header">
+              <div>
+                <p className="section-label">Prompt hệ thống</p>
+                <h2>Thiết lập prompt</h2>
+              </div>
+              <button
+                className="prompt-modal-close"
+                onClick={() => setIsPromptOpen(false)}
+                type="button"
+              >
+                Đóng
+              </button>
+            </header>
+
+            <textarea
+              disabled={isPromptLoading}
+              onChange={(event) => setSystemPrompt(event.target.value)}
+              value={systemPrompt}
+            />
+
+            <footer className="prompt-modal-actions">
+              <span>{promptStatus}</span>
+              <button disabled={isPromptLoading || !systemPrompt.trim()} onClick={saveSystemPrompt} type="button">
+                {isPromptLoading ? 'Đang xử lý...' : 'Lưu prompt'}
+              </button>
+            </footer>
+          </section>
+        </div>
+      )}
     </main>
   );
 }
