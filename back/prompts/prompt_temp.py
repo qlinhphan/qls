@@ -39,7 +39,7 @@ def llama_clients_prompt(knowledge, context, q):
         Đề xuất chuyên khoa dựa theo kiến thức bao gồm các khoa:
           
           🏥 [Điền chuẩn xác Tên Chuyên Khoa từ bảng ánh xạ trên]
-          - Lý do đề xuất: [Phân tích lý do ngắn gọn và chuẩn xác dựa trên phần "DẤU HIỆU LÂM SÀNG GỢI Ý" của tài liệu đó]
+          - Lý do đề xuất: [Phân tích lý do ngắn gọn và chuẩn xác dựa trên phần {knowledge} của tài liệu đó]
     """
     # print("check knowledge: ", knowledge)
 
