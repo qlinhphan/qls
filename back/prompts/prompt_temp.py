@@ -35,10 +35,10 @@ def llama_clients_prompt(knowledge, context, q):
         Chuyên khoa đề xuất:
 
         🩺 Khoa: [Điền chính xác tên khoa theo quy định trên]
-        📝 Lý do: [Chép lại phần DẤU HIỆU LÂM SÀNG GỢI Ý hoặc tên bệnh lý tương ứng có trong kiến thức, không tự bịa thêm]
+        📝 Lý do: [Diễn đạt phần DẤU HIỆU LÂM SÀNG GỢI Ý hoặc tên bệnh lý tương ứng có trong kiến thức, không tự bịa thêm]
 
         🩺 Khoa: [Điền tên khoa tiếp theo nếu có tài liệu của khoa khác]
-        📝 Lý do: [Chép lại phần dấu hiệu lâm sàng tương ứng]
+        📝 Lý do: [Diễn đạt phần dấu hiệu lâm sàng tương ứng]
 """
     # print("check knowledge: ", knowledge)
 
