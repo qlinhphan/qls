@@ -32,11 +32,18 @@ def llama_clients_prompt(knowledge, context, q):
         - Tên file có "KHÁM TMH,RHM,MẮT" -> Ghi đúng chữ: Khám Tai Mũi Họng - Răng Hàm Mặt - Mắt
         (Tuyệt đối không tự ý dùng các tên khoa khác).
 
-        [CẤU TRÚC ĐẦU RA BẮT BUỘC - CHỈ IN THEO MẪU NÀY]:
+        [CẤU TRÚC ĐẦU RA BẮT BUỘC - LẶP LẠI THEO TỪNG KHOA]:
         Chuyên khoa đề xuất:
 
-        🩺 Khoa: [Điền chính xác các tên khoa theo quy định trên]
-        📝 Lý do: [Diễn đạt phần DẤU HIỆU LÂM SÀNG GỢI Ý hoặc tên bệnh lý tương ứng có trong kiến thức tương ứng, không tự bịa thêm]
+        (Nếu tìm thấy nhiều khoa trong kiến thức, bạn BẮT BUỘC phải lặp lại cấu trúc dưới đây cho từng khoa, không được gom chung):
+
+        🩺 Khoa: [Tên khoa/khám thứ nhất]
+        📝 Lý do: [Lý do trích xuất từ tài liệu của khoa thứ nhất]
+
+        Sub-khoa (nếu có thêm khoa khác trong kiến thức thì tiếp tục in ra dưới đây):
+        
+        🩺 Khoa: [Tên khoa/khám thứ hai]
+        📝 Lý do: [Lý do trích xuất từ tài liệu của khoa thứ hai]
 """
     # print("check knowledge: ", knowledge)
 
