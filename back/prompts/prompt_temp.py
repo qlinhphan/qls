@@ -24,22 +24,19 @@ def llama_clients_prompt(knowledge, context, q):
 
         [QUY TẮC ĐẶT TÊN CHUYÊN KHOA]:
         Hãy nhìn vào phần tên file ở cuối kiến thức để đọc vị ra tên khoa. Chỉ được điền tên khoa theo đúng quy định sau:
-        - Tên file có "KHÁM CẤP CỨU" -> Ghi đúng chữ: Khoa Khám Cấp Cứu
+        - Tên file có "KHÁM CẤP CỨU" -> Ghi đúng chữ: Khám Cấp Cứu
         - Tên file có "K. NGOẠI" -> Ghi đúng chữ: Khoa Ngoại
         - Tên file có "K. NHI" -> Ghi đúng chữ: Khoa Nhi
         - Tên file có "K. NỘI" -> Ghi đúng chữ: Khoa Nội
         - Tên file có "K. SẢN" -> Ghi đúng chữ: Khoa Sản
-        - Tên file có "KHÁM TMH,RHM,MẮT" -> Ghi đúng chữ: Khoa Khám Tai Mũi Họng - Răng Hàm Mặt - Mắt
+        - Tên file có "KHÁM TMH,RHM,MẮT" -> Ghi đúng chữ: Khám Tai Mũi Họng - Răng Hàm Mặt - Mắt
         (Tuyệt đối không tự ý dùng các tên khoa khác).
 
         [CẤU TRÚC ĐẦU RA BẮT BUỘC - CHỈ IN THEO MẪU NÀY]:
         Chuyên khoa đề xuất:
 
-        🩺 Khoa: [Điền chính xác tên khoa theo quy định trên]
-        📝 Lý do: [Diễn đạt phần DẤU HIỆU LÂM SÀNG GỢI Ý hoặc tên bệnh lý tương ứng có trong kiến thức, không tự bịa thêm]
-
-        🩺 Khoa: [Điền tên khoa tiếp theo nếu có tài liệu của khoa khác]
-        📝 Lý do: [Diễn đạt phần dấu hiệu lâm sàng tương ứng]
+        🩺 Khoa: [Điền chính xác các tên khoa theo quy định trên]
+        📝 Lý do: [Diễn đạt phần DẤU HIỆU LÂM SÀNG GỢI Ý hoặc tên bệnh lý tương ứng có trong kiến thức tương ứng, không tự bịa thêm]
 """
     # print("check knowledge: ", knowledge)
 
