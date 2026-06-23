@@ -60,7 +60,7 @@ def llama_clients(llama_clients_prompt, knowledge, context, q):
             'prompt': prompt,
             'stream': True,
             'options': {
-                'num_predict': 256,
+                'num_predict': 1024,
                 'temperature': 0
             }
         },
