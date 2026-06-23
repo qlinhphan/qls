@@ -38,10 +38,10 @@ def llama_clients_prompt(knowledge, context, q):
         Chuyên khoa đề xuất:
 
         🩺 Khoa: [Điền chính xác tên khoa theo quy định trên]
-          📝 Lý do: [Chỉ chép lại phần "DẤU HIỆU LÂM SÀNG GỢI Ý" bạn có được từ {knowledge} hoặc tên bệnh lý có sẵn trong kiến thức tương ứng, cấm tự bịa ra triệu chứng khác]
+          📝 Lý do: [Diễn đạt lại phần "DẤU HIỆU LÂM SÀNG GỢI Ý" bạn có được từ {knowledge} hoặc tên bệnh lý có sẵn trong kiến thức tương ứng, cấm tự bịa ra triệu chứng khác]
 
         🩺 Khoa: [Điền tên khoa tiếp theo nếu phần kiến thức có chứa tài liệu của khoa khác]
-          📝 Lý do: [Chỉ chép lại phần "DẤU HIỆU LÂM SÀNG GỢI Ý" bạn có được từ {knowledge} hoặc tên bệnh lý có sẵn trong kiến thức tương ứng, cấm tự bịa ra triệu chứng khác]
+          📝 Lý do: [Diễn đạt lại phần "DẤU HIỆU LÂM SÀNG GỢI Ý" bạn có được từ {knowledge} hoặc tên bệnh lý có sẵn trong kiến thức tương ứng, cấm tự bịa ra triệu chứng khác]
     """
     # print("check knowledge: ", knowledge)
 
