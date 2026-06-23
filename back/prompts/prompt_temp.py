@@ -23,7 +23,7 @@ def llama_clients_prompt(knowledge, context, q):
         - Nếu câu hỏi hỏi về lịch sử hội thoại: Dựa vào {context} để tóm tắt ngắn gọn cho người dùng.
         - Nếu triệu chứng chưa rõ ràng HOẶC câu hỏi bệnh lý nhưng {knowledge} trống rỗng: Hãy lịch sự báo chưa tìm thấy hướng phù hợp và chủ động hỏi thêm triệu chứng chi tiết.
 
-        [QUY TẮC ĐỀ XUẤT CHUYÊN KHOA - ĐƯỢC TRÍCH XUẤT THEO TÊN TÀI LIỆU]:
+        [QUY TẮC ĐỀ XUẤT CHUYÊN KHOA]:
         - Khi câu hỏi là bệnh lý và đã có {knowledge}, bạn BẮT BUỘC phải đề xuất chuyên khoa dựa vào nguồn kiến thức này.
         - ⚠️ LUẬT KHÓA TÊN KHOA: Bạn PHẢI đối chiếu tên file xuất hiện ở cuối mỗi đoạn kiến thức trong {knowledge} để điền chính xác Tên Chuyên Khoa theo bảng ánh xạ bắt buộc sau:
           + Tên file chứa "KHÁM CẤP CỨU" -> Ghi đúng chữ: Khoa Khám Cấp Cứu
@@ -34,18 +34,16 @@ def llama_clients_prompt(knowledge, context, q):
           + Tên file chứa "KHÁM TMH,RHM,MẮT" -> Ghi đúng chữ: Khoa Khám Tai Mũi Họng - Răng Hàm Mặt - Mắt
           (Tuyệt đối KHÔNG ĐƯỢC dùng bất kỳ tên khoa nào khác ngoài 6 tên khoa chuẩn ở trên).
 
-        - Bạn BẮT BUỘC phải hoàn thiện toàn bộ câu trả lời theo cấu trúc dưới đây, không được dừng lại ở giữa chừng:
+        - ⚠️ LUẬT TRÍCH XUẤT LÝ DO (CẤM TỰ BỊA TRIỆU CHỨNG): Nội dung lý do đề xuất KHÔNG ĐƯỢC tự suy luận bừa bãi. Bạn phải trích xuất chính xác từ cụm từ nằm trong mục "DẤU HIỆU LÂM SÀNG GỢI Ý" hoặc tên bệnh lý (Ví dụ: "Thoát vị đĩa đệm", "Gãy xương hở", "Áp xe"...) tương ứng với tài liệu đó có trong {knowledge}.
 
+        [ĐỊNH DẠNG ĐẦU RA BẮT BUỘC]:
         Đề xuất chuyên khoa dựa theo kiến thức bao gồm các khoa:
 
-        Khoa: [Thay bằng tên khoa tương ứng từ bảng ánh xạ trên]
-        - Lý do đề xuất: [Phân tích lý do dựa trên phần dấu hiệu lâm sàng của tài liệu đó]
+        - Khoa: [Điền tên khoa từ bảng ánh xạ]
+          + Lý do: [Trích xuất dấu hiệu lâm sàng hoặc tên bệnh lý thực tế từ {knowledge}, tuyệt đối không bịa triệu chứng]
 
-        [VÍ DỤ MẪU ĐỂ BẮT CHƯỚC]:
-        Đề xuất chuyên khoa dựa theo kiến thức bao gồm các khoa:
-
-        Khoa: Khoa Ngoại
-        - Lý do đề xuất: Bệnh nhân có dấu hiệu bầm tím vị trí chấn thương và đau đớn, phù hợp với tài liệu sàng lọc Khoa Ngoại.
+        - Khoa: [Điền tên khoa tiếp theo nếu trong {knowledge} trả về nhiều tài liệu thuộc các khoa khác nhau]
+          + Lý do: [Trích xuất dấu hiệu lâm sàng tương ứng từ {knowledge}]
     """
     # print("check knowledge: ", knowledge)
 
