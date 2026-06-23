@@ -1,0 +1,14 @@
+{
+    "mã_bệnh_nhân": "BN-1980-NVA",
+    "họ_tên": "Nguyễn Văn An",
+    "năm_sinh": 1980,
+    "id_đợt_khám": "DOT-2026-001",
+    "thông_tin_lâm_sàng": {
+        "ngày_giờ_vào": "2026-06-25T14:00:00",
+        "dấu_hiệu_lâm_sàng_gợi_ý": "Hậu phẫu ngày thứ 3, vết mổ khô. Tuy nhiên bệnh nhân xuất hiện triệu chứng mệt mỏi nhiều, suy nhược cơ thể, gầy sút cân nhanh, ăn uống kém, da xanh xao do mất máu chưa phục hồi hoàn toàn.",
+        "tình_trạng_cấp_cứu": false
+    },
+    "chẩn_đoán_sơ_bộ": "Suy nhược cơ thể sau phẫu thuật lớn / Thiếu máu mức độ vừa",
+    "hướng_xử_trí": "Truyền khối hồng cầu bổ sung, chỉ định chế độ dinh dưỡng cao năng lượng, dùng thuốc bổ trợ tế bào gan và vitamin nhóm B.",
+    "chuyên_khoa_chỉ_định": "Khoa Nội"
+}

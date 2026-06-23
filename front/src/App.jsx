@@ -72,6 +72,7 @@ export default function App() {
   const [isPromptLoading, setIsPromptLoading] = useState(false);
   const [promptStatus, setPromptStatus] = useState('');
   const [toastMessage, setToastMessage] = useState('');
+  const [isToastVisible, setIsToastVisible] = useState(false);
 
   const modeTitle = useMemo(
     () => modes.find((mode) => mode.id === activeMode)?.label ?? modes[0].label,
@@ -192,6 +193,8 @@ export default function App() {
       setSavedSystemPrompt(savedPrompt);
       setPromptStatus('');
       setToastMessage('Thành công, bạn đã lưu thay đổi prompt thành công');
+      setIsToastVisible(true);
+      window.setTimeout(() => setIsToastVisible(false), 2600);
       window.setTimeout(() => setToastMessage(''), 3200);
     } catch (error) {
       setPromptStatus(`Không thể lưu prompt: ${error.message}`);
@@ -202,7 +205,15 @@ export default function App() {
 
   return (
     <main className="app-shell">
-      {toastMessage && <div className="toast-success">{toastMessage}</div>}
+      {toastMessage && (
+        <div className={`toast-success ${isToastVisible ? 'is-visible' : 'is-hidden'}`}>
+          <div className="toast-success-icon">✓</div>
+          <div>
+            <strong>Thành công</strong>
+            <span>{toastMessage.replace('Thành công, ', '')}</span>
+          </div>
+        </div>
+      )}
 
       <aside className="sidebar">
         <div className="brand">

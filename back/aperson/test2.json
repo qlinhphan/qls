@@ -1,0 +1,14 @@
+{
+    "mã_bệnh_nhân": "BN-1980-AN",
+    "họ_tên": "Nguyễn Văn An",
+    "năm_sinh": 1980,
+    "id_đợt_khám": "DOT-2026-001",
+    "thông_tin_lâm_sàng": {
+        "ngày_giờ_vào": "2026-06-23T09:30:00",
+        "dấu_hiệu_lâm_sàng_gợi_ý": "Bệnh nhân chuyển từ Cấp cứu lên thẳng phòng mổ. Vùng bụng sưng nề, bầm tím vị trí hạ sườn phải, cơ bụng co cứng thành bụng (bụng ngoại khoa), chọc dò ổ bụng có máu không đông.",
+        "tình_trạng_cấp_cứu": false
+    },
+    "chẩn_đoán_sơ_bộ": "Chấn thương bụng kín: Vỡ gan độ III, rách bao lách gây tràn máu ổ bụng",
+    "hướng_xử_trí": "Phẫu thuật nội soi khâu cầm máu nhu mô gan, dẫn lưu ổ bụng. Chuyển hậu phẫu theo dõi sát.",
+    "chuyên_khoa_chỉ_định": "Khoa Ngoại"
+}
