@@ -23,17 +23,23 @@ def llama_clients_prompt(knowledge, context, q):
         - Nếu câu hỏi hỏi về lịch sử hội thoại: Dựa vào {context} để tóm tắt ngắn gọn cho người dùng.
         - Nếu triệu chứng chưa rõ ràng HOẶC câu hỏi bệnh lý nhưng {knowledge} trống rỗng: Hãy lịch sự báo chưa tìm thấy hướng phù hợp và chủ động hỏi thêm triệu chứng chi tiết.
 
-        [QUY TẮC ĐỀ XUẤT CHUYÊN KHOA]:
-        - Khi câu hỏi là bệnh lý và đã có {knowledge}, bạn BẮT BUỘC phải đề xuất chuyên khoa cho người bệnh dựa vào {knowledge}.
-        - Bạn có thể đề xuất MỘT hoặc NHIỀU chuyên khoa cùng lúc tùy thuộc vào độ phức tạp của triệu chứng trong {knowledge}.
-        - Hãy trình bày danh sách chuyên khoa rõ ràng theo định dạng sau để người dùng dễ đọc:
-        - Đề xuất chuyên khoa dựa theo {knowledge} bao gồm các khoa 
+        [QUY TẮC ĐỀ XUẤT CHUYÊN KHOA - ĐƯỢC TRÍCH XUẤT THEO TÊN TÀI LIỆU]:
+        - Khi câu hỏi là bệnh lý và đã có {knowledge}, bạn BẮT BUỘC phải đề xuất chuyên khoa dựa vào nguồn kiến thức này.
+        - Bạn có thể đề xuất MỘT hoặc NHIỀU chuyên khoa cùng lúc tùy thuộc vào dữ liệu trích xuất được.
+        - ⚠️ LUẬT KHÓA TÊN KHOA: Bạn PHẢI đối chiếu tên file xuất hiện ở cuối mỗi đoạn kiến thức trong {knowledge} để điền chính xác [Tên Chuyên Khoa] theo bảng ánh xạ bắt buộc sau:
+          + Tên file chứa "KHÁM CẤP CỨU" -> Tên khoa: Khoa Khám Cấp Cứu
+          + Tên file chứa "K. NGOẠI" -> Tên khoa: Khoa Ngoại
+          + Tên file chứa "K. NHI" -> Tên khoa: Khoa Nhi
+          + Tên file chứa "K. NỘI" -> Tên khoa: Khoa Nội
+          + Tên file chứa "K. SẢN" -> Tên khoa: Khoa Sản
+          + Tên file chứa "KHÁM TMH,RHM,MẮT" -> Tên khoa: Khoa Khám Tai Mũi Họng - Răng Hàm Mặt - Mắt
+          (Tuyệt đối KHÔNG ĐƯỢC dùng bất kỳ tên khoa nào khác ngoài 6 tên khoa chuẩn ở trên).
+
+        - Hãy trình bày danh sách chuyên khoa rõ ràng theo đúng định dạng sau để hiển thị:
+        Đề xuất chuyên khoa dựa theo kiến thức bao gồm các khoa:
           
-          🏥 [Tên Chuyên Khoa 1]
-          - Lý do đề xuất: [PHẢI Phân tích lý do ngắn gọn dựa trên triệu chứng]
-          
-          🏥 [Tên Chuyên Khoa 2 (Nếu có)]
-          - Lý do đề xuất: [PHẢI Phân tích lý do ngắn gọn dựa trên triệu chứng]
+          🏥 [Điền chuẩn xác Tên Chuyên Khoa từ bảng ánh xạ trên]
+          - Lý do đề xuất: [Phân tích lý do ngắn gọn và chuẩn xác dựa trên phần "DẤU HIỆU LÂM SÀNG GỢI Ý" của tài liệu đó]
     """
     # print("check knowledge: ", knowledge)
 
