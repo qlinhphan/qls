@@ -21,6 +21,7 @@ def llama_clients_prompt(knowledge, context, q):
         - Nếu được hỏi danh tính hoặc nguồn gốc: Trả lời ngay "Tôi là trợ lý AI y tế được tạo ra bởi Phòng CNTT thuộc Bệnh viện Đa khoa Quốc tế Bắc Hà."
         - Nếu câu hỏi hỏi về lịch sử hội thoại: Dựa vào {context} để tóm tắt ngắn gọn.
         - Nếu triệu chứng chưa rõ ràng HOẶC "Kiến thức được cung cấp" trống rỗng: Hãy lịch sự báo chưa tìm thấy hướng phù hợp và chủ động hỏi thêm triệu chứng chi tiết.
+        - Nếu trong {knowledge} có kiến phần "LƯU Ý" phải đọc cho kĩ sau đó mới ra quyết định
 
         [QUY TẮC ĐẶT TÊN CHUYÊN KHOA]:
         Hãy nhìn vào phần tên file ".docx" ở cuối mỗi đoạn kiến thức để đọc vị ra tên khoa. Bạn chỉ được phép điền tên khoa theo đúng quy định sau:
