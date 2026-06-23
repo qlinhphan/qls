@@ -32,8 +32,14 @@ def rechieval_data(question_vector, index_file, top_k, mycol, min_score=0.6):
         response.append(data['content'])
         name_docs.append(data['name_doc'])
         # print("rechieval: ", response)
+
+    finals = []
+    for r, n in zip(response, name_docs):
+        finals.append([r, n])
+
+    # print("FINALS: ", finals)
     return {
-        "response": response
+        "response": finals
     }
 
 

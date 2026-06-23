@@ -73,7 +73,8 @@ def main():
         res = llama_clients(llama_clients_prompt, response, context, q)
         context.append([q, res])
         print("res: ", res)
-        print(type(res))
+        print("===================================================================================================================================")
+        # print(type(res))
 
 
         # if isinstance(res, dict):
