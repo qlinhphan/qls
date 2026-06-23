@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Send, Stethoscope } from 'lucide-react';
+import { Send, Settings, Stethoscope } from 'lucide-react';
 
 const API_URL = 'http://10.10.50.226:8001/chat';
 const THREAD_STORAGE_KEY = 'medical-chat-thread-id';
@@ -170,7 +170,13 @@ export default function App() {
       <section className="chat-area">
         <header className="chat-header">
           <div className="chat-title">
-            <p className="section-label">Đang dùng</p>
+            <div className="chat-title-row">
+              <p className="section-label">Đang dùng</p>
+              <button className="prompt-settings-button" type="button">
+                <Settings aria-hidden="true" size={16} />
+                <span>Thiết lập prompt</span>
+              </button>
+            </div>
             <h2>{modeTitle}</h2>
           </div>
         </header>

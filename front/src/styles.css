@@ -130,8 +130,35 @@ input {
   min-width: 180px;
 }
 
+.chat-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .chat-title .section-label {
   color: #5d716f;
+}
+
+.prompt-settings-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid #c9d7d5;
+  border-radius: 8px;
+  color: #246963;
+  background: #ffffff;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.prompt-settings-button:hover {
+  border-color: #2f7770;
+  background: #eef7f5;
 }
 
 .chat-title h2 {
