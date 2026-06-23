@@ -34,13 +34,13 @@ def llama_clients_prompt(knowledge, context, q):
         (Tuyệt đối không tự sáng tác ra các tên khoa khác như Khoa Tiêu hóa, Khoa Tim mạch, Khoa Thần kinh...).
 
         [CẤU TRÚC ĐẦU RA BẮT BUỘC - CHỈ IN THEO MẪU NÀY]:
-        Đề xuất chuyên khoa dựa theo kiến thức bao gồm các khoa:
+        Chuyên khoa đề xuất:
 
         - Khoa: [Điền chính xác tên khoa theo quy định trên]
-          + Lý do: [Chỉ chép lại phần "DẤU HIỆU LÂM SÀNG GỢI Ý" hoặc tên bệnh lý có sẵn trong kiến thức tương ứng, cấm tự bịa ra triệu chứng khác]
+          + Lý do: [Chỉ chép lại phần "DẤU HIỆU LÂM SÀNG GỢI Ý" bạn có được từ {knowledge} hoặc tên bệnh lý có sẵn trong kiến thức tương ứng, cấm tự bịa ra triệu chứng khác]
 
         - Khoa: [Điền tên khoa tiếp theo nếu phần kiến thức có chứa tài liệu của khoa khác]
-          + Lý do: [Chép lại dấu hiệu lâm sàng tương ứng]
+          + Lý do: [Chỉ chép lại phần "DẤU HIỆU LÂM SÀNG GỢI Ý" bạn có được từ {knowledge} hoặc tên bệnh lý có sẵn trong kiến thức tương ứng, cấm tự bịa ra triệu chứng khác]
     """
     # print("check knowledge: ", knowledge)
 
