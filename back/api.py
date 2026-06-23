@@ -237,7 +237,7 @@ def get_system_prompt() -> Dict[str, Any]:
 def update_system_prompt(payload: SystemPromptRequest) -> Dict[str, Any]:
     prompt = payload.prompt.strip()
     if not prompt:
-        raise HTTPException(status_code=400, detail="prompt khong duoc de trong")
+        raise HTTPException(status_code=400, detail="Prompt không được để trống")
 
     _save_custom_system_prompt(prompt)
 
@@ -245,7 +245,7 @@ def update_system_prompt(payload: SystemPromptRequest) -> Dict[str, Any]:
         app.state.system_prompt_template = prompt
 
     return {
-        "message": "Da cap nhat prompt he thong",
+        "message": "Đã cập nhật prompt hệ thống",
         "is_default": False,
         "prompt": prompt,
     }

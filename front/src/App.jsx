@@ -68,8 +68,10 @@ export default function App() {
   const [typedWelcome, setTypedWelcome] = useState('');
   const [isPromptOpen, setIsPromptOpen] = useState(false);
   const [systemPrompt, setSystemPrompt] = useState('');
+  const [savedSystemPrompt, setSavedSystemPrompt] = useState('');
   const [isPromptLoading, setIsPromptLoading] = useState(false);
   const [promptStatus, setPromptStatus] = useState('');
+  const [toastMessage, setToastMessage] = useState('');
 
   const modeTitle = useMemo(
     () => modes.find((mode) => mode.id === activeMode)?.label ?? modes[0].label,
@@ -152,7 +154,9 @@ export default function App() {
       }
 
       const data = await response.json();
-      setSystemPrompt(data.prompt ?? '');
+      const prompt = data.prompt ?? '';
+      setSystemPrompt(prompt);
+      setSavedSystemPrompt(prompt);
     } catch (error) {
       setPromptStatus(`Không thể tải prompt: ${error.message}`);
     } finally {
@@ -162,7 +166,7 @@ export default function App() {
 
   async function saveSystemPrompt() {
     const value = systemPrompt.trim();
-    if (!value || isPromptLoading) return;
+    if (!value || value === savedSystemPrompt.trim() || isPromptLoading) return;
 
     setIsPromptLoading(true);
     setPromptStatus('');
@@ -183,8 +187,12 @@ export default function App() {
       }
 
       const data = await response.json();
-      setSystemPrompt(data.prompt ?? value);
-      setPromptStatus('Đã lưu prompt hệ thống.');
+      const savedPrompt = data.prompt ?? value;
+      setSystemPrompt(savedPrompt);
+      setSavedSystemPrompt(savedPrompt);
+      setPromptStatus('');
+      setToastMessage('Thành công, bạn đã lưu thay đổi prompt thành công');
+      window.setTimeout(() => setToastMessage(''), 3200);
     } catch (error) {
       setPromptStatus(`Không thể lưu prompt: ${error.message}`);
     } finally {
@@ -194,6 +202,8 @@ export default function App() {
 
   return (
     <main className="app-shell">
+      {toastMessage && <div className="toast-success">{toastMessage}</div>}
+
       <aside className="sidebar">
         <div className="brand">
           <div className="brand-mark">
@@ -302,7 +312,15 @@ export default function App() {
 
             <footer className="prompt-modal-actions">
               <span>{promptStatus}</span>
-              <button disabled={isPromptLoading || !systemPrompt.trim()} onClick={saveSystemPrompt} type="button">
+              <button
+                disabled={
+                  isPromptLoading ||
+                  !systemPrompt.trim() ||
+                  systemPrompt.trim() === savedSystemPrompt.trim()
+                }
+                onClick={saveSystemPrompt}
+                type="button"
+              >
                 {isPromptLoading ? 'Đang xử lý...' : 'Lưu prompt'}
               </button>
             </footer>
