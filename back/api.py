@@ -3,6 +3,7 @@ import os
 import threading
 import unicodedata
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import Any, Dict, List
 
 import faiss
@@ -29,6 +30,7 @@ load_dotenv()
 
 DEFAULT_MIN_SCORE = float(os.getenv("MIN_SCORE_RECHIEVAL", "0.55"))
 API_VERSION = "2026-06-22-cors-5173"
+PROMPT_CONFIG_PATH = Path("prompt_config.json")
 IDENTITY_ANSWER = "Tôi là trợ lý AI y tế hỗ trợ trích xuất phác đồ điều trị."
 CREATOR_ANSWER = (
     "Tôi được tạo ra bởi Phòng CNTT thuộc Bệnh viện Đa khoa Quốc tế Bắc Hà."
@@ -125,6 +127,54 @@ class SummaryRequest(BaseModel):
     user_id: str = Field(default="user-123", min_length=1, description="ID nguoi dung")
 
 
+class SystemPromptRequest(BaseModel):
+    prompt: str = Field(..., min_length=1, description="Prompt he thong")
+
+
+def _default_system_prompt_template() -> str:
+    return llama_clients_prompt("{knowledge}", "{context}", "{q}")
+
+
+def _load_custom_system_prompt() -> str | None:
+    if not PROMPT_CONFIG_PATH.exists():
+        return None
+
+    with PROMPT_CONFIG_PATH.open("r", encoding="utf-8") as file:
+        data = json.load(file)
+
+    prompt = data.get("llama_clients_prompt")
+    if isinstance(prompt, str) and prompt.strip():
+        return prompt
+
+    return None
+
+
+def _save_custom_system_prompt(prompt: str) -> None:
+    with PROMPT_CONFIG_PATH.open("w", encoding="utf-8") as file:
+        json.dump(
+            {"llama_clients_prompt": prompt},
+            file,
+            ensure_ascii=False,
+            indent=2,
+        )
+
+
+def _render_system_prompt_template(template: str, knowledge, context, q) -> str:
+    return (
+        template.replace("{knowledge}", str(knowledge))
+        .replace("{context}", str(context))
+        .replace("{q}", str(q))
+    )
+
+
+def active_llama_clients_prompt(knowledge, context, q):
+    template = getattr(app.state, "system_prompt_template", None)
+    if not template:
+        return llama_clients_prompt(knowledge, context, q)
+
+    return _render_system_prompt_template(template, knowledge, context, q)
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     postgre_cursor = init_postgre()
@@ -136,6 +186,8 @@ async def lifespan(app: FastAPI):
     app.state.thread_histories: Dict[str, List[List[str]]] = {}
     app.state.thread_lock = threading.Lock()
     app.state.postgre_lock = threading.Lock()
+    app.state.prompt_lock = threading.Lock()
+    app.state.system_prompt_template = _load_custom_system_prompt()
     yield
     postgre_cursor.close()
     postgre_cursor.connection.close()
@@ -161,6 +213,41 @@ def health_check() -> Dict[str, str]:
         "status": "ok",
         "version": API_VERSION,
         "gio": "10:47"
+    }
+
+
+@app.get("/system-prompt")
+def get_system_prompt() -> Dict[str, Any]:
+    with app.state.prompt_lock:
+        prompt = app.state.system_prompt_template
+
+    if prompt:
+        return {
+            "prompt": prompt,
+            "is_default": False,
+        }
+
+    return {
+        "prompt": _default_system_prompt_template(),
+        "is_default": True,
+    }
+
+
+@app.put("/system-prompt")
+def update_system_prompt(payload: SystemPromptRequest) -> Dict[str, Any]:
+    prompt = payload.prompt.strip()
+    if not prompt:
+        raise HTTPException(status_code=400, detail="prompt khong duoc de trong")
+
+    _save_custom_system_prompt(prompt)
+
+    with app.state.prompt_lock:
+        app.state.system_prompt_template = prompt
+
+    return {
+        "message": "Da cap nhat prompt he thong",
+        "is_default": False,
+        "prompt": prompt,
     }
 
 
@@ -194,7 +281,7 @@ def chat(payload: ChatRequest) -> Dict[str, Any]:
         min_score=payload.min_score,
     )
 
-    answer = llama_clients(llama_clients_prompt, knowledge, history, question)
+    answer = llama_clients(active_llama_clients_prompt, knowledge, history, question)
 
     _save_thread_history(payload.thread_id, question, answer)
 
