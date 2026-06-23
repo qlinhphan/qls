@@ -25,11 +25,11 @@ def llama_clients_prompt(knowledge, context, q):
         [QUY TẮC ĐẶT TÊN CHUYÊN KHOA]:
         Hãy nhìn vào phần tên file ở cuối kiến thức để đọc vị ra tên khoa. Chỉ được điền tên khoa theo đúng quy định sau:
         - Tên file có "KHÁM CẤP CỨU" -> Ghi đúng chữ: Khám Cấp Cứu
-        - Tên file có "K. NGOẠI" -> Ghi đúng chữ: Khoa Ngoại
-        - Tên file có "K. NHI" -> Ghi đúng chữ: Khoa Nhi
-        - Tên file có "K. NỘI" -> Ghi đúng chữ: Khoa Nội
-        - Tên file có "K. SẢN" -> Ghi đúng chữ: Khoa Sản
-        - Tên file có "KHÁM TMH,RHM,MẮT" -> Ghi đúng chữ: Khám Tai Mũi Họng - Răng Hàm Mặt - Mắt
+        - Tên file có "K. NGOẠI" -> Ghi đúng chữ: Chuyên Khoa Ngoại
+        - Tên file có "K. NHI" -> Ghi đúng chữ: Chuyên Khoa Nhi
+        - Tên file có "K. NỘI" -> Ghi đúng chữ: Chuyên Khoa Nội
+        - Tên file có "K. SẢN" -> Ghi đúng chữ: Khám Chuyên Khoa Sản
+        - Tên file có "KHÁM TMH,RHM,MẮT" -> liên quan đến tai, mũi họng thì đề xuất Khám chuyên khoa Tai Mũi Họng, liện quan đến chuyên khoa Răng, Hàm, Mặt thì đề xuất khám Chuyên khoa Răng Hàm Mặt, liên quan đến mắt thì đề xuất khám Chuyên khoa Mắt
         (Tuyệt đối không tự ý dùng các tên khoa khác).
 
         [CẤU TRÚC ĐẦU RA BẮT BUỘC]:
