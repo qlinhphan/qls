@@ -37,7 +37,7 @@ def llama_clients_prompt(knowledge, context, q):
 
         (Dựa vào {knowledge}, có bao nhiêu chuyên khoa phù hợp thì bạn liệt kê ra bấy nhiêu chuyên khoa theo đúng cấu trúc bên dưới. Nếu chỉ có 1 khoa thì chỉ in ra 1 lần, nếu có nhiều khoa thì lặp lại khối này tương ứng):
 
-        🩺 "Khoa" hoặc "Khám": [Điền tên khoa/khám theo quy định trên]
+        🩺 Kiến nghị: [Điền tên khoa theo quy định trên]
         📝 Lý do: [Diễn đạt phần DẤU HIỆU LÂM SÀNG GỢI Ý hoặc tên bệnh lý tương ứng có trong kiến thức, không tự bịa thêm]
 """
     # print("check knowledge: ", knowledge)
