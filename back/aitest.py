@@ -132,7 +132,7 @@ class MedicalRagUnitTests(unittest.TestCase):
         self.assertIn("LƯU Ý: Lưu ý cấp cứu", saved["content"])
 
     def test_api_guardrail_pass_returns_model_answer(self):
-        import api
+        import back.api as api
 
         state = ApiState()
         state.thread_histories = {}
@@ -157,7 +157,7 @@ class MedicalRagUnitTests(unittest.TestCase):
         self.assertEqual(len(state.thread_histories["thread-test"]), 1)
 
     def test_api_guardrail_fail_returns_safe_fallback(self):
-        import api
+        import back.api as api
 
         state = ApiState()
         state.thread_histories = {}
@@ -182,7 +182,7 @@ class MedicalRagUnitTests(unittest.TestCase):
         self.assertEqual(state.thread_histories["thread-test"][0][1], api.GUARDRAIL_FALLBACK_ANSWER)
 
     def test_api_summary_saves_to_postgre(self):
-        import api
+        import back.api as api
 
         saved = {}
 

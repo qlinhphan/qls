@@ -1,0 +1,116 @@
+{
+  "thong_tin_benh_vien": {
+    "ten_benh_vien": "Bệnh viện Đa khoa Quốc tế Bắc Hà",
+    "ma_co_so_y_te": "HA-042",
+    "phong_system": "Phòng CNTT & Quản lý Chất lượng"
+  },
+  "hanh_chinh": {
+    "ma_benh_nhan": "BN-1980-AN",
+    "ho_ten": "Nguyễn Văn An",
+    "nam_sinh": 1980,
+    "gioi_tinh": "Nam",
+    "quoc_tich": "Việt Nam",
+    "nghe_nghiep": "Lao động tự do (Khuân vác kho bãi)",
+    "dia_chi": "Số 15, Ngõ 210, Đường Nguyễn Văn Cừ, Quận Long Biên, Hà Nội",
+    "so_dien_thoai": "0912345xxx",
+    "nguoi_nha_lien_he": {
+      "ho_ten": "Trần Thị Bình",
+      "quan_he": "Vợ",
+      "so_dien_thoai": "0987654xxx"
+    }
+  },
+  "thong_tin_nhap_vien": {
+    "ma_luot_kham": "DOT2026-KHAM-001",
+    "so_vao_vien": "VV-26-08942",
+    "ngay_gio_vao_vien": "2026-06-23T08:15:00+07:00",
+    "loai_hinh_vao_vien": "Cấp cứu",
+    "ly_do_vao_vien": "Đau bụng dữ dội vùng hạ sườn phải và quanh rốn sau tai nạn giao thông giờ thứ 2"
+  },
+  "qua_trinh_cap_cuu_va_sang_loc": {
+    "khoa_tiep_nhan": "Khoa Khám Cấp Cứu",
+    "ten_file_nguon_he_thong": "PHÂN LOẠI KHÁM CẤP CỨU.2025.docx",
+    "dau_hieu_sinh_ton_luc_vao": {
+      "mach": 115,
+      "don_vi_mach": "lần/phút",
+      "huyen_ap_tam_thu": 90,
+      "huyen_ap_tam_truong": 55,
+      "don_vi_huyen_ap": "mmHg",
+      "nhiet_do": 37.2,
+      "don_vi_nhiet_do": "°C",
+      "nhip_tho": 24,
+      "don_vi_nhip_tho": "lần/phút",
+      "spo2": 94,
+      "don_vi_spo2": "%"
+    },
+    "trieu_chung_lam_sang_ghi_nhan": "Bệnh nhân tỉnh táo, tiếp xúc chậm, kích thích do đau. Phản ứng đau dữ dội và bất ngờ ở toàn bộ vùng bụng, tập trung nhiều ở hạ sườn phải. Bụng chướng nề nhẹ, có dấu hiệu bầm tím xây xát nông vùng thượng vị do va đập vào tay lái xe máy. Nôn mửa liên tục 2 lần ra dịch dạ dày trong quá trình thăm khám. Da niêm mạc nhợt nhạt, vã mồ hôi lạnh, đầu chi lạnh.",
+    "chan_doan_tai_cap_cuu": "Theo dõi Chấn thương bụng kín / Sốc mất máu cấp do xuất huyết nội giờ thứ 2 sau Tai nạn giao thông",
+    "xu_tri_cap_cuu_khan_cap": [
+      "Lập 2 đường truyền tĩnh mạch ngoại vi lớn với Kim 18G",
+      "Xả nhanh 1000ml dung dịch NaCl 0.9% và 500ml HES 130/0.4",
+      "Thở oxy qua gọng kính 3 lít/phút",
+      "Lấy máu làm xét nghiệm khẩn cấp tại giường (Công thức máu, Nhóm máu, Đông máu toàn bộ)",
+      "Mời hội chẩn khẩn cấp liên khoa: Khoa Ngoại Tổng hợp và Khoa Gây mê hồi sức"
+    ]
+  },
+  "ket_qua_can_lam_sang_ghi_nhan": {
+    "xet_nghiem_mau": {
+      "hong_cau": 3.1,
+      "don_vi_hong_cau": "T/L",
+      "hemoglobin": 85,
+      "don_vi_hemoglobin": "g/L",
+      "hematocrit": 0.26,
+      "don_vi_hematocrit": "L/L",
+      "bach_cau": 14.2,
+      "don_vi_bach_cau": "G/L",
+      "tieu_cau": 185,
+      "don_vi_tieu_cau": "G/L"
+    },
+    "sieu_am_tai_giuong_FAST": "Dịch tự do ổ bụng lượng nhiều, dịch thuần nhất nghi máu tụ. Phát hiện đường mất liên tục nhu mô gan hạ phân thùy VI-VII kích thước ~4cm.",
+    "chup_ct_scan_o_bung_co_can_quang": "Hình ảnh rách bao gan, tổn thương vỡ nhu mô gan hạ phân thùy VI, VII mức độ phức tạp (Phân độ chấn thương gan: Độ III), kèm khối máu tụ bao quanh gan và dịch máu tự do ngập hố chậu hai bên, khoang Douglas. Rách nhẹ bao lách gây rỉ máu nhẹ. Các tạng rỗng chưa thấy dấu hiệu khí tự do ổ bụng."
+  },
+  "qua_trinh_phau_thuat_va_dieu_tri_ngoai_khoa": {
+    "khoa_chuyen_den": "Khoa Ngoại",
+    "ten_file_nguon_he_thong": "PHÂN LOẠI SÀNG LỌC K. NGOẠI 2025 -.docx",
+    "thoi_gian_phau_thuat": "2026-06-23T09:30:00+07:00",
+    "phuong_phap_phau_thuat": "Phẫu thuật nội soi ổ bụng xử trí chấn thương (Khâu cầm máu nhu mô gan, dẫn lưu ổ bụng)",
+    "phuong_phap_vo_cam": "Gây mê nội khí quản",
+    "luoc_do_phau_thuat": "Vào ổ bụng bằng 3 Trocar. Thấy có khoảng 1200ml máu đặc and máu cục tập trung ở khoang gan và hố chậu. Tiến hành hút sạch máu tụ. Kiểm tra thấy gan phải hạ phân thùy VI-VII có vết rách nhu mô dài 4.5cm, sâu 1.5cm đang rỉ máu dầm dề. Tiến hành khâu ép cầm máu nhu mô gan bằng chỉ tiêu chậm số 1. Kiểm tra lách thấy rách nhẹ bao lách đã tự cầm máu, tiến hành đắp gạc xốp cầm máu. Đặt 2 ống dẫn lưu (1 ở hố gan, 1 ở Douglas). Đóng các lỗ Trocar.",
+    "chan_doan_hau_phau": "Chấn thương bụng kín: Vỡ gan độ III, rách bao lách đã xử trí khâu cầm máu giờ thứ 1"
+  },
+  "qua_trinh_dieu_tri_noi_khoa_hau_phau": {
+    "khoa_chuyen_den": "Khoa Nội",
+    "ten_file_nguon_he_thong": "PHÂN LOẠI SÀNG LỌC K. NỘI.2025.docx",
+    "ngay_chuyen_khoa": "2026-06-25T14:00:00+07:00",
+    "tinh_trang_lam_sang_ngay_hau_phau_thu_3": "Bản ghi nhận thông tin lâm sàng đối với bệnh nhân Lê Văn Minh. Người bệnh tỉnh táo hoàn toàn, không sốt, bụng mềm, vết mổ khô. Tuy nhiên xuất hiện triệu chứng đau nhức dữ dội lan tỏa dọc toàn bộ vùng đùi và bắp chân trái, cẳng chân sưng nề to căng bóng, sờ vào nóng đỏ, hạn chế vận động chi dưới nghiêm trọng.",
+    "chan_doan_noi_khoa_phoi_hop": "Theo dõi Viêm tắc huyết khối tĩnh mạch sâu chân trái / Biến chứng sưng nề phần mềm chi dưới sau chấn thương lớn",
+    "che_do_cham_soc_noi_khoa": [
+      "Bệnh nhân bị đau chân, Chỉ định chụp não",
+      "Nâng cao thể trạng bằng dinh dưỡng hỗ trợ đường tĩnh mạch",
+      "Sử dụng thuốc kháng viêm, giảm đau hạ sốt, bất động tạm thời chân trái",
+      "Theo dõi sát chu vi vòng chân trái và các dấu hiệu sinh tồn"
+    ]
+  },
+  "thong_tin_ra_vien": {
+    "ngay_gio_ra_vien": "2026-06-30T09:00:00+07:00",
+    "tinh_trang_ra_vien": "Bệnh nhân ổn định, đi lại nhẹ nhàng được, chân trái giảm sưng nề rõ rệt, da dẻ hồng hào trở lại, vết mổ bụng liền sẹo tốt.",
+    "huong_dan_dieu_tri_ngoai_tru": {
+      "che_do_nghi_ngoi": "Nghỉ ngơi tuyệt đối tại nhà từ 2-4 tuần, không khuân vác, làm việc nặng, kê cao chân trái khi nằm.",
+      "che_do_dinh_duong": "Ăn thức ăn mềm, giàu đạm, nhiều rau xanh, hạn chế tối đa dầu mỡ và tuyệt đối không sử dụng rượu bia.",
+      "don_thuoc_ra_vien": [
+        {
+          "ten_thuoc": "Augmentin 1g (Amoxicillin/Clavulanic acid)",
+          "lieu_dung": "Uống 2 viên/ngày, chia 2 lần sáng - tối sau ăn",
+          "so_luong": 14,
+          "don_vi": "Viên"
+        },
+        {
+          "ten_thuoc": "Tardyferon B9 (Sắt + Acid Folic)",
+          "lieu_dung": "Uống 1 viên/ngày, uống vào buổi sáng trước ăn 30 phút",
+          "so_luong": 30,
+          "don_vi": "Viên"
+        }
+      ],
+      "lich_tai_kham": "Tái khám sau 1 tuần tại chuyên khoa Ngoại tổng hợp và chuyên khoa Nội mạch máu để siêu âm doppler mạch máu kiểm tra lại chân trái."
+    }
+  }
+}

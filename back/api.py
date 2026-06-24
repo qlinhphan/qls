@@ -8,13 +8,23 @@ from typing import Any, Dict, List
 
 import faiss
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from chunking.chunks import load_data
 from embedding.embedder import get_embedding
 from llm.llama_client import llama_clients, llama_summary_conversation
+from llm.llama_review_medical_record import (
+    llama_check_identity,
+    llama_check_medical_logic,
+    llama_check_phamarcy,
+)
+from prompts.prompt_review_medical_record import (
+    prompt_check_identity,
+    prompt_check_medical_logic,
+    prompt_check_pharmacy,
+)
 from prompts.prompt_temp import llama_clients_prompt, llama_summary_conversation_prompt
 from rechieval.rechieval import rechieval_data
 from vectordb.postgre import (
@@ -175,6 +185,32 @@ def active_llama_clients_prompt(knowledge, context, q):
     return _render_system_prompt_template(template, knowledge, context, q)
 
 
+def _review_has_error(result: str) -> bool:
+    normalized = str(result).upper()
+    return "❌" in normalized or "NGHI" in normalized or "LỖI" in normalized
+
+
+async def _read_json_upload(file: UploadFile) -> Any:
+    filename = file.filename or ""
+    if filename and not filename.lower().endswith(".json"):
+        raise HTTPException(status_code=400, detail="Chi chap nhan file .json")
+
+    content = await file.read()
+    if not content:
+        raise HTTPException(status_code=400, detail="File json dang trong")
+
+    try:
+        text = content.decode("utf-8-sig")
+        return json.loads(text)
+    except UnicodeDecodeError:
+        raise HTTPException(status_code=400, detail="File json phai dung ma hoa UTF-8")
+    except json.JSONDecodeError as exc:
+        raise HTTPException(
+            status_code=400,
+            detail=f"File json khong hop le: {exc.msg}",
+        )
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     postgre_cursor = init_postgre()
@@ -326,6 +362,32 @@ def clear_thread(thread_id: str) -> Dict[str, str]:
     with app.state.thread_lock:
         app.state.thread_histories.pop(thread_id, None)
     return {"message": f"Da xoa history cua thread_id={thread_id}"}
+
+
+@app.post("/medical-record/check-json")
+async def check_medical_record_json(file: UploadFile = File(...)) -> Dict[str, Any]:
+    data = await _read_json_upload(file)
+
+    identity_result = llama_check_identity(prompt_check_identity, data)
+    logic_result = llama_check_medical_logic(prompt_check_medical_logic, data)
+    pharmacy_result = llama_check_phamarcy(prompt_check_pharmacy, data)
+
+    checks = {
+        "check_identity": not _review_has_error(identity_result),
+        "check_logic": not _review_has_error(logic_result),
+        "check_pharmacy": not _review_has_error(pharmacy_result),
+    }
+
+    return {
+        "filename": file.filename,
+        "is_valid": all(checks.values()),
+        "checks": checks,
+        "details": {
+            "identity": identity_result,
+            "logic": logic_result,
+            "pharmacy": pharmacy_result,
+        },
+    }
 
 
 # python -m uvicorn api:app --reload --host 0.0.0.0 --port 8000
