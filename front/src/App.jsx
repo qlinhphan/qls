@@ -289,6 +289,9 @@ export default function App() {
       </aside>
 
       <section className="chat-area">
+        {activeMode === 'record-check' && isCheckingRecord && (
+          <div className="top-loading-bar" aria-hidden="true" />
+        )}
         <header className="chat-header">
           <div className="chat-title">
             <div className="chat-title-row">
