@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ClipboardCheck, Send, Settings, Stethoscope, Upload } from 'lucide-react';
+import { ChevronDown, ClipboardCheck, Send, Settings, Stethoscope, Upload } from 'lucide-react';
 
 const API_URL = 'http://10.10.50.226:8001/chat';
 const SYSTEM_PROMPT_API_URL = 'http://10.10.50.226:8001/system-prompt';
@@ -86,6 +86,7 @@ export default function App() {
   const [recordCheckResult, setRecordCheckResult] = useState(null);
   const [recordCheckError, setRecordCheckError] = useState('');
   const [isCheckingRecord, setIsCheckingRecord] = useState(false);
+  const [isModeMenuOpen, setIsModeMenuOpen] = useState(true);
 
   const modeTitle = useMemo(
     () => modes.find((mode) => mode.id === activeMode)?.label ?? modes[0].label,
@@ -270,21 +271,33 @@ export default function App() {
         </div>
 
         <nav className="mode-panel" aria-label="Chọn chế độ">
-          <p className="section-label">Chế độ</p>
-          {modes.map((mode) => {
-            const Icon = mode.icon;
-            return (
-              <button
-                className={`mode-button ${activeMode === mode.id ? 'is-active' : ''}`}
-                key={mode.id}
-                onClick={() => setActiveMode(mode.id)}
-                type="button"
-              >
-                <Icon aria-hidden="true" size={20} />
-                <span>{mode.label}</span>
-              </button>
-            );
-          })}
+          <button
+            className={`mode-parent-button ${isModeMenuOpen ? 'is-open' : ''}`}
+            onClick={() => setIsModeMenuOpen((current) => !current)}
+            type="button"
+          >
+            <span>Chế độ</span>
+            <ChevronDown aria-hidden="true" size={18} />
+          </button>
+
+          {isModeMenuOpen && (
+            <div className="mode-list">
+              {modes.map((mode) => {
+                const Icon = mode.icon;
+                return (
+                  <button
+                    className={`mode-button ${activeMode === mode.id ? 'is-active' : ''}`}
+                    key={mode.id}
+                    onClick={() => setActiveMode(mode.id)}
+                    type="button"
+                  >
+                    <Icon aria-hidden="true" size={20} />
+                    <span>{mode.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </nav>
       </aside>
 
