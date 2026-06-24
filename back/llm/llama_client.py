@@ -73,6 +73,8 @@ def llama_clients(llama_clients_prompt, knowledge, context, q):
         stream=True,
     )
     res = _read_ollama_response(response)
+    print("CHECK RES: ", res)
+    print("CHECK TYPE RES: ", type(res))
     if not res.strip():
         raise RuntimeError("Model khong tra ve noi dung phan hoi")
 
