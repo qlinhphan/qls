@@ -413,7 +413,14 @@ textarea {
 
 .record-check-grid strong {
   margin-bottom: 10px;
-  color: #246963;
+}
+
+.record-check-grid strong.is-ok {
+  color: #1d7a52;
+}
+
+.record-check-grid strong.is-warning {
+  color: #c73535;
 }
 
 .record-check-grid p {

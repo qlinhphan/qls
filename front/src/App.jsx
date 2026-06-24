@@ -42,6 +42,14 @@ function getAssistantText(data) {
   return 'Đã nhận được phản hồi từ hệ thống.';
 }
 
+function hasReviewError(text) {
+  return String(text ?? '').includes('❌');
+}
+
+function getReviewStatus(text) {
+  return hasReviewError(text) ? 'Cần kiểm tra' : 'Đạt';
+}
+
 function createThreadId() {
   if (crypto.randomUUID) {
     return `record-${crypto.randomUUID()}`;
@@ -321,21 +329,35 @@ export default function App() {
 
             {recordCheckResult && (
               <section className="record-check-result">
-                <h3>{recordCheckResult.is_valid ? 'Bệnh án hợp lệ' : 'Cần rà soát bệnh án'}</h3>
+                <h3>
+                  {[
+                    recordCheckResult.details?.identity,
+                    recordCheckResult.details?.logic,
+                    recordCheckResult.details?.pharmacy,
+                  ].some(hasReviewError)
+                    ? 'Cần rà soát bệnh án'
+                    : 'Bệnh án hợp lệ'}
+                </h3>
                 <div className="record-check-grid">
                   <article>
                     <span>Hành chính</span>
-                    <strong>{recordCheckResult.checks?.check_identity ? 'Đạt' : 'Cần kiểm tra'}</strong>
+                    <strong className={hasReviewError(recordCheckResult.details?.identity) ? 'is-warning' : 'is-ok'}>
+                      {getReviewStatus(recordCheckResult.details?.identity)}
+                    </strong>
                     <p>{recordCheckResult.details?.identity}</p>
                   </article>
                   <article>
                     <span>Logic chuyên môn</span>
-                    <strong>{recordCheckResult.checks?.check_logic ? 'Đạt' : 'Cần kiểm tra'}</strong>
+                    <strong className={hasReviewError(recordCheckResult.details?.logic) ? 'is-warning' : 'is-ok'}>
+                      {getReviewStatus(recordCheckResult.details?.logic)}
+                    </strong>
                     <p>{recordCheckResult.details?.logic}</p>
                   </article>
                   <article>
                     <span>Đơn thuốc</span>
-                    <strong>{recordCheckResult.checks?.check_pharmacy ? 'Đạt' : 'Cần kiểm tra'}</strong>
+                    <strong className={hasReviewError(recordCheckResult.details?.pharmacy) ? 'is-warning' : 'is-ok'}>
+                      {getReviewStatus(recordCheckResult.details?.pharmacy)}
+                    </strong>
                     <p>{recordCheckResult.details?.pharmacy}</p>
                   </article>
                 </div>

@@ -211,8 +211,7 @@ def active_llama_clients_prompt(knowledge, context, q):
 
 
 def _review_has_error(result: str) -> bool:
-    normalized = str(result).upper()
-    return "❌" in normalized or "NGHI" in normalized or "LỖI" in normalized
+    return "❌" in str(result)
 
 
 async def _read_json_upload(file: UploadFile) -> Any:
