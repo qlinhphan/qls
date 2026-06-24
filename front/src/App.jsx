@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Send, Settings, Stethoscope } from 'lucide-react';
+import { ClipboardCheck, Send, Settings, Stethoscope, Upload } from 'lucide-react';
 
 const API_URL = 'http://10.10.50.226:8001/chat';
 const SYSTEM_PROMPT_API_URL = 'http://10.10.50.226:8001/system-prompt';
+const MEDICAL_RECORD_CHECK_API_URL = 'http://10.10.50.226:8001/medical-record/check-json';
 const THREAD_STORAGE_KEY = 'medical-chat-thread-id';
 const welcomeMessage =
   'Xin chào, tôi là trợ lý AI của bạn, sẽ giúp đỡ bạn hôm nay.';
@@ -13,11 +14,11 @@ const modes = [
     label: 'Phân loại bệnh nhân',
     icon: Stethoscope,
   },
-  // {
-  //   id: 'record-check',
-  //   label: 'Kiểm tra bệnh án',
-  //   icon: ClipboardCheck,
-  // },
+  {
+    id: 'record-check',
+    label: 'Kiểm tra bệnh án',
+    icon: ClipboardCheck,
+  },
 ];
 
 function getAssistantText(data) {
@@ -73,6 +74,10 @@ export default function App() {
   const [promptStatus, setPromptStatus] = useState('');
   const [toastMessage, setToastMessage] = useState('');
   const [isToastVisible, setIsToastVisible] = useState(false);
+  const [recordFile, setRecordFile] = useState(null);
+  const [recordCheckResult, setRecordCheckResult] = useState(null);
+  const [recordCheckError, setRecordCheckError] = useState('');
+  const [isCheckingRecord, setIsCheckingRecord] = useState(false);
 
   const modeTitle = useMemo(
     () => modes.find((mode) => mode.id === activeMode)?.label ?? modes[0].label,
@@ -203,6 +208,36 @@ export default function App() {
     }
   }
 
+  async function handleRecordCheck(event) {
+    event.preventDefault();
+    if (!recordFile || isCheckingRecord) return;
+
+    const formData = new FormData();
+    formData.append('file', recordFile);
+
+    setIsCheckingRecord(true);
+    setRecordCheckError('');
+    setRecordCheckResult(null);
+
+    try {
+      const response = await fetch(MEDICAL_RECORD_CHECK_API_URL, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`API trả về lỗi ${response.status}`);
+      }
+
+      const data = await response.json();
+      setRecordCheckResult(data);
+    } catch (error) {
+      setRecordCheckError(`Không thể kiểm tra bệnh án: ${error.message}`);
+    } finally {
+      setIsCheckingRecord(false);
+    }
+  }
+
   return (
     <main className="app-shell">
       {toastMessage && (
@@ -259,43 +294,95 @@ export default function App() {
           </div>
         </header>
 
-        <div className="conversation" aria-live="polite">
-          {messages.length === 0 ? (
-            <div className="welcome-panel">
-              <p>{typedWelcome}</p>
+        {activeMode === 'record-check' ? (
+          <div className="record-check-area">
+            <form className="record-upload-panel" onSubmit={handleRecordCheck}>
+              <label className="record-file-picker">
+                <Upload aria-hidden="true" size={24} />
+                <span>{recordFile ? recordFile.name : 'Chọn file JSON bệnh án'}</span>
+                <input
+                  accept="application/json,.json"
+                  disabled={isCheckingRecord}
+                  onChange={(event) => {
+                    setRecordFile(event.target.files?.[0] ?? null);
+                    setRecordCheckError('');
+                    setRecordCheckResult(null);
+                  }}
+                  type="file"
+                />
+              </label>
+
+              <button disabled={!recordFile || isCheckingRecord} type="submit">
+                {isCheckingRecord ? 'Đang kiểm tra...' : 'Kiểm tra bệnh án'}
+              </button>
+            </form>
+
+            {recordCheckError && <p className="record-check-error">{recordCheckError}</p>}
+
+            {recordCheckResult && (
+              <section className="record-check-result">
+                <h3>{recordCheckResult.is_valid ? 'Bệnh án hợp lệ' : 'Cần rà soát bệnh án'}</h3>
+                <div className="record-check-grid">
+                  <article>
+                    <span>Hành chính</span>
+                    <strong>{recordCheckResult.checks?.check_identity ? 'Đạt' : 'Cần kiểm tra'}</strong>
+                    <p>{recordCheckResult.details?.identity}</p>
+                  </article>
+                  <article>
+                    <span>Logic chuyên môn</span>
+                    <strong>{recordCheckResult.checks?.check_logic ? 'Đạt' : 'Cần kiểm tra'}</strong>
+                    <p>{recordCheckResult.details?.logic}</p>
+                  </article>
+                  <article>
+                    <span>Đơn thuốc</span>
+                    <strong>{recordCheckResult.checks?.check_pharmacy ? 'Đạt' : 'Cần kiểm tra'}</strong>
+                    <p>{recordCheckResult.details?.pharmacy}</p>
+                  </article>
+                </div>
+              </section>
+            )}
+          </div>
+        ) : (
+          <>
+            <div className="conversation" aria-live="polite">
+              {messages.length === 0 ? (
+                <div className="welcome-panel">
+                  <p>{typedWelcome}</p>
+                </div>
+              ) : (
+                messages.map((message, index) => (
+                  <article className={`message ${message.role}`} key={`${message.role}-${index}`}>
+                    <span>{message.role === 'user' ? 'Người dùng' : 'Trả lời'}</span>
+                    <p>{message.text}</p>
+                  </article>
+                ))
+              )}
+
+              {isSending && (
+                <article className="message assistant">
+                  <span>Trả lời</span>
+                  <p>Đang xử lý...</p>
+                </article>
+              )}
             </div>
-          ) : (
-            messages.map((message, index) => (
-              <article className={`message ${message.role}`} key={`${message.role}-${index}`}>
-                <span>{message.role === 'user' ? 'Người dùng' : 'Trả lời'}</span>
-                <p>{message.text}</p>
-              </article>
-            ))
-          )}
 
-          {isSending && (
-            <article className="message assistant">
-              <span>Trả lời</span>
-              <p>Đang xử lý...</p>
-            </article>
-          )}
-        </div>
-
-        <footer className="chat-composer">
-          <form className="message-form" onSubmit={handleSubmit}>
-            <input
-              aria-label="Nhập câu hỏi"
-              disabled={isSending}
-              onChange={(event) => setInput(event.target.value)}
-              placeholder="Nhập nội dung cần hỏi..."
-              type="text"
-              value={input}
-            />
-            <button aria-label="Gửi tin nhắn" disabled={isSending} type="submit">
-              <Send aria-hidden="true" size={18} />
-            </button>
-          </form>
-        </footer>
+            <footer className="chat-composer">
+              <form className="message-form" onSubmit={handleSubmit}>
+                <input
+                  aria-label="Nhập câu hỏi"
+                  disabled={isSending}
+                  onChange={(event) => setInput(event.target.value)}
+                  placeholder="Nhập nội dung cần hỏi..."
+                  type="text"
+                  value={input}
+                />
+                <button aria-label="Gửi tin nhắn" disabled={isSending} type="submit">
+                  <Send aria-hidden="true" size={18} />
+                </button>
+              </form>
+            </footer>
+          </>
+        )}
       </section>
 
       {isPromptOpen && (
