@@ -78,7 +78,10 @@ def llama_clients(llama_clients_prompt, knowledge, context, q):
 
     
     if '{' in res and '}' in res:
-        return extract_json(res)
+        parsed = extract_json(res)
+        if isinstance(parsed, dict) and parsed.get("reason") == "Invalid JSON":
+            return res
+        return parsed
     else:
         return res
 

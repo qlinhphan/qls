@@ -53,12 +53,37 @@ def _normalize_intent_text(value: str) -> str:
     value = value.lower().strip()
     value = unicodedata.normalize("NFD", value)
     value = "".join(char for char in value if unicodedata.category(char) != "Mn")
+    value = value.replace("đ", "d")
     return " ".join(value.replace("đ", "d").split())
 
 
 def _quick_answer(question: str) -> str | None:
     normalized = _normalize_intent_text(question)
     compact = normalized.strip(" ?!.:,;")
+
+    if compact in {
+        "ban la ai",
+        "ban la gi",
+        "may la ai",
+        "em la ai",
+        "chatbot la ai",
+        "tro ly la ai",
+    }:
+        return IDENTITY_ANSWER
+    if any(
+        keyword in normalized
+        for keyword in (
+            "ai tao ra ban",
+            "ai lam ra ban",
+            "ban duoc tao ra boi ai",
+            "ban den tu dau",
+        )
+    ):
+        return CREATOR_ANSWER
+    if compact in {"xin chao", "chao", "hello", "hi"}:
+        return GREETING_ANSWER
+    if compact in {"cam on", "thank you", "thanks", "tks"}:
+        return THANKS_ANSWER
 
     identity_questions = {
         "Bạn là ai",
