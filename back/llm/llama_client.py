@@ -13,7 +13,10 @@ def _read_ollama_response(response):
     content_type = response.headers.get("content-type", "")
     if "application/x-ndjson" not in content_type:
         try:
-            return response.json().get("response", "")
+            data = response.json()
+            if data.get("error"):
+                raise RuntimeError(data["error"])
+            return data.get("response", "")
         except json.JSONDecodeError:
             pass
 
@@ -23,6 +26,9 @@ def _read_ollama_response(response):
             continue
 
         data = json.loads(line)
+        if data.get("error"):
+            raise RuntimeError(data["error"])
+
         parts.append(data.get("response", ""))
 
         if data.get("done"):
@@ -67,6 +73,8 @@ def llama_clients(llama_clients_prompt, knowledge, context, q):
         stream=True,
     )
     res = _read_ollama_response(response)
+    if not res.strip():
+        raise RuntimeError("Model khong tra ve noi dung phan hoi")
 
     
     if '{' in res and '}' in res:

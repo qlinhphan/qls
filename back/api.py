@@ -317,7 +317,10 @@ def chat(payload: ChatRequest) -> Dict[str, Any]:
         min_score=payload.min_score,
     )
 
-    answer = llama_clients(active_llama_clients_prompt, knowledge, history, question)
+    try:
+        answer = llama_clients(active_llama_clients_prompt, knowledge, history, question)
+    except RuntimeError as exc:
+        raise HTTPException(status_code=502, detail=str(exc))
 
     _save_thread_history(payload.thread_id, question, answer)
 
