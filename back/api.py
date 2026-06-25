@@ -16,11 +16,17 @@ from chunking.chunks import load_data
 from embedding.embedder import get_embedding
 from llm.llama_client import llama_clients, llama_summary_conversation
 from llm.llama_review_medical_record import (
+    llama_KiemTraCacGiayHoacPhieu,
     llama_check_identity,
     llama_check_medical_logic,
     llama_check_phamarcy,
 )
 from prompts.prompt_review_medical_record import (
+    prompt_GiayRaVien,
+    prompt_ThongTinBenhAn,
+    prompt_ThongTinRaVien,
+    prompt_ThongTinTongKetBenhAn,
+    prompt_TomTatBenhAn,
     prompt_check_identity,
     prompt_check_medical_logic,
     prompt_check_pharmacy,
@@ -211,7 +217,8 @@ def active_llama_clients_prompt(knowledge, context, q):
 
 
 def _review_has_error(result: str) -> bool:
-    return "❌" in str(result)
+    normalized = str(result).upper()
+    return "❌" in normalized or "NÊN XEM LẠI" in normalized or "NEN XEM LAI" in normalized
 
 
 async def _read_json_upload(file: UploadFile) -> Any:
@@ -395,25 +402,32 @@ def clear_thread(thread_id: str) -> Dict[str, str]:
 async def check_medical_record_json(file: UploadFile = File(...)) -> Dict[str, Any]:
     data = await _read_json_upload(file)
 
-    identity_result = llama_check_identity(prompt_check_identity, data)
-    logic_result = llama_check_medical_logic(prompt_check_medical_logic, data)
-    pharmacy_result = llama_check_phamarcy(prompt_check_pharmacy, data)
-
-    checks = {
-        "check_identity": not _review_has_error(identity_result),
-        "check_logic": not _review_has_error(logic_result),
-        "check_pharmacy": not _review_has_error(pharmacy_result),
+    required_fields = {
+        "TomTatHoSoBenhAn": prompt_TomTatBenhAn,
+        "GiayRaVien": prompt_GiayRaVien,
+        "ThongTinTongKetBenhAn": prompt_ThongTinTongKetBenhAn,
+        "ThongTinRaVien": prompt_ThongTinRaVien,
+        "ThongTinBenhAn": prompt_ThongTinBenhAn,
     }
+    missing_fields = [field for field in required_fields if field not in data]
+    if missing_fields:
+        raise HTTPException(
+            status_code=400,
+            detail=f"File json thieu cac truong: {', '.join(missing_fields)}",
+        )
+
+    details = {}
+    checks = {}
+    for field, prompt_func in required_fields.items():
+        result = llama_KiemTraCacGiayHoacPhieu(prompt_func, data[field])
+        details[field] = result
+        checks[field] = not _review_has_error(result)
 
     return {
         "filename": file.filename,
         "is_valid": all(checks.values()),
         "checks": checks,
-        "details": {
-            "identity": identity_result,
-            "logic": logic_result,
-            "pharmacy": pharmacy_result,
-        },
+        "details": details,
     }
 
 

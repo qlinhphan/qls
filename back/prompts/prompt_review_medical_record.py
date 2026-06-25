@@ -73,3 +73,115 @@ Nếu phát hiện điểm nghi vấn, hãy in ra theo cấu trúc sau (Nếu kh
 - Lý do nghi vấn: [Giải thích rõ con số này phi lý hoặc quá liều nguy hiểm như thế nào]
     """
     return prompt
+
+
+
+
+
+
+
+
+
+
+
+def prompt_TomTatBenhAn(data_TomTatHoSoBenhAn):
+    prompt = f"""
+    Bạn là chuyên gia kiểm toán dữ liệu lâm sàng. Hãy rà soát block dữ liệu Tóm tắt hồ sơ bệnh án dưới đây:
+
+DỮ LIỆU:
+{data_TomTatHoSoBenhAn}
+
+QUY TẮC PHÁT HIỆN LỖI:
+1. Xem xét mục 'Thông Tin Hành chính': Trích xuất và ghi lại Họ tên, Giới tính, Ngày vào viện, Ngày ra viện.
+2. Kiểm tra tính đồng nhất lâm sàng: So sánh trường 'Chẩn đoán vào viện', 'Chẩn đoán ra viện', 'Lý do vào viện', và 'Tiền sử bệnh'. Ghi nhận bộ phận cơ thể bị tổn thương (Trái hay Phải).
+
+YÊU CẦU: Trả ra kết quả kiểm toán ngắn gọn:
+- Chỉ in ra Tiếng Việt có dấu, Chỗ nào chứa ký tự không dấu viết liền thì chuyển thành tiếng việt chuẩn, ví dụ: BoPhanTonThuongs -> "Bộ Phận Tổn Thương"
+- Thông tin hành chính bóc được: ...
+- Chẩn đoán bộ phận (Trái/Phải): ...
+- Điểm bất thường trong phiếu này (nếu có): ...
+- Cuối cùng kết luận là "Nên Xem Lại" hoặc "ĐẠT"
+"""
+    return prompt
+
+def prompt_GiayRaVien(data_GiayRaVien):
+    prompt = f"""
+    Bạn là chuyên gia kiểm toán hồ sơ pháp lý y tế. Hãy rà soát block dữ liệu Giấy ra viện dưới đây:
+
+DỮ LIỆU:
+{data_GiayRaVien}
+
+QUY TẮC PHÁT HIỆN LỖI:
+1. Ghi lại chẩn đoán bệnh tại trường 'Chẩn đoán'. Đặc biệt chú ý từ khóa chỉ định vị trí bộ phận cơ thể (Trái hay Phải).
+2. Kiểm tra mục 'Phương pháp điều trị': Phương pháp phẫu thuật thực tế tác động vào bên nào (Trái hay Phải)? Có mâu thuẫn với trường 'Chẩn đoán' của chính phiếu này không?
+
+YÊU CẦU: Trả ra kết quả kiểm toán ngắn gọn:
+- Chỉ in ra Tiếng Việt có dấu, Chỗ nào chứa ký tự không dấu viết liền thì chuyển thành tiếng việt chuẩn, ví dụ: BoPhanTonThuongs -> "Bộ Phận Tổn Thương"
+- Chẩn đoán ra viện ghi nhận: ...
+- Bên cơ thể phẫu thuật điều trị: ...
+- Điểm mâu thuẫn nội tại của phiếu (nếu có): ...
+- Cuối cùng kết luận là "Nên Xem Lại" hoặc "ĐẠT"
+"""
+    return prompt
+
+def prompt_ThongTinTongKetBenhAn(data_ThongTinTongKetBenhAn):
+    prompt = f"""
+    Bạn là chuyên gia giám định hồ sơ điều trị. Hãy rà soát block dữ liệu Tổng kết bệnh án dưới đây:
+
+DỮ LIỆU:
+{data_ThongTinTongKetBenhAn}
+
+QUY TẮC PHÁT HIỆN LỖI:
+1. Vào mục "Lần Phẫu Thuật" hoặc "Lưới Phẫu Thuật Thủ Thuật": Trích xuất thời gian làm phẫu thuật ("Phẫu Thuật Thủ Thuật Ngày Giờ"), phương pháp phẫu thuật ("Phẫu Thuật Thủ Thuật Phương Pháp"), và phương pháp vô cảm ("Vô Cảm").
+2. Đối chiếu logic: Kiểm tra xem thông tin can thiệp thực tế ở các trường này có đồng nhất và logic với mục "Phương Pháp Điều Trị" và "Tình Trạng Người Bệnh Khi Ra Viện" hay không.
+
+YÊU CẦU: Trả ra kết quả kiểm toán ngắn gọn:
+- Chỉ in ra Tiếng Việt có dấu, Chỗ nào chứa ký tự không dấu viết liền thì chuyển thành tiếng việt chuẩn, ví dụ: BoPhanTonThuongs -> "Bộ Phận Tổn Thương"
+- Thông tin phẫu thuật thực tế: ...
+- Điểm bất thường trong phiếu này (nếu có): ...
+- Cuối cùng kết luận là "Nên Xem Lại" hoặc "ĐẠT"
+"""
+    return prompt
+
+def prompt_ThongTinRaVien(data_ThongTinRaVien):
+    prompt = f"""
+Bạn là giám định viên chi phí Bảo hiểm y tế. Hãy rà soát block dữ liệu Thông tin ra viện dưới đây:
+
+DỮ LIỆU:
+{data_ThongTinRaVien}
+
+QUY TẮC PHÁT HIỆN LỖI:
+1. Làm toán thời gian: Kiểm tra trường 'Ngày Lập Phiếu', 'Thời Gian Ra Viện'. 
+2. Đối chiếu logic số số liệu: Trích xuất trường 'Tổng Số Ngày Điệu Trị'. Kiểm tra xem con số này có dấu hiệu bất thường, quá tải hoặc sai lệch phi lý hay không.
+3. Ghi lại trường 'Ghi Chú Chẩn Đoán Ra Viện' để phục vụ đối chiếu chéo sau này.
+
+YÊU CẦU: Trả ra kết quả kiểm toán ngắn gọn:
+- Chỉ in ra Tiếng Việt có dấu, Chỗ nào chứa ký tự không dấu viết liền thì chuyển thành tiếng việt chuẩn, ví dụ: BoPhanTonThuongs -> "Bộ Phận Tổn Thương"
+- Số ngày điều trị hệ thống ghi: ...
+- Ghi chú chẩn đoán ra viện: ...
+- Điểm bất thường số liệu (nếu có): ...
+- Cuối cùng kết luận là "Nên Xem Lại" hoặc "ĐẠT"
+    """
+    return prompt
+
+def prompt_ThongTinBenhAn(data_ThongTinBenhAn):
+    prompt = f"""
+    Bạn là chuyên gia kiểm soát nhiễm khuẩn và an toàn lâm sàng. Hãy rà soát block dữ liệu Thông tin bệnh án dưới đây:
+
+DỮ LIỆU:
+{data_ThongTinBenhAn}
+
+QUY TẮC PHÁT HIỆN LỖI:
+1. Kiểm tra mục 'Bộ Phận Tổn Thương': Trích xuất mô tả tổn thương và liên kết hình ảnh chứng minh.
+2. Kiểm tra thông tin hành chính: Trích xuất 'Họ Tên' và 'Năm Sinh' để chuẩn bị đối chiếu chéo.
+3. Rà soát các trường chẩn đoán và ghi nhận triệu chứng cơ xương khớp tại đây.
+
+YÊU CẦU: Trả ra kết quả kiểm toán ngắn gọn:
+- Chỉ in ra Tiếng Việt có dấu, Chỗ nào chứa ký tự không dấu viết liền thì chuyển thành tiếng việt chuẩn, ví dụ: BoPhanTonThuongs -> "Bộ Phận Tổn Thương"
+- Danh tính và Chẩn đoán ghi nhận: ...
+- Mô tả bộ phận tổn thương gốc: ...
+- Điểm bất thường (nếu có): ...
+- Cuối cùng kết luận là "Nên Xem Lại" hoặc "ĐẠT"
+
+"""
+    return prompt 

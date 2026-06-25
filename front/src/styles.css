@@ -487,6 +487,10 @@ textarea {
   color: #c73535;
 }
 
+.record-check-grid strong.is-unknown {
+  color: #7a6a2d;
+}
+
 .record-check-grid p {
   margin: 0;
   color: #17212b;

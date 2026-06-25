@@ -1,0 +1,2922 @@
+{
+    "BienBanCamKetPhauThuat": {
+        "BacSyThucHienId": 450,
+        "BacSyThucHien": "Nguyễn Đức Âu",
+        "BacSyThucHienChucDanh": "Bác sĩ chính (hạng II)",
+        "KhoaPhong": "Khoa Ngoại",
+        "BacSyGayMeId": 7,
+        "BacSyGayMe": "Nguyễn Minh Hà",
+        "BacSyGayMeChucDanh": "Bác sĩ (hạng III)",
+        "ChanDoan": "Trật khớp háng nhân tạo bên phải",
+        "HoTenNguoiThan": "NGUYỄN MAI LAN",
+        "NamSinhNguoiThan": 2007,
+        "QuanHeId": 5,
+        "QuanHe": "Con đẻ",
+        "NguyCoBatThuong": "Chảy máu, nhiễm trùng.",
+        "NgayThucHien": "2026-02-26T11:01:35.52+07:00",
+        "HinhThuc": 3,
+        "ChanDoanCheck": true,
+        "LyDoPhauThuat": true,
+        "RuiRo": true,
+        "KetQuaSauPhauThuat": true,
+        "PhauThuatMo": true,
+        "TuySong": true,
+        "CacPhuongPhapKhac": true,
+        "PhanUngThuoc": true,
+        "SuyHoHap": true,
+        "ChayMau": true,
+        "NhiemTrung": true,
+        "TuVong": true,
+        "NguyCoRuiRo": true
+    },
+    "PhieuKhaiThacTienSuDiUng": {
+        "SoLan": 0,
+        "BSKhaiThac": "Tiến sĩ Hoàng Ngọc Minh",
+        "NgayThucHien": "26/02/2026 11:02",
+        "TaiKhoanDangNhap": "Hoàng Ngọc Minh",
+        "ChanDoan": "Z96 - Trật khớp háng nhân tạo bên phải",
+        "PhieuKhaiThacTienSuDiUngList": "[{\"STT\":\"0\",\"NoiDung\":\"Loại thuốc hoặc dị nguyên nào đã gây dị ứng?\",\"TenThuoc\":\"\",\"DiNguyenGayDiUng\":\"\",\"CoKhong\":false,\"SoLan\":0,\"BieuHienLamSang\":\"\",\"XuTri\":\"\",\"Stt\":1},{\"STT\":\"1\",\"NoiDung\":\"Dị ứng với loại côn trùng nào?\",\"TenThuoc\":\"\",\"DiNguyenGayDiUng\":\"\",\"CoKhong\":false,\"SoLan\":0,\"BieuHienLamSang\":\"\",\"XuTri\":\"\",\"Stt\":2},{\"STT\":\"2\",\"NoiDung\":\"Dị ứng với loại thực phẩm nào?\",\"TenThuoc\":\"\",\"DiNguyenGayDiUng\":\"\",\"CoKhong\":false,\"SoLan\":0,\"BieuHienLamSang\":\"\",\"XuTri\":\"\",\"Stt\":3},{\"STT\":\"3\",\"NoiDung\":\"Dị ứng với các tác nhân khác: phấn hoa, bụi nhà,hóa chất, mỹ phẩm...?\",\"TenThuoc\":\"\",\"DiNguyenGayDiUng\":\"\",\"CoKhong\":false,\"SoLan\":0,\"BieuHienLamSang\":\"\",\"XuTri\":\"\",\"Stt\":4},{\"STT\":\"4\",\"NoiDung\":\"Tiền sử cá nhân có bệnh dị ứng nào?(viêm mũi dị ứng, hen phế quản ... )\",\"TenThuoc\":\"\",\"DiNguyenGayDiUng\":\"\",\"CoKhong\":false,\"SoLan\":0,\"BieuHienLamSang\":\"\",\"XuTri\":\"\",\"Stt\":5},{\"STT\":\"5\",\"NoiDung\":\"Tiền sử gia đình có bệnh dị ứng?(Bố mẹ, con, anh chị em ruột, có ai bị các bệnh di ứng trên không)\",\"TenThuoc\":\"\",\"DiNguyenGayDiUng\":\"\",\"CoKhong\":false,\"SoLan\":0,\"BieuHienLamSang\":\"\",\"XuTri\":\"\",\"Stt\":6}]",
+        "DoiTuongId": 2,
+        "HoTenNguoiNha": "NGUYỄN MAI LAN",
+        "BSKhaiThacNew": 894,
+        "IsNew": false
+    },
+    "PhieuXacNhanDongYXNHIV": {
+        "NoiDangKyThuongTru": "Thôn 2, Xã Sơn Đồng, Thành phố Hà Nội",
+        "NoiCuTruHienTai": "Thôn 2, Xã Sơn Đồng, Thành phố Hà Nội",
+        "DoiTuong": "Sàng lọc trước PT",
+        "DoiTuongDuocTuVanId": 2,
+        "QuanHeId": 5,
+        "HoTenNguoiNha": "NGUYỄN MAI LAN",
+        "NguyCoLayNhiemHIV": 2,
+        "CanBoYTeId": 894,
+        "CanBoYTeText": "Hoàng Ngọc Minh",
+        "NgayLamPhieu": "2026-02-26T00:00:00+07:00",
+        "NguoiTaoPhieu": "Hoàng Ngọc Minh"
+    },
+    "CamKetNamDieuTriNoiTruVaSuDungGiuongBenh": {
+        "DoiTuongId": 2,
+        "KhoaId": 4,
+        "KhoaText": "Khoa Khám Bệnh",
+        "DieuTriTuNgay": "2026-02-26T11:02:39.912+07:00",
+        "LoaiGiuongNB": 2,
+        "YkienNB1": "1",
+        "YkienNB2": "1",
+        "HoTenNguoiNha": "NGUYỄN MAI LAN",
+        "NamSinhNguoiNha": 2007,
+        "GioiTinhNguoiNha": 2,
+        "ThoiDiemTiepNhan": "2026-02-26T10:41:00+07:00",
+        "NgayThucHien": "2026-02-26T11:21:00.289+07:00",
+        "NgayThucHienDisplay": "26/02/2026 11:21",
+        "NguoiThucHien": "TS.Bs Hoàng Ngọc Minh",
+        "IsDisplay": true,
+        "ThoiGianThucHien": "2026-02-26T11:02:26.508942+07:00"
+    },
+    "PhieuXacNhanThongTinBanDau": {
+        "DoiTuongId": 2,
+        "HoTen": "NGUYỄN MAI LAN",
+        "QuanHeNBId": 5,
+        "QuanHeNBText": "Con đẻ",
+        "KhoaId": 4,
+        "KhoaText": "Khoa Khám Bệnh",
+        "ThongTinChuyenTuyenId": 1,
+        "TheBHYT": "1",
+        "BHBaoLanh": "2",
+        "GiayChuyenVien": "2",
+        "GiayCCCD_CMND": "1",
+        "TaiLieuTuyenTruoc": "1",
+        "ThoiGianLamPhieu": "2026-02-26T11:02:49.967+07:00",
+        "ThoiDiemTiepNhan": "2026-02-26T10:41:00+07:00",
+        "NhanVienYTeId": 540,
+        "NhanVienYTeText": "Nguyễn Văn Tuyến"
+    },
+    "GiayCamKetSuDungThuoc/VTYTNgoaiBHYT": {
+        "ToiLaAi": 1,
+        "HoTen": "NGUYỄN MAI LAN",
+        "GioiTinh": 2,
+        "ChanDoan": "Trật khớp háng nhân tạo bên phải",
+        "NgayThucHien": "2026-02-26T11:03:00.822+07:00",
+        "NgayTiepNhan": "2026-02-26T10:41:00+07:00",
+        "NguoiTaoPhieu": "Hoàng Ngọc Minh"
+    },
+    "BienBanHoiChanPhauThuat": {
+        "KhoaId": 4,
+        "KhoaText": "Khoa Khám Bệnh",
+        "ThoiGianHoiChan": "2026-02-26T11:13:54.732+07:00",
+        "ThoiGianHoiChanUTC": "02/26/2026 11:13 AM",
+        "ChanDoan": "Trật khớp háng nhân tạo bên phải",
+        "Summary": "Theo lời kể bệnh nhân phẫu thuật thay khớp háng phải từ 30/1/2026, sau mổ 10 ngày có trật khớp háng nhân tạo phải. Nay vào viện Bắc Hà khám và điều trị",
+        "DongMau": "Thời gian prothrombin (PT: Prothrombin Time), (Các tên khác: TQ, Tỷ lệ Prothrombin) bằng máy tự động: Thời gian: 9.6 giây, INR: 0.84 , Tỷ lệ %: 118.3 %.\nThời gian thromboplastin một phần hoạt hoá (APTT: Activated Partial Thromboplastin Time), (Tên khác: TCK) bằng máy tự động: Tỷ lệ bệnh/chứng: 0.826 , Thời gian: 22.3 giây.\nĐịnh lượng Fibrinogen (Tên khác: Định lượng yếu tố I), phương pháp Clauss- phương pháp trực tiếp, bằng máy tự động: Định lượng Fibrinogen (Tên khác: Định lượng yếu tố I), phương pháp Clauss- phương pháp trực tiếp, bằng máy tự động: 4.2 g/L.",
+        "NhomMau": "Định nhóm máu hệ Rh(D) (Kỹ thuật ống nghiệm) : Rh(+). \nĐịnh nhóm máu hệ ABO (Kỹ thuật ống nghiệm): \"B\".",
+        "Ure": "5.66 mmol/L",
+        "Creatinin": "46 umol/L",
+        "Got": "17.1 U/L",
+        "Gpt": "42.2 U/L",
+        "DienTim": "Nhịp xoang đều, tần số 88ck/phút. Trục trung gian. Tăng gánh thất trái",
+        "XnKhac": "Không",
+        "KetLuan": "Trật khớp háng nhân tạo bên phải",
+        "DuKienPhauThuat": "Bắt lại vis khớp háng",
+        "DuKienThoiGianPhauThuat": "120",
+        "NhomPhauThuat": [
+            "Nguyễn Đức Âu"
+        ],
+        "NhomGayMe": [
+            "Nguyễn Minh Hà"
+        ],
+        "PhuongPhapGayMe": "Gây tê tủy sống",
+        "PhuongPhapGayMeId": 5,
+        "ThoiGianPhauThuat": "2026-02-26T22:00:00+07:00",
+        "DuKienKhac": "Không",
+        "NgayThucHien": "2026-02-26T11:13:54.732+07:00",
+        "BacSiGayMe": "BS Nguyễn Minh Hà",
+        "BacSiDuyetMo": "BS Nguyễn Đức Âu",
+        "NgayThucHienReadonly": "26/02/2026 11:18",
+        "NguoiThucHienReadonly": "Hoàng Ngọc Minh",
+        "ThanhVienThamGias": [
+            {
+                "KeyId": 7,
+                "VaiTroHoiChanId": 2,
+                "Ten": "BS Nguyễn Minh Hà"
+            },
+            {
+                "KeyId": 142,
+                "VaiTroHoiChanId": 0,
+                "Ten": "ThS.BsCKII Lưu Quốc Khải"
+            },
+            {
+                "KeyId": 894,
+                "VaiTroHoiChanId": 1,
+                "Ten": "TS.Bs Hoàng Ngọc Minh"
+            },
+            {
+                "KeyId": 450,
+                "VaiTroHoiChanId": 2,
+                "Ten": "BS Nguyễn Đức Âu"
+            }
+        ],
+        "ThoiDiemTiepNhan": "2026-02-26T10:41:00+07:00",
+        "NgayBatDauDieuTri": "2026-02-26T10:49:52.52+07:00",
+        "NgayKetThucDieuTri": "2026-02-26T11:13:42.55473+07:00"
+    },
+    "PhieuKhamGayMeTruocMoNgoai": {
+        "Khoa": "Khoa Khám Bệnh",
+        "NhomMau": 2,
+        "YeuToRh": 2,
+        "Nang": 58,
+        "Cao": 167,
+        "Asa": "I",
+        "Mallampati": "II",
+        "KcCamGiap": ">6cm",
+        "HaMieng": ">4cm",
+        "RangGia": 0,
+        "GioMoTruocBuaAn": 6,
+        "ChanDoan": "Z96 - Trật khớp háng nhân tạo bên phải",
+        "HuongDieuTri": "Bắt lại vis háng phải",
+        "TienSuNoiKhoa": "Không phát hiện bệnh",
+        "TienSuNgoaiKhoa": "Thay khớp háng phải",
+        "TienSuGayMe": "Tê tủy sống, ngoài màng cứng",
+        "DiUng": "Không",
+        "Ruou": true,
+        "BenhLayNhiem": "Không",
+        "ThuocDangDieuTri": "Không",
+        "KhamLamSang": "Tỉnh, tiếp xúc tốt, da niêm mạc hồng",
+        "TuanHoan": "Tim đều, T1, T2 rõ",
+        "M": "70",
+        "Ha": "140/90",
+        "HoHap": "RRPN rõ, không rale",
+        "ThanKinh": "Tỉnh, không liệt",
+        "CotSong": "Không gù vẹo",
+        "XnBatThuong": "Không",
+        "YcBoSung": "Tổng phân tích tế bào máu ngoại vi",
+        "DkCachThuocVc": "Tê tủy sống",
+        "DkGiamDauSauMo": "Ngoài màng cứng",
+        "YlenhTruocMo": "Nhịn ăn uống >6h, uống Cacbonhydrat đến 2h trước mổ",
+        "ThuocTienMe": "Không",
+        "NgayKham": "2026-02-26T00:00:00+07:00",
+        "NgayHenKham": "2026-02-26T00:00:00+07:00",
+        "DdThucHienIdNew": 21334,
+        "BsGmHsIdNew": 7,
+        "BsGmHsHenKhamId": 517,
+        "IsNew": false
+    },
+    "GiayCamKetTuNguyenSuDungKyThuatGiamDauTrongDieuTriPTGMHS": {
+        "DoiTuongId": 1,
+        "NguoiDaiDien": "NGUYỄN MAI LAN",
+        "NgayThucHien": "2026-02-26T12:15:08.948+07:00",
+        "ChanDoan": "Trật khớp háng nhân tạo bên phải",
+        "BacSyThucHienId": 517,
+        "BacSyThucHien": "Nguyễn Quốc Sơn",
+        "KhoaId": 4,
+        "Khoa": "Khoa Khám Bệnh",
+        "SoTien": 1600000,
+        "SoTienChu": "Một triệu sáu trăm nghìn đồng",
+        "BacSyTuVanId": 7,
+        "dichVuKyThuatId": 3893,
+        "dichVuKyThuat": "[GĐ]-Giảm đau bệnh nhân tự điều khiển ngoài màng cứng"
+    },
+    "GiayCamKetDeNghiThuPhanUngThuocTruocKhiDung": {
+        "DoiTuongId": 2,
+        "DoiTuongText": "Người nhà người bệnh",
+        "HoTenNguoiNha": "NGUYỄN MAI LAN",
+        "NgayThangNamSinhNguoiNha": "2007-03-29T00:00:00+07:00",
+        "GioiTinh": 2,
+        "DanTocId": 1,
+        "DanTocText": "Kinh",
+        "QuocTichId": 1,
+        "QuocTichText": "Việt Nam",
+        "DiaChiNguoiNha": "Thôn 2, Xã Sơn Đồng, Thành phố Hà Nội",
+        "KhoaId": 6,
+        "ChanDoan": "Trật khớp háng nhân tạo bên phải",
+        "NguoiTaoPhieu": "Nguyễn Thị Thanh Thuỷ",
+        "ThuocIds": [
+            43601
+        ],
+        "IsCheck": true
+    },
+    "BangKiemAnToanNguoiBenhPhauThuat": {
+        "Id": 1216404,
+        "KhamVaTuVanCuaPTV": true,
+        "BenhChinh": true,
+        "BenhKemTheo": false,
+        "DaiThaoDuong": false,
+        "TangHuyetAp": false,
+        "Khac": false,
+        "VeSinhTamGoi": false,
+        "VatLieuCayGhep": false,
+        "CatMongTayMongChan": false,
+        "DoTrangSuc": false,
+        "ThaoRangGia": false,
+        "QuanAoSachMoiThay": true,
+        "VetThuongHo": false,
+        "VeSinhDaVungMo": false,
+        "BangVoTrungDanhDauViTriPhauThuat": false,
+        "KhamGayMe": true,
+        "PTTTGMHS": true,
+        "PhieuXetNghiemNhomMauDongMau": true,
+        "PhimChupPhoiSoLuong": true,
+        "CacLoaiPhimAnhKhacSoLuong": true,
+        "DienTim": true,
+        "XacNhanThanhVienGayMePhauThuat": true,
+        "KhangSinhDuPhong": false,
+        "DuyetPhauThuat": true,
+        "ThongSoKhac": "Rh+",
+        "TiepXuc": "Tốt",
+        "NguyCoSuyHoHapMatMau": "Không",
+        "LamSangCLSCanLuuY": "Không",
+        "NhungLuuYKhac": "Không",
+        "NhacBenhNhanNhinAn": true,
+        "NgayGioDuaBNDiPT": "2026-02-26T15:00:36.775+07:00",
+        "NgayGioDuaBNDiPTUTC": "02/26/2026 03:00 PM",
+        "NgayGioDuDinhGayMe": "2026-02-26T15:30:40.125+07:00",
+        "NgayGioDuDinhGayMeUTC": "02/26/2026 03:30 PM",
+        "YKienCuaNguoiNhanNguoiBenhTaiPhongGMHS": "Đủ",
+        "DDChuanBiNBTruocPT": "Lại Hoàng Anh Thương",
+        "DDChuanBiNBDenPhongPT": "Lại Hoàng Anh Thương",
+        "DDNhanBNTaiPhongPTGMHS": "Đỗ Thu Huệ",
+        "TaiKhoanDangNhap": "Nguyễn Thị Thanh Thuỷ",
+        "NgayThucHien": "26/02/2026 12:27",
+        "ListChiSoSinhTon": [
+            {
+                "NhipTim": 70,
+                "NhipTho": 20,
+                "ThanNhiet": 36.5,
+                "ChieuCao": 167,
+                "CanNang": 58,
+                "BMI": 20.796729893506402,
+                "NgayThucHien": "26/02/2026 12:28",
+                "HuyetApTamThu": 120,
+                "HuyetApTamTruong": 80,
+                "Id": 681431
+            }
+        ],
+        "ThoiDiemKham": "2026-02-26T00:00:00+07:00",
+        "ThoiDiemKhamString": "02/26/2026 12:00 AM",
+        "PhieuCamDoanPTTT": true,
+        "PhimChupPhoiSL": true,
+        "CacLoaiPhimAnh": true,
+        "KyCamKetSuDungKTCao": false,
+        "TheDinhDanh": true,
+        "PhieuXN": true,
+        "TienSuDiUng": "Không",
+        "ThuocDangDung": "Không",
+        "ThaoThutNguoiBenh": false,
+        "ChanDoan": "Trật khớp háng nhân tạo bên phải",
+        "IsNew": false
+    },
+    "ChamSocVaTheoDoiKhoaNgoai": {
+        "KhoaId": 6,
+        "PhongId": 15,
+        "PhongText": "P9.03_NG",
+        "SoGiuongId": 19,
+        "SoGiuongText": "Giường 05",
+        "ChieuCao": 167,
+        "ThoiDiemTiepNhan": "2026-02-26T12:23:33.9+07:00",
+        "ChanDoan": "CSNB sau phẫu thuật đặt lại khớp háng phải, cố định ổ cối bằng vít thay chỏm xương đùi phải",
+        "NhanDinhVaTheoDois": [
+            {
+                "Id": 1,
+                "ThoiGian": "2026-03-01T08:00:00+07:00",
+                "PhanCap": 2,
+                "TinhTrang": 10,
+                "Mach": 76,
+                "NhietDo": 36.5,
+                "HuyetAp1": 120,
+                "HuyetAp2": 75,
+                "NhipTho": 20,
+                "DaNiemMac": "Hồng",
+                "ViTriDiUng": 10,
+                "TriGiac": "Tỉnh",
+                "DauDau": 2,
+                "ChongMat": 2,
+                "Phu": 10,
+                "Ho": "Không ho",
+                "HoHapKhac": "Bình thường",
+                "Bung": "Mềm",
+                "DaiTien": 10,
+                "Non": 2,
+                "TieuTien": "Tiểu tự chủ",
+                "DauDiem": 12,
+                "DauVetMo": 3,
+                "CheDoAn": 1,
+                "GiacNgu": 2,
+                "NghiNgoi": 10,
+                "VanDong": 4,
+                "PhucHoiChucNang": 1,
+                "GDSK": 1,
+                "LoetDoTyDe": 1,
+                "NguyCoNga": 3,
+                "CanhBaoSom": 10,
+                "ViemTMNgoaiVi": 10,
+                "ThucHienThuocTheoChiDinh": [
+                    734
+                ],
+                "ChamSocDieuDuong": [
+                    621,
+                    627,
+                    632,
+                    664,
+                    676,
+                    635
+                ],
+                "TuVanGiapDucSK": [
+                    739,
+                    740,
+                    741,
+                    742
+                ],
+                "DieuDuongThucHien": 1148,
+                "DieuDuongThucHienText": "Nguyễn Minh Hiếu"
+            },
+            {
+                "Id": 2,
+                "ThoiGian": "2026-03-01T12:00:00+07:00",
+                "PhanCap": 2,
+                "TinhTrang": 3,
+                "NhipTho": 20,
+                "DaNiemMac": "Hồng",
+                "ViTriDiUng": 10,
+                "TriGiac": "Tỉnh",
+                "DauDau": 2,
+                "ChongMat": 2,
+                "Phu": 10,
+                "Ho": "Không ho",
+                "HoHapKhac": "Bình thường",
+                "Bung": "Mềm",
+                "DaiTien": 10,
+                "Non": 2,
+                "TieuTien": "Tiểu tự chủ",
+                "DauDiem": 12,
+                "DauVetMo": 3,
+                "GiacNgu": 2,
+                "NghiNgoi": 10,
+                "VanDong": 4,
+                "PhucHoiChucNang": 1,
+                "GDSK": 1,
+                "LoetDoTyDe": 1,
+                "NguyCoNga": 3,
+                "CanhBaoSom": 10,
+                "ViemTMNgoaiVi": 10,
+                "TuVanGiapDucSK": [
+                    758
+                ],
+                "BanGiao": [
+                    594
+                ],
+                "DieuDuongThucHien": 1148,
+                "DieuDuongThucHienText": "Nguyễn Minh Hiếu"
+            }
+        ],
+        "ChanDoanDieuDuongs": [
+            {
+                "ChanDoan": "NB ngủ kém sau phẫu thuật",
+                "MucTieu1": "NB ngủ được 5-6 tiếng/ngày",
+                "IsCheckBox1": true,
+                "IsCheckBox2": false
+            }
+        ]
+    },
+    "PhieuSangLocDinhDuong": {
+        "DungChoPhuNuMangThai": false,
+        "NgayDanhGia": "2026-02-26T12:45:58.821+07:00",
+        "NgayDanhGiaString": "02/26/2026 12:45 PM",
+        "ChanDoan": "Trật khớp háng nhân tạo bên phải",
+        "NguoiThucHienId": 21397,
+        "BacSiDieuTriId": 450,
+        "BacSiDieuTriName": "Nguyễn Đức Âu",
+        "CanNang": 58,
+        "ChieuCao": 167,
+        "BMI": "20.80",
+        "SutCan1ThangQua": 0,
+        "SutCan1ThangDisplay": "0 - 2 kg",
+        "DiemSutCan1Thang": 0,
+        "AnKemLonHon5": 0,
+        "AnKemLonHon5Display": "Không",
+        "DiemAnKemLonHon5": 0,
+        "TongDiemMST": 0,
+        "NguyCoDinhDuong": "Chưa có nguy cơ",
+        "CheDoAnUong": 1,
+        "CheDoAnUongDisplay": "BT01-Cơm",
+        "DuongNuoiDuong": 0,
+        "DuongMiengDisplay": "Đường miệng",
+        "HoiChanDinhDuong": 0,
+        "HoiChanDinhDuongDisplay": "Không",
+        "TaiDanhGia": 1,
+        "TaiDanhGiaDisplay": "Sau 7 ngày",
+        "TongDiemTruocMangThai": 0,
+        "NoiTruHoSoKhacId": 1216420
+    },
+    "BangKiemBanGiaoHoSoBenhAnPhauThuat": {
+        "KhoaId": 6,
+        "KhoaText": "Khoa Ngoại",
+        "KhoaNgoaiNoiDung1": "1",
+        "KhoaNgoaiNoiDung21": "1",
+        "KhoaNgoaiNoiDung22": "1",
+        "KhoaNgoaiNoiDung23": "1",
+        "KhoaNgoaiNoiDung24": "1",
+        "KhoaNgoaiNoiDung25": "1",
+        "KhoaNgoaiNoiDung26": "1",
+        "KhoaNgoaiNoiDung27": "1",
+        "KhoaNgoaiNoiDung28": "2",
+        "KhoaNgoaiNoiDung3": "1",
+        "KhoaNgoaiNoiDung4": "1",
+        "KhoaNgoaiNoiDung5": "1",
+        "KhoaNgoaiNoiDung6": "1",
+        "KhoaNgoaiNoiDung71": "1",
+        "KhoaNgoaiNoiDung72": "1",
+        "KhoaNgoaiNoiDung73": "1",
+        "KhoaNgoaiNoiDung74": "1",
+        "KhoaNgoaiNoiDung75": "1",
+        "KhoaNgoaiNoiDung8": "1",
+        "KhoaNgoaiThoiGianGiao": "2026-02-26T15:00:14.578+07:00",
+        "KhoaNgoaiNguoiGiaoId": 21401,
+        "KhoaNgoaiNguoiGiaoText": "Nguyễn Việt Anh",
+        "KhoaNgoaiThoiGianNhan": "2026-02-26T18:34:00+07:00",
+        "KhoaNgoaiNguoiNhanId": 128,
+        "KhoaNgoaiNguoiNhanText": "Tống Thị Hiền",
+        "GayMeHoiSucNoiDung1": "1",
+        "GayMeHoiSucNoiDung21": "1",
+        "GayMeHoiSucNoiDung22": "1",
+        "GayMeHoiSucNoiDung3": "1",
+        "GayMeHoiSucNoiDung4": "1",
+        "GayMeHoiSucNoiDung5": "1",
+        "GayMeHoiSucNoiDung6": "1",
+        "GayMeHoiSucNoiDung7": "1",
+        "GayMeHoiSucNoiDung8": "1",
+        "GayMeHoiSucNoiDung9": "1",
+        "GayMeHoiSucNoiDung10": "1",
+        "GayMeHoiSucNoiDung11": "2",
+        "GayMeHoiSucNoiDung12": "2",
+        "GayMeHoiSucThoiGianNhan": "2026-02-26T15:05:00+07:00",
+        "GayMeHoiSucNguoiNhanId": 1146,
+        "GayMeHoiSucNguoiNhanText": "Công Quốc Hiếu",
+        "GayMeHoiSucThoiGianGiao": "2026-02-26T18:30:00+07:00",
+        "GayMeHoiSucNguoiGiaoId": 1146,
+        "GayMeHoiSucNguoiGiaoText": "Công Quốc Hiếu",
+        "ThoiDiemTiepNhan": "2026-02-26T12:23:42.733+07:00",
+        "NguoiThucHienReadonly": "Nguyễn Minh Hà",
+        "NgayThucHienReadonly": "26/02/2026 18:33"
+    },
+    "PhieuThuPhanUngThuoc": {
+        "KhoaDieuTriId": 2,
+        "KhoaDieuTriText": "Khoa GMHS",
+        "PhongId": 21,
+        "PhongText": "PM GMHS 602",
+        "ChanDoan": "Trật khớp háng nhân tạo bên phải",
+        "BacSiChiDinhId": 517,
+        "BacSiChiDinhText": "Nguyễn Quốc Sơn",
+        "ThuocId": 886385,
+        "TenThuocText": "Tenamyd-Cefotaxime 1000",
+        "NuocSX": "Việt Nam",
+        "SoLo": "F45073",
+        "PhuongPhapThuId": 1,
+        "PhuongPhapThuText": "Test lẩy da",
+        "KetQuaId": 1,
+        "KetQuaText": "Âm tính",
+        "ThoiGianThuPhanUng": "2026-02-26T15:20:00+07:00",
+        "DieuDuongId": 455,
+        "DieuDuongText": "Bùi Thị Nga",
+        "ThoiGianDocPhanUng": "2026-02-26T15:40:00+07:00",
+        "BacSiDocKetQuaId": 517,
+        "BacSiDocKetQuaText": "Nguyễn Quốc Sơn",
+        "NguoiTaoPhieu": "Đỗ Thu Huệ",
+        "NgayTiepNhanNB": "2026-02-26T12:23:42.733+07:00"
+    },
+    "BangKiemAnToanPhauThuat": {
+        "BsCheckHoTen": true,
+        "DdCheckHoTen": true,
+        "XnKhangSinhDuPhong": 2,
+        "XnVtRachDa": true,
+        "XnChamSocSauMo": true,
+        "XnNhanDan": true,
+        "CheckGioiThieuEkip": true,
+        "DdDemDungCu": true,
+        "XnMo": true,
+        "XNLaiThongTinNguoibenh": true,
+        "DanhDauVungMo": 2,
+        "XnDu": true,
+        "XnMonitor": true,
+        "XnTienSuDiUng": true,
+        "XnKhoTho": false,
+        "XnMatMau": false,
+        "XnDoiChieuHa": true,
+        "PtvXnChuY": true,
+        "BsXnChuY": false,
+        "DdXnChuY": true,
+        "DdDungCu": "ĐD Đỗ Thu Huệ",
+        "DdChayNgoaiId": 1159,
+        "DdDungCuId": 24,
+        "DdGayMeId": 455,
+        "BsGayMeId": 517,
+        "PhauThuatVienId": 450,
+        "NguoiThucHienReadonly": "Nguyễn Quốc Sơn",
+        "NgayThucHienReadonly": "26/02/2026 18:11",
+        "ChanDoan": "Trật khớp háng nhân tạo bên phải",
+        "PhongMo": "602",
+        "NgayKiem": "2026-02-26T15:33:00+07:00",
+        "NgayKiemString": "02/26/2026 03:33 PM",
+        "IdNoiTruHoSo": 1216553,
+        "DanNhanBenhPham": 1,
+        "ThuocvaThietBiGayMeCoDayDuKhong": true,
+        "DanLuu": true,
+        "XacNhanDieuCanChuYTrongPT": true,
+        "XacNhanDieuCanChuYVeHoiTinhVaChamSocSauMo": false,
+        "NguoiBenhCoTienSuDiUng": false,
+        "BSGayMeCanChuYTrongGayMe": true,
+        "KimGacDungCu": true,
+        "DatPlaQueDaoDien": 1,
+        "PhuongPhapPhauThuat": "Phẫu thuật đặt lại khớp háng phải, cố định ổ cối bằng vít thay chỏm xương đùi phải",
+        "PhuongPhapVoCam": "Gây tê tủy sống"
+    },
+    "PhieuGayMeHoiSucNoiTru": {
+        "KhoaId": 2,
+        "Phong": "602",
+        "Giuong": "Giường 01",
+        "CanNang": 58,
+        "ChieuCao": 167,
+        "NhomMau": 2,
+        "YeuToRh": 2,
+        "ChanDoan": "Trật khớp háng nhân tạo bên phải",
+        "DichVuKyThuatId": 3743591,
+        "PhuongPhapPTTT": "Phẫu thuật đặt lại khớp háng phải, cố định ổ cối bằng vít thay chỏm xương đùi phải",
+        "TuThe": "Nằm nghiêng trái",
+        "PhuongPhapVoCamId": 5,
+        "PhuongPhapVoCamText": "Gây tê tủy sống",
+        "NhomPhauThuatIds": [
+            450
+        ],
+        "NhomGayMeIds": [
+            517
+        ],
+        "NhomDieuDuongIds": [
+            455,
+            1097
+        ],
+        "ThoiGianBatDauMe": "2026-02-26T16:00:00+07:00",
+        "ThoiGianBatDauPT": "2026-02-26T16:20:00+07:00",
+        "ThoiGianKetThucPT": "2026-02-26T17:00:00+07:00",
+        "TienMe": "Không",
+        "TacDung": "Không",
+        "Asa": 1,
+        "DaDayCapCuu": 0,
+        "Mallampati": 2,
+        "DiUng": 0,
+        "TienSuThuoc": 1,
+        "TienSuThuocText": "Gây tê tủy sống, ngoài màng cứng",
+        "BatThuongCLS": 0,
+        "TheoDoiGayMeHoiSucs": {
+            "ThoiDiems": [
+                "2026-02-26T15:00:00+07:00",
+                "2026-02-26T16:00:00+07:00",
+                "2026-02-26T17:00:00+07:00"
+            ],
+            "HuyetApTamThu": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                128,
+                112,
+                100,
+                95,
+                110,
+                115,
+                123
+            ],
+            "HuyetApTamTruong": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                79,
+                63,
+                59,
+                55,
+                65,
+                67,
+                71
+            ],
+            "Mach": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                81,
+                78,
+                76,
+                73,
+                71,
+                72,
+                72
+            ],
+            "NhietDo": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                36.5
+            ],
+            "MatMau": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                200
+            ],
+            "NuocTieu": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                10,
+                null,
+                null,
+                null,
+                null,
+                100
+            ],
+            "NhipTho": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                18,
+                18,
+                18,
+                18,
+                18,
+                18,
+                18
+            ],
+            "SpO2": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100
+            ],
+            "Thuocs": [
+                {
+                    "tenThuoc": "Marcain (mg)",
+                    "lieuDung": [
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        8
+                    ],
+                    "tongLieuDung": 8
+                },
+                {
+                    "tenThuoc": "Fentanyl (mg)",
+                    "lieuDung": [
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        0.04
+                    ],
+                    "tongLieuDung": 0.04
+                },
+                {
+                    "tenThuoc": "Ondansetron (mg)",
+                    "lieuDung": [
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        8
+                    ],
+                    "tongLieuDung": 8
+                },
+                {
+                    "tenThuoc": "Tenamyd Cefotaxime (g)",
+                    "lieuDung": [
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        1
+                    ],
+                    "tongLieuDung": 1
+                },
+                {
+                    "tenThuoc": "Lidocain (mg)",
+                    "lieuDung": [
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        50
+                    ],
+                    "tongLieuDung": 50
+                },
+                {
+                    "tenThuoc": "Ephedrine (mg)",
+                    "lieuDung": [
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        6,
+                        6
+                    ],
+                    "tongLieuDung": 12
+                },
+                {
+                    "tenThuoc": "Transamin (g)",
+                    "lieuDung": [
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        1
+                    ],
+                    "tongLieuDung": 1
+                }
+            ],
+            "DichTruyens": [
+                {
+                    "tenDichTruyen": "Natriclorid 0,9% (ml)",
+                    "lieuDung": [
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        500,
+                        100
+                    ],
+                    "tongLieuDung": 600
+                },
+                {
+                    "tenDichTruyen": "Geloplasma (ml)",
+                    "lieuDung": [
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        500
+                    ],
+                    "tongLieuDung": 500
+                }
+            ]
+        },
+        "GhiChu": "Bệnh nhân trong và sau mổ huyết động ổn định. Chuyển hồi tỉnh theo dõi tiếp",
+        "QuanSat": "Mạch, huyết áp, SpO2, ECG, kim luồn 18G tay trái",
+        "NgayInPhieu": "2026-02-26T16:30:33.576+07:00"
+    },
+    "BangKiemAnToanNguoiBenhTuPhongMoVePhongDieuTri": {
+        "TinhTao": true,
+        "KichThichVatVa": false,
+        "DHSinhTonOnDinh": true,
+        "NghiNgoChayMau": false,
+        "SuyHoHap": false,
+        "NonNac": false,
+        "CauBangQuang": false,
+        "VanTimTrenDa": false,
+        "DauNhieu": false,
+        "TruyenDich": true,
+        "ViTri": "tay trái",
+        "LuuThong": true,
+        "Sach": true,
+        "OngThongDaDay": false,
+        "OngThongTieu": true,
+        "DanLuu": true,
+        "ApLuc": true,
+        "BangKhoValue": "Khô",
+        "ThamDichValue": "không",
+        "TuTrangBenhNhan": false,
+        "BAKhoaHoanThien": true,
+        "HoTenPTV": [
+            "Nguyễn Đức Âu"
+        ],
+        "CheDoAnUong": "Cháo",
+        "GiaiPhauBenh": false,
+        "DaKyChonPhong": true,
+        "ChiDinhTheoDoi": "DHST,toàn trạng, vết mổ, sonde tiểu, dẫn lưu",
+        "NgayNhan": "02/26/2026 06:30 PM",
+        "NgayNhanUTC": "02/26/2026 06:30 PM",
+        "NguoiGiao": "Bùi Thị Hằng",
+        "NguoiNhan": "Tống Thị Hiền",
+        "SoLuongMauSacOngThongTieu": 100,
+        "SoLuongMauSacDich": 25,
+        "MauSacDich": "đỏ sẫm",
+        "MauSacOngThongTieu": "Vàng, trong",
+        "ViTriDanLuu": "chân phải",
+        "KiemTraTruocKhiLenPM": true,
+        "KiemTraTruocKhiRachDa": true,
+        "BV": true,
+        "ThuocDangDungValue": true,
+        "ThuocDangDungText": "Glusose 10% 500ml còn 200ml",
+        "ThuocBanGiaoValue": true,
+        "ThuocBanGiaoText": "Ringerlactat 500ml,Diclofenac (Diclovat) 100mg",
+        "Cap1": true,
+        "BangTheoDoiGMHS": true,
+        "BangTheoDoiHoiTinh": true,
+        "PhieuDemGac": true,
+        "PhieuTheoDoiTeNMC": true,
+        "PhieuVTNgoai": false,
+        "PhieuVTTHGMPT": true,
+        "SoLuongFilm": true,
+        "QuanAoVayNew": true
+    },
+    "PhieuDemGacMeCheCuAu": {
+        "NgayMo": "2026-02-26T17:41:03.017+07:00",
+        "phongMo": "PM GMHS 602",
+        "CachPhauThuat": "Phẫu thuật đặt lại khớp háng phải, cố định ổ cối bằng vít thay chỏm xương đùi phải",
+        "PhauThuatVienNew": [
+            450
+        ],
+        "DungCuVienNew": [
+            1011,
+            24
+        ],
+        "gacpt10Xuat": 20,
+        "gacpt10Thu": 20,
+        "gacOBungXuat": 5,
+        "gacOBungThu": 5,
+        "gacNoiSoiXuat": 0,
+        "gacNoiSoiThu": 0,
+        "MeCheXuat": 0,
+        "MeCheThu": 0,
+        "BongXuat": 0,
+        "BongThu": 0,
+        "CuAuXuat": 0,
+        "CuAuThu": 0,
+        "KimXuat": 3,
+        "KimThu": 3,
+        "DaoXuat": 1,
+        "DaoThu": 1,
+        "DungCuXuat": 45,
+        "DungCuThu": 45,
+        "ptttId": 3743523,
+        "ptttDisplay": "Gây tê tuỷ sống mổ"
+    },
+    "BangTheoDoiHoiTinhNew": {
+        "TenDichVu": "Gây tê tuỷ sống mổ",
+        "PhongMo": 21,
+        "PhongHoiTinhSo": "607",
+        "SoGiuong": "06",
+        "PhuongPhapPTTT": "Phẫu thuật đặt lại khớp háng phải, cố định ổ cối bằng vít thay chỏm xương đùi phải",
+        "PhuongPhapVoCam": "Gây tê tuỷ sống mổ",
+        "PhauThuatVien": [
+            450
+        ],
+        "BsGmhs": [
+            517
+        ],
+        "GioNhan": "02/26/2026 05:05 PM",
+        "GioBanGiao": "02/26/2026 06:30 PM",
+        "DdNhan": 1146,
+        "DdNhanText": "Công Quốc Hiếu",
+        "DdNhanBanGiao": 1146,
+        "GioBanGiaoText": "Công Quốc Hiếu",
+        "DieuDuongHoiTinhText": "Công Quốc Hiếu",
+        "DieuDuongKhoaDieuTriText": "Tống Thị Hiền",
+        "DieuDuongHoiTinhId": 1146,
+        "DieuDuongKhoaDieuTriId": 128,
+        "Id": 1216646,
+        "YeuCauDichVuKyThuatId": 3743523,
+        "TheoDoiVaChamSoc": [
+            {
+                "DieuDuongTheoDoiText": "Công Quốc Hiếu",
+                "Id": 1,
+                "ThoiGianTheoDoi": "2026-02-26T17:05:00+07:00",
+                "Mach": 72,
+                "NhietDo": 36.6,
+                "HuyetApTamThu": 130,
+                "HuyetApTamTruong": 80,
+                "DieuDuongTheoDoiId": 1146,
+                "KieuId": 3,
+                "NhipTho": 19,
+                "SPO2FiO2": 98,
+                "ThoOxi": 2,
+                "VanDongId": 2,
+                "NonId": 0,
+                "TinhTrangChayMauId": 0,
+                "MucDoDau": 1,
+                "DaNiemMacId": 1,
+                "DanLuuPhai": 5,
+                "VetMoId": 0,
+                "SonDeId": 1
+            },
+            {
+                "DieuDuongTheoDoiText": "Công Quốc Hiếu",
+                "Id": 2,
+                "ThoiGianTheoDoi": "2026-02-26T17:15:00+07:00",
+                "Mach": 67,
+                "NhietDo": 36.6,
+                "HuyetApTamThu": 140,
+                "HuyetApTamTruong": 84,
+                "DieuDuongTheoDoiId": 1146,
+                "KieuId": 3,
+                "NhipTho": 19,
+                "SPO2FiO2": 98,
+                "ThoOxi": 2,
+                "VanDongId": 2,
+                "NonId": 0,
+                "TinhTrangChayMauId": 0,
+                "MucDoDau": 1,
+                "DaNiemMacId": 1,
+                "DanLuuPhai": 5,
+                "VetMoId": 0,
+                "SonDeId": 1
+            },
+            {
+                "DieuDuongTheoDoiText": "Công Quốc Hiếu",
+                "Id": 3,
+                "ThoiGianTheoDoi": "2026-02-26T17:30:00+07:00",
+                "Mach": 75,
+                "NhietDo": 36.6,
+                "HuyetApTamThu": 138,
+                "HuyetApTamTruong": 75,
+                "DieuDuongTheoDoiId": 1146,
+                "KieuId": 3,
+                "NhipTho": 19,
+                "SPO2FiO2": 98,
+                "ThoOxi": 2,
+                "VanDongId": 2,
+                "NonId": 0,
+                "TinhTrangChayMauId": 0,
+                "MucDoDau": 1,
+                "DaNiemMacId": 1,
+                "DanLuuPhai": 5,
+                "VetMoId": 0,
+                "SonDeId": 1
+            },
+            {
+                "DieuDuongTheoDoiText": "Công Quốc Hiếu",
+                "Id": 4,
+                "ThoiGianTheoDoi": "2026-02-26T17:45:00+07:00",
+                "Mach": 65,
+                "NhietDo": 36.6,
+                "HuyetApTamThu": 135,
+                "HuyetApTamTruong": 80,
+                "DieuDuongTheoDoiId": 1146,
+                "KieuId": 3,
+                "NhipTho": 19,
+                "SPO2FiO2": 98,
+                "ThoOxi": 2,
+                "VanDongId": 3,
+                "NonId": 0,
+                "TinhTrangChayMauId": 0,
+                "MucDoDau": 1,
+                "DaNiemMacId": 1,
+                "DanLuuPhai": 5,
+                "VetMoId": 0,
+                "SonDeId": 1
+            },
+            {
+                "DieuDuongTheoDoiText": "Công Quốc Hiếu",
+                "Id": 5,
+                "ThoiGianTheoDoi": "2026-02-26T18:00:00+07:00",
+                "Mach": 72,
+                "NhietDo": 36.6,
+                "HuyetApTamThu": 140,
+                "HuyetApTamTruong": 74,
+                "DieuDuongTheoDoiId": 1146,
+                "KieuId": 1,
+                "NhipTho": 19,
+                "SPO2FiO2": 98,
+                "ThoOxi": 0,
+                "VanDongId": 3,
+                "NonId": 0,
+                "TinhTrangChayMauId": 0,
+                "MucDoDau": 1,
+                "DaNiemMacId": 1,
+                "DanLuuPhai": 5,
+                "VetMoId": 0,
+                "SonDeId": 1
+            },
+            {
+                "DieuDuongTheoDoiText": "Công Quốc Hiếu",
+                "Id": 6,
+                "ThoiGianTheoDoi": "2026-02-26T18:30:00+07:00",
+                "Mach": 74,
+                "NhietDo": 36.6,
+                "HuyetApTamThu": 155,
+                "HuyetApTamTruong": 98,
+                "DieuDuongTheoDoiId": 1146,
+                "KieuId": 1,
+                "NhipTho": 19,
+                "SPO2FiO2": 98,
+                "ThoOxi": 0,
+                "VanDongId": 4,
+                "NonId": 0,
+                "TinhTrangChayMauId": 0,
+                "MucDoDau": 1,
+                "DaNiemMacId": 1,
+                "DanLuuPhai": 0,
+                "VetMoId": 0,
+                "SonDeId": 1
+            }
+        ],
+        "BiLanDichVaoRa": [
+            {
+                "ThoiGianTu": "2026-02-26T17:05:00+07:00",
+                "ThoiGianDen": "2026-02-26T18:30:00+07:00",
+                "DichTruyen": 600,
+                "DichKeo": 0,
+                "Mau": 0,
+                "KhacVao": 0,
+                "NuocTieu": 100,
+                "DichDl": 0,
+                "KhacRa": 25,
+                "DichVaoRa": "600  / 125"
+            }
+        ],
+        "ThangDiemDau": 1,
+        "IsNon": 0,
+        "IsDuPhongNon": 0,
+        "IsDatThangDiemDau": true,
+        "IsDatThangDiemDauNon": true,
+        "isCanBangDichDat": true,
+        "DichRa": 125,
+        "DichVao": 600,
+        "IsDatDanLuu": true,
+        "SoLuong": 25,
+        "MauSac": "Đỏ sẫm",
+        "GiuAm": 36.8,
+        "IsDatGiuAm": true,
+        "IsBangVetMo": 1,
+        "IsDatBangVetMo": true,
+        "TriGiac": "2",
+        "HoHap": "2",
+        "HuyetAp": "2",
+        "NhipTim": "2",
+        "BaoHoaOxy": "2",
+        "VanDong": "2",
+        "TongDiem": 12,
+        "NhanXetCuaBacSy": "Bệnh nhân ổn định chuyển khoa điều trị tiếp",
+        "ThoiDiemNhanXet": "2026-02-26T18:30:00+07:00"
+    },
+    "PhieuThucHienThuoc": [
+        {
+            "NgayPhieuDieuTri": "26/02/2026",
+            "Thuocs": [
+                {
+                    "Id": 2223814,
+                    "DuocPhamBenhVienId": 43570,
+                    "SoThuTu": "1",
+                    "Ten": "Maltodextrin <span style='font-weight: bold;'>(TP dinh dưỡng y học Delical Maltodextridine 25g)</span> 25g",
+                    "SoLuong": "01",
+                    "TenDuongDung": "1 gói pha 200ml nước uống",
+                    "TenNhanVienChiDinh": "Hoàng Ngọc Minh",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2224167,
+                    "DuocPhamBenhVienId": 32612,
+                    "SoThuTu": "2",
+                    "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                    "HanSuDungDisplay": "27/07/2026",
+                    "SoLo": "14TG35",
+                    "SoLuong": "01",
+                    "TenDuongDung": "Truyền tĩnh mạch 80 g/p lúc đau nhiều",
+                    "TenNhanVienChiDinh": "Hoàng Ngọc Minh",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2224168,
+                    "DuocPhamBenhVienId": 43252,
+                    "SoThuTu": "3",
+                    "Ten": "Natri clorid <span style='font-weight: bold;'>(Natri Clorid 0,9%)</span> 0,9%/100ml",
+                    "HanSuDungDisplay": "16/12/2027",
+                    "SoLo": "SA19431225",
+                    "SoLuong": "01",
+                    "TenDuongDung": "Pha kháng sinh truyền tĩnh mạch",
+                    "TenNhanVienChiDinh": "Hoàng Ngọc Minh",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2224169,
+                    "DuocPhamBenhVienId": 43601,
+                    "SoThuTu": "4",
+                    "Ten": "Cefotaxim <span style='font-weight: bold;'>(Tenamyd-Cefotaxime 1000)</span> 1000mg",
+                    "HanSuDungDisplay": "11/11/2027",
+                    "SoLo": "F45073",
+                    "SoLuong": "01",
+                    "TenDuongDung": "Pha nacl 0,9% 100ml, truyền tĩnh mạch 50 g/p",
+                    "TenNhanVienChiDinh": "Hoàng Ngọc Minh",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2224170,
+                    "DuocPhamBenhVienId": 42129,
+                    "SoThuTu": "5",
+                    "Ten": "Alpha chymotrypsin <span style='font-weight: bold;'>(Alpha chymotrypsin choay)</span> 21 microkatals",
+                    "HanSuDungDisplay": "18/02/2028",
+                    "SoLo": "FVH1851",
+                    "SoLuong": "03",
+                    "TenDuongDung": "Ngậm dưới lưỡi",
+                    "TenNhanVienChiDinh": "Hoàng Ngọc Minh",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                }
+            ],
+            "DieuDuongKy": {
+                "Id": 128,
+                "Ten": "Tống Thị Hiền"
+            },
+            "GioThucHiens": [
+                {
+                    "Id": 6,
+                    "Value": "2026-02-26T15:00:00+07:00",
+                    "ValueDisplay": "15:00",
+                    "ValueMinute": 900,
+                    "NguoiTH": {
+                        "Id": 1148,
+                        "Ten": "ĐD Nguyễn Minh Hiếu"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2223814,
+                            "Ten": "Maltodextrin <span style='font-weight: bold;'>(TP dinh dưỡng y học Delical Maltodextridine 25g)</span> 25g",
+                            "SoLuong": "1",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 3,
+                    "Value": "2026-02-26T20:00:43.638+07:00",
+                    "ValueDisplay": "20:00",
+                    "ValueMinute": 1200,
+                    "NguoiTH": {
+                        "Id": 21369,
+                        "Ten": "Dương Văn Giang"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224170,
+                            "Ten": "Alpha chymotrypsin <span style='font-weight: bold;'>(Alpha chymotrypsin choay)</span> 21 microkatals",
+                            "SoLuong": "3",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 1,
+                    "Value": "2026-02-26T22:00:43.637+07:00",
+                    "ValueDisplay": "22:00",
+                    "ValueMinute": 1320,
+                    "NguoiTH": {
+                        "Id": 128,
+                        "Ten": "Tống Thị Hiền"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224167,
+                            "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                            "SoLuong": "1,bắt đầu",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224168,
+                            "Ten": "Natri clorid <span style='font-weight: bold;'>(Natri Clorid 0,9%)</span> 0,9%/100ml",
+                            "GachCheo": false,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 4,
+                    "Value": "2026-02-26T22:30:00+07:00",
+                    "ValueDisplay": "22:30",
+                    "ValueMinute": 1350,
+                    "NguoiTH": {
+                        "Id": 128,
+                        "Ten": "ĐD Tống Thị Hiền"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224167,
+                            "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                            "SoLuong": "kết thúc",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2,
+                    "Value": "2026-02-26T23:00:43.637+07:00",
+                    "ValueDisplay": "23:00",
+                    "ValueMinute": 1380,
+                    "NguoiTH": {
+                        "Id": 128,
+                        "Ten": "Tống Thị Hiền"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224169,
+                            "Ten": "Cefotaxim <span style='font-weight: bold;'>(Tenamyd-Cefotaxime 1000)</span> 1000mg",
+                            "SoLuong": "1,bắt đầu",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224168,
+                            "Ten": "Natri clorid <span style='font-weight: bold;'>(Natri Clorid 0,9%)</span> 0,9%/100ml",
+                            "SoLuong": "1",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 5,
+                    "Value": "2026-02-26T23:40:00+07:00",
+                    "ValueDisplay": "23:40",
+                    "ValueMinute": 1420,
+                    "NguoiTH": {
+                        "Id": 128,
+                        "Ten": "ĐD Tống Thị Hiền"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224169,
+                            "Ten": "Cefotaxim <span style='font-weight: bold;'>(Tenamyd-Cefotaxime 1000)</span> 1000mg",
+                            "SoLuong": "kết thúc",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                }
+            ]
+        },
+        {
+            "NgayPhieuDieuTri": "27/02/2026",
+            "Thuocs": [
+                {
+                    "Id": 2224171,
+                    "DuocPhamBenhVienId": 32612,
+                    "SoThuTu": "1",
+                    "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                    "HanSuDungDisplay": "27/07/2026",
+                    "SoLo": "14TG35",
+                    "SoLuong": "02",
+                    "TenDuongDung": "Truyền tĩnh mạch 80 g/p lúc đau nhiều",
+                    "TenNhanVienChiDinh": "Hoàng Ngọc Minh",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2224172,
+                    "DuocPhamBenhVienId": 43252,
+                    "SoThuTu": "2",
+                    "Ten": "Natri clorid <span style='font-weight: bold;'>(Natri Clorid 0,9%)</span> 0,9%/100ml",
+                    "HanSuDungDisplay": "16/12/2027",
+                    "SoLo": "SA19431225",
+                    "SoLuong": "03",
+                    "TenDuongDung": "Pha kháng sinh truyền tĩnh mạch",
+                    "TenNhanVienChiDinh": "Hoàng Ngọc Minh",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2224173,
+                    "DuocPhamBenhVienId": 43601,
+                    "SoThuTu": "3",
+                    "Ten": "Cefotaxim <span style='font-weight: bold;'>(Tenamyd-Cefotaxime 1000)</span> 1000mg",
+                    "HanSuDungDisplay": "11/11/2027",
+                    "SoLo": "F45073",
+                    "SoLuong": "02",
+                    "TenDuongDung": "Truyền tĩnh mạch 80 g/p lúc đau nhiều",
+                    "TenNhanVienChiDinh": "Hoàng Ngọc Minh",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2224174,
+                    "DuocPhamBenhVienId": 31555,
+                    "SoThuTu": "4",
+                    "Ten": "Gentamicin <span style='font-weight: bold;'>(Gentamicin 80mg)</span> 80mg/2ml",
+                    "HanSuDungDisplay": "26/09/2028",
+                    "SoLo": "540925",
+                    "SoLuong": "02",
+                    "TenDuongDung": "Pha nacl 0,9% 100ml, truyền tĩnh mạch 50 g/p",
+                    "TenNhanVienChiDinh": "Hoàng Ngọc Minh",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2224176,
+                    "DuocPhamBenhVienId": 42129,
+                    "SoThuTu": "6",
+                    "Ten": "Alpha chymotrypsin <span style='font-weight: bold;'>(Alpha chymotrypsin choay)</span> 21 microkatals",
+                    "HanSuDungDisplay": "18/02/2028",
+                    "SoLo": "FVH1851",
+                    "SoLuong": "06",
+                    "TenDuongDung": "Ngậm dưới lưỡi",
+                    "TenNhanVienChiDinh": "Hoàng Ngọc Minh",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2224177,
+                    "DuocPhamBenhVienId": 43095,
+                    "SoThuTu": "7",
+                    "Ten": "Esomeprazol <span style='font-weight: bold;'>(Emanera 40mg)</span> 40mg",
+                    "HanSuDungDisplay": "31/05/2027",
+                    "SoLo": "SP0068",
+                    "SoLuong": "01",
+                    "TenDuongDung": "Uống trước ăn 30 phút.",
+                    "TenNhanVienChiDinh": "Hoàng Ngọc Minh",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2224178,
+                    "DuocPhamBenhVienId": 33744,
+                    "SoThuTu": "8",
+                    "Ten": "Etoricoxib <span style='font-weight: bold;'>(Arcoxia 90mg)</span> 90mg",
+                    "HanSuDungDisplay": "07/05/2028",
+                    "SoLo": "C129804",
+                    "SoLuong": "01",
+                    "TenDuongDung": "Uống sau ăn",
+                    "TenNhanVienChiDinh": "Hoàng Ngọc Minh",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2224179,
+                    "DuocPhamBenhVienId": 2333,
+                    "SoThuTu": "8",
+                    "Ten": "Natri clorid <span style='font-weight: bold;'>(Natri clorid  0,9% - 500ml Kabi)</span> 0,9% x 500ml",
+                    "HanSuDungDisplay": "22/07/2028",
+                    "SoLo": "86TGE417",
+                    "SoLuong": "02",
+                    "TenDuongDung": "Truyền tĩnh mạch 60 g/p",
+                    "TenNhanVienChiDinh": "Hoàng Ngọc Minh",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2224187,
+                    "DuocPhamBenhVienId": 41960,
+                    "SoThuTu": "9",
+                    "Ten": "Rivaroxaban <span style='font-weight: bold;'>(Xarelto 10mg)</span> 10mg",
+                    "HanSuDungDisplay": "19/06/2027",
+                    "SoLo": "BXK5PD1",
+                    "SoLuong": "01",
+                    "TenDuongDung": "Uống",
+                    "TenNhanVienChiDinh": "Hoàng Ngọc Minh",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                }
+            ],
+            "DieuDuongKy": {
+                "Id": 21264,
+                "Ten": "Nguyễn Thị Kiều Anh"
+            },
+            "GioThucHiens": [
+                {
+                    "Id": 1,
+                    "Value": "2026-02-26T08:00:08.436+07:00",
+                    "ValueDisplay": "08:00",
+                    "ValueMinute": 480,
+                    "NguoiTH": {
+                        "Id": 21368,
+                        "Ten": "Nguyễn Minh Đức"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224171,
+                            "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                            "GachCheo": false,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224173,
+                            "Ten": "Cefotaxim <span style='font-weight: bold;'>(Tenamyd-Cefotaxime 1000)</span> 1000mg",
+                            "SoLuong": "1 bắt đầu",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224176,
+                            "Ten": "Alpha chymotrypsin <span style='font-weight: bold;'>(Alpha chymotrypsin choay)</span> 21 microkatals",
+                            "SoLuong": "3",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224177,
+                            "Ten": "Esomeprazol <span style='font-weight: bold;'>(Emanera 40mg)</span> 40mg",
+                            "SoLuong": "1",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224178,
+                            "Ten": "Etoricoxib <span style='font-weight: bold;'>(Arcoxia 90mg)</span> 90mg",
+                            "SoLuong": "1",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224172,
+                            "Ten": "Natri clorid <span style='font-weight: bold;'>(Natri Clorid 0,9%)</span> 0,9%/100ml",
+                            "SoLuong": "1",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 6,
+                    "Value": "2026-02-27T08:40:00+07:00",
+                    "ValueDisplay": "08:40",
+                    "ValueMinute": 520,
+                    "NguoiTH": {
+                        "Id": 21368,
+                        "Ten": "ĐD Nguyễn Minh Đức"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224173,
+                            "Ten": "Cefotaxim <span style='font-weight: bold;'>(Tenamyd-Cefotaxime 1000)</span> 1000mg",
+                            "SoLuong": "kết thúc",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224171,
+                            "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                            "SoLuong": "1 bắt đầu",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 3,
+                    "Value": "2026-02-26T09:00:08.436+07:00",
+                    "ValueDisplay": "09:00",
+                    "ValueMinute": 540,
+                    "NguoiTH": {
+                        "Id": 21368,
+                        "Ten": "Nguyễn Minh Đức"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224174,
+                            "Ten": "Gentamicin <span style='font-weight: bold;'>(Gentamicin 80mg)</span> 80mg/2ml",
+                            "SoLuong": "2 BẮT ĐẦU",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224187,
+                            "Ten": "Rivaroxaban <span style='font-weight: bold;'>(Xarelto 10mg)</span> 10mg",
+                            "SoLuong": "1",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224171,
+                            "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                            "SoLuong": "kết thúc",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224172,
+                            "Ten": "Natri clorid <span style='font-weight: bold;'>(Natri Clorid 0,9%)</span> 0,9%/100ml",
+                            "SoLuong": "1",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 7,
+                    "Value": "2026-02-27T09:40:00+07:00",
+                    "ValueDisplay": "09:40",
+                    "ValueMinute": 580,
+                    "NguoiTH": {
+                        "Id": 21368,
+                        "Ten": "ĐD Nguyễn Minh Đức"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224174,
+                            "Ten": "Gentamicin <span style='font-weight: bold;'>(Gentamicin 80mg)</span> 80mg/2ml",
+                            "SoLuong": "kết thúc",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 4,
+                    "Value": "2026-02-26T10:00:08.436+07:00",
+                    "ValueDisplay": "10:00",
+                    "ValueMinute": 600,
+                    "NguoiTH": {
+                        "Id": 21368,
+                        "Ten": "Nguyễn Minh Đức"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224179,
+                            "Ten": "Natri clorid <span style='font-weight: bold;'>(Natri clorid  0,9% - 500ml Kabi)</span> 0,9% x 500ml",
+                            "SoLuong": "1 bắt đầu",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 8,
+                    "Value": "2026-02-27T13:20:00+07:00",
+                    "ValueDisplay": "13:20",
+                    "ValueMinute": 800,
+                    "NguoiTH": {
+                        "Id": 21368,
+                        "Ten": "ĐD Nguyễn Minh Đức"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224179,
+                            "Ten": "Natri clorid <span style='font-weight: bold;'>(Natri clorid  0,9% - 500ml Kabi)</span> 0,9% x 500ml",
+                            "SoLuong": "kết thúc",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2,
+                    "Value": "2026-02-26T16:00:08.436+07:00",
+                    "ValueDisplay": "16:00",
+                    "ValueMinute": 960,
+                    "NguoiTH": {
+                        "Id": 21368,
+                        "Ten": "Nguyễn Minh Đức"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224171,
+                            "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                            "GachCheo": false,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224173,
+                            "Ten": "Cefotaxim <span style='font-weight: bold;'>(Tenamyd-Cefotaxime 1000)</span> 1000mg",
+                            "SoLuong": "1 bắt đầu",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224176,
+                            "Ten": "Alpha chymotrypsin <span style='font-weight: bold;'>(Alpha chymotrypsin choay)</span> 21 microkatals",
+                            "SoLuong": "3",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224172,
+                            "Ten": "Natri clorid <span style='font-weight: bold;'>(Natri Clorid 0,9%)</span> 0,9%/100ml",
+                            "SoLuong": "1",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 9,
+                    "Value": "2026-02-27T16:40:00+07:00",
+                    "ValueDisplay": "16:40",
+                    "ValueMinute": 1000,
+                    "NguoiTH": {
+                        "Id": 21368,
+                        "Ten": "ĐD Nguyễn Minh Đức"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224173,
+                            "Ten": "Cefotaxim <span style='font-weight: bold;'>(Tenamyd-Cefotaxime 1000)</span> 1000mg",
+                            "SoLuong": "kết thúc",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224171,
+                            "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                            "SoLuong": "1 bắt đầu",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 5,
+                    "Value": "2026-02-26T17:00:08.436+07:00",
+                    "ValueDisplay": "17:00",
+                    "ValueMinute": 1020,
+                    "NguoiTH": {
+                        "Id": 21368,
+                        "Ten": "Nguyễn Minh Đức"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224179,
+                            "Ten": "Natri clorid <span style='font-weight: bold;'>(Natri clorid  0,9% - 500ml Kabi)</span> 0,9% x 500ml",
+                            "SoLuong": "1 bắt đầu",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224171,
+                            "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                            "SoLuong": "kết thúc",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 10,
+                    "Value": "2026-02-27T20:20:00+07:00",
+                    "ValueDisplay": "20:20",
+                    "ValueMinute": 1220,
+                    "NguoiTH": {
+                        "Id": 21368,
+                        "Ten": "ĐD Nguyễn Minh Đức"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224179,
+                            "Ten": "Natri clorid <span style='font-weight: bold;'>(Natri clorid  0,9% - 500ml Kabi)</span> 0,9% x 500ml",
+                            "SoLuong": "kết thúc",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                }
+            ]
+        },
+        {
+            "NgayPhieuDieuTri": "28/02/2026",
+            "Thuocs": [
+                {
+                    "Id": 2224453,
+                    "SoThuTu": "1",
+                    "Ten": "Esomeprazol <span style='font-weight: bold;'>(Emanera 40mg)</span> 40mg",
+                    "HanSuDungDisplay": "31/05/2027",
+                    "SoLo": "SP0068",
+                    "SoLuong": "01",
+                    "TenDuongDung": "Uống trước ăn 30 phút.",
+                    "TenNhanVienChiDinh": "Phùng Văn Toán",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2224454,
+                    "SoThuTu": "2",
+                    "Ten": "Alpha chymotrypsin <span style='font-weight: bold;'>(Alpha chymotrypsin choay)</span> 21 microkatals",
+                    "HanSuDungDisplay": "18/02/2028",
+                    "SoLo": "FVH1851",
+                    "SoLuong": "06",
+                    "TenDuongDung": "Ngậm dưới lưỡi",
+                    "TenNhanVienChiDinh": "Phùng Văn Toán",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2224455,
+                    "SoThuTu": "3",
+                    "Ten": "Cefotaxim <span style='font-weight: bold;'>(Tenamyd-Cefotaxime 1000)</span> 1000mg",
+                    "HanSuDungDisplay": "11/11/2027",
+                    "SoLo": "F45073",
+                    "SoLuong": "02",
+                    "TenDuongDung": "Pha nacl 0,9% 100ml, truyền tĩnh mạch 50 g/p",
+                    "TenNhanVienChiDinh": "Phùng Văn Toán",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2224456,
+                    "SoThuTu": "4",
+                    "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                    "HanSuDungDisplay": "27/07/2026",
+                    "SoLo": "14TG35",
+                    "SoLuong": "02",
+                    "TenDuongDung": "Truyền tĩnh mạch 80 g/p lúc đau nhiều",
+                    "TenNhanVienChiDinh": "Phùng Văn Toán",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2224458,
+                    "SoThuTu": "5",
+                    "Ten": "Etoricoxib <span style='font-weight: bold;'>(Arcoxia 90mg)</span> 90mg",
+                    "HanSuDungDisplay": "07/05/2028",
+                    "SoLo": "C129804",
+                    "SoLuong": "01",
+                    "TenDuongDung": "Uống sau ăn",
+                    "TenNhanVienChiDinh": "Phùng Văn Toán",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2224459,
+                    "SoThuTu": "6",
+                    "Ten": "Enoxaparin natri <span style='font-weight: bold;'>(Lovenox 4000 IU/0.4ml)</span> 4000 IU/0.4ml",
+                    "HanSuDungDisplay": "31/01/2027",
+                    "SoLo": "KS061A",
+                    "SoLuong": "01",
+                    "TenDuongDung": "Tiêm dưới da",
+                    "TenNhanVienChiDinh": "Phùng Văn Toán",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2224463,
+                    "SoThuTu": "7",
+                    "Ten": "Gentamicin <span style='font-weight: bold;'>(Gentamicin 80mg)</span> 80mg/2ml",
+                    "HanSuDungDisplay": "26/09/2028",
+                    "SoLo": "540925",
+                    "SoLuong": "02",
+                    "TenDuongDung": "Pha nacl 0,9% 100ml, truyền tĩnh mạch 50 g/p",
+                    "TenNhanVienChiDinh": "Phùng Văn Toán",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2224464,
+                    "SoThuTu": "8",
+                    "Ten": "Natri clorid <span style='font-weight: bold;'>(Natri clorid 0,9%)</span> 0.9%/100ml",
+                    "HanSuDungDisplay": "15/12/2027",
+                    "SoLo": "SA19321225",
+                    "SoLuong": "03",
+                    "TenDuongDung": "Pha kháng sinh.",
+                    "TenNhanVienChiDinh": "Phùng Văn Toán",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2224465,
+                    "SoThuTu": "9",
+                    "Ten": "Natri clorid <span style='font-weight: bold;'>(Natri clorid  0,9% - 500ml Kabi)</span> 0,9% x 500ml",
+                    "HanSuDungDisplay": "22/07/2028",
+                    "SoLo": "86TGE417",
+                    "SoLuong": "01",
+                    "TenDuongDung": "Truyền tm 50 giọt/ phút",
+                    "TenNhanVienChiDinh": "Phùng Văn Toán",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                }
+            ],
+            "DieuDuongKy": {
+                "Id": 514,
+                "Ten": "Nguyễn Thị Thanh Thuỷ"
+            },
+            "GioThucHiens": [
+                {
+                    "Id": 1,
+                    "Value": "2026-02-27T08:00:53.839+07:00",
+                    "ValueDisplay": "08:00",
+                    "ValueMinute": 480,
+                    "NguoiTH": {
+                        "Id": 21372,
+                        "Ten": "Vũ Thanh Ngọc"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224453,
+                            "Ten": "Esomeprazol <span style='font-weight: bold;'>(Emanera 40mg)</span> 40mg",
+                            "SoLuong": "1",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224454,
+                            "Ten": "Alpha chymotrypsin <span style='font-weight: bold;'>(Alpha chymotrypsin choay)</span> 21 microkatals",
+                            "SoLuong": "3",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224455,
+                            "Ten": "Cefotaxim <span style='font-weight: bold;'>(Tenamyd-Cefotaxime 1000)</span> 1000mg",
+                            "SoLuong": "1 bắt đầu",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224456,
+                            "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                            "GachCheo": false,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224458,
+                            "Ten": "Etoricoxib <span style='font-weight: bold;'>(Arcoxia 90mg)</span> 90mg",
+                            "SoLuong": "1",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224464,
+                            "Ten": "Natri clorid <span style='font-weight: bold;'>(Natri clorid 0,9%)</span> 0.9%/100ml",
+                            "SoLuong": "1",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 4,
+                    "Value": "2026-02-28T08:40:00+07:00",
+                    "ValueDisplay": "08:40",
+                    "ValueMinute": 520,
+                    "NguoiTH": {
+                        "Id": 21372,
+                        "Ten": "ĐD Vũ Thanh Ngọc"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224455,
+                            "Ten": "Cefotaxim <span style='font-weight: bold;'>(Tenamyd-Cefotaxime 1000)</span> 1000mg",
+                            "SoLuong": "kết thúc",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224456,
+                            "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                            "SoLuong": "1 bắt đầu",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 3,
+                    "Value": "2026-02-27T09:00:53.839+07:00",
+                    "ValueDisplay": "09:00",
+                    "ValueMinute": 540,
+                    "NguoiTH": {
+                        "Id": 21372,
+                        "Ten": "Vũ Thanh Ngọc"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224459,
+                            "Ten": "Enoxaparin natri <span style='font-weight: bold;'>(Lovenox 4000 IU/0.4ml)</span> 4000 IU/0.4ml",
+                            "SoLuong": "1",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224463,
+                            "Ten": "Gentamicin <span style='font-weight: bold;'>(Gentamicin 80mg)</span> 80mg/2ml",
+                            "SoLuong": "2 BẮT ĐẦU",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224465,
+                            "Ten": "Natri clorid <span style='font-weight: bold;'>(Natri clorid  0,9% - 500ml Kabi)</span> 0,9% x 500ml",
+                            "SoLuong": "1 bắt đầu",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224464,
+                            "Ten": "Natri clorid <span style='font-weight: bold;'>(Natri clorid 0,9%)</span> 0.9%/100ml",
+                            "SoLuong": "1",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 6,
+                    "Value": "2026-02-28T09:05:00+07:00",
+                    "ValueDisplay": "09:05",
+                    "ValueMinute": 545,
+                    "NguoiTH": {
+                        "Id": 21372,
+                        "Ten": "ĐD Vũ Thanh Ngọc"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224456,
+                            "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                            "SoLuong": "kết thúc",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 8,
+                    "Value": "2026-02-28T09:40:00+07:00",
+                    "ValueDisplay": "09:40",
+                    "ValueMinute": 580,
+                    "NguoiTH": {
+                        "Id": 21372,
+                        "Ten": "ĐD Vũ Thanh Ngọc"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224463,
+                            "Ten": "Gentamicin <span style='font-weight: bold;'>(Gentamicin 80mg)</span> 80mg/2ml",
+                            "SoLuong": "kết thúc",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 9,
+                    "Value": "2026-02-28T12:20:00+07:00",
+                    "ValueDisplay": "12:20",
+                    "ValueMinute": 740,
+                    "NguoiTH": {
+                        "Id": 21372,
+                        "Ten": "ĐD Vũ Thanh Ngọc"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224465,
+                            "Ten": "Natri clorid <span style='font-weight: bold;'>(Natri clorid  0,9% - 500ml Kabi)</span> 0,9% x 500ml",
+                            "SoLuong": "kết thúc",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2,
+                    "Value": "2026-02-27T16:00:53.839+07:00",
+                    "ValueDisplay": "16:00",
+                    "ValueMinute": 960,
+                    "NguoiTH": {
+                        "Id": 21372,
+                        "Ten": "Vũ Thanh Ngọc"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224454,
+                            "Ten": "Alpha chymotrypsin <span style='font-weight: bold;'>(Alpha chymotrypsin choay)</span> 21 microkatals",
+                            "SoLuong": "3",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224455,
+                            "Ten": "Cefotaxim <span style='font-weight: bold;'>(Tenamyd-Cefotaxime 1000)</span> 1000mg",
+                            "SoLuong": "1 bắt đầu",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224456,
+                            "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                            "GachCheo": false,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224464,
+                            "Ten": "Natri clorid <span style='font-weight: bold;'>(Natri clorid 0,9%)</span> 0.9%/100ml",
+                            "SoLuong": "1",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 5,
+                    "Value": "2026-02-28T16:40:00+07:00",
+                    "ValueDisplay": "16:40",
+                    "ValueMinute": 1000,
+                    "NguoiTH": {
+                        "Id": 21372,
+                        "Ten": "ĐD Vũ Thanh Ngọc"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224455,
+                            "Ten": "Cefotaxim <span style='font-weight: bold;'>(Tenamyd-Cefotaxime 1000)</span> 1000mg",
+                            "SoLuong": "kết thúc",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2224456,
+                            "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                            "SoLuong": "1 bắt đầu",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 7,
+                    "Value": "2026-02-28T17:05:00+07:00",
+                    "ValueDisplay": "17:05",
+                    "ValueMinute": 1025,
+                    "NguoiTH": {
+                        "Id": 21372,
+                        "Ten": "ĐD Vũ Thanh Ngọc"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2224456,
+                            "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                            "SoLuong": "kết thúc",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                }
+            ]
+        },
+        {
+            "NgayPhieuDieuTri": "01/03/2026",
+            "Thuocs": [
+                {
+                    "Id": 2225568,
+                    "SoThuTu": "1",
+                    "Ten": "Alpha chymotrypsin <span style='font-weight: bold;'>(Alpha chymotrypsin choay)</span> 21 microkatals",
+                    "HanSuDungDisplay": "18/02/2028",
+                    "SoLo": "FVH1851",
+                    "SoLuong": "06",
+                    "TenDuongDung": "Ngậm dưới lưỡi",
+                    "TenNhanVienChiDinh": "Nguyễn Đức Âu",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2225569,
+                    "SoThuTu": "2",
+                    "Ten": "Enoxaparin natri <span style='font-weight: bold;'>(Lovenox 4000 IU/0.4ml)</span> 4000 IU/0.4ml",
+                    "HanSuDungDisplay": "31/01/2027",
+                    "SoLo": "KS061A",
+                    "SoLuong": "01",
+                    "TenDuongDung": "Tiêm dưới da",
+                    "TenNhanVienChiDinh": "Nguyễn Đức Âu",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2225570,
+                    "SoThuTu": "3",
+                    "Ten": "Esomeprazol <span style='font-weight: bold;'>(Emanera 40mg)</span> 40mg",
+                    "HanSuDungDisplay": "31/05/2027",
+                    "SoLo": "SP0068",
+                    "SoLuong": "01",
+                    "TenDuongDung": "Uống trước ăn 30 phút.",
+                    "TenNhanVienChiDinh": "Nguyễn Đức Âu",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2225571,
+                    "SoThuTu": "4",
+                    "Ten": "Etoricoxib <span style='font-weight: bold;'>(Arcoxia 90mg)</span> 90mg",
+                    "HanSuDungDisplay": "07/05/2028",
+                    "SoLo": "C129804",
+                    "SoLuong": "01",
+                    "TenDuongDung": "Uống sau ăn",
+                    "TenNhanVienChiDinh": "Nguyễn Đức Âu",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2225575,
+                    "SoThuTu": "5",
+                    "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                    "HanSuDungDisplay": "27/07/2026",
+                    "SoLo": "14TG35",
+                    "SoLuong": "01",
+                    "TenDuongDung": "Truyền tĩnh mạch 80 g/p lúc đau nhiều",
+                    "TenNhanVienChiDinh": "Nguyễn Đức Âu",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2225577,
+                    "SoThuTu": "6",
+                    "Ten": "Cefotaxim <span style='font-weight: bold;'>(Tenamyd-Cefotaxime 1000)</span> 1000mg",
+                    "HanSuDungDisplay": "11/11/2027",
+                    "SoLo": "F45073",
+                    "SoLuong": "01",
+                    "TenDuongDung": "Pha nacl 0,9% 100ml, truyền tĩnh mạch 50 g/p",
+                    "TenNhanVienChiDinh": "Nguyễn Đức Âu",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2225578,
+                    "SoThuTu": "7",
+                    "Ten": "Natri clorid <span style='font-weight: bold;'>(Natri Clorid 0,9%)</span> 0,9%/100ml",
+                    "HanSuDungDisplay": "16/12/2027",
+                    "SoLo": "SA19431225",
+                    "SoLuong": "02",
+                    "TenDuongDung": "Pha kháng sinh truyền tĩnh mạch",
+                    "TenNhanVienChiDinh": "Nguyễn Đức Âu",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2225584,
+                    "SoThuTu": "8",
+                    "Ten": "Gentamicin <span style='font-weight: bold;'>(Gentamicin 80mg)</span> 80mg/2ml",
+                    "HanSuDungDisplay": "12/12/2028",
+                    "SoLo": "731225",
+                    "SoLuong": "02",
+                    "TenDuongDung": "Pha nacl 0,9% 100ml, truyền tĩnh mạch 50 g/p",
+                    "TenNhanVienChiDinh": "Nguyễn Đức Âu",
+                    "IsThuocNgoai": false,
+                    "IsThuocNhieuNgay": false
+                }
+            ],
+            "DieuDuongKy": {
+                "Id": 1148,
+                "Ten": "Nguyễn Minh Hiếu"
+            },
+            "GioThucHiens": [
+                {
+                    "Id": 1,
+                    "Value": "2026-02-28T08:00:48.658+07:00",
+                    "ValueDisplay": "08:00",
+                    "ValueMinute": 480,
+                    "NguoiTH": {
+                        "Id": 21345,
+                        "Ten": "Dương Thùy Nhung"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2225568,
+                            "Ten": "Alpha chymotrypsin <span style='font-weight: bold;'>(Alpha chymotrypsin choay)</span> 21 microkatals",
+                            "SoLuong": "3",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2225570,
+                            "Ten": "Esomeprazol <span style='font-weight: bold;'>(Emanera 40mg)</span> 40mg",
+                            "SoLuong": "1",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2225571,
+                            "Ten": "Etoricoxib <span style='font-weight: bold;'>(Arcoxia 90mg)</span> 90mg",
+                            "SoLuong": "1",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2225575,
+                            "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                            "GachCheo": false,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2225577,
+                            "Ten": "Cefotaxim <span style='font-weight: bold;'>(Tenamyd-Cefotaxime 1000)</span> 1000mg",
+                            "SoLuong": "1 bắt đầu",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2225584,
+                            "Ten": "Gentamicin <span style='font-weight: bold;'>(Gentamicin 80mg)</span> 80mg/2ml",
+                            "SoLuong": "2 bắt đầu",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 4,
+                    "Value": "2026-03-01T08:40:00+07:00",
+                    "ValueDisplay": "08:40",
+                    "ValueMinute": 520,
+                    "NguoiTH": {
+                        "Id": 1148,
+                        "Ten": "ĐD Nguyễn Minh Hiếu"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2225577,
+                            "Ten": "Cefotaxim <span style='font-weight: bold;'>(Tenamyd-Cefotaxime 1000)</span> 1000mg",
+                            "SoLuong": "kết thúc",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2225584,
+                            "Ten": "Gentamicin <span style='font-weight: bold;'>(Gentamicin 80mg)</span> 80mg/2ml",
+                            "SoLuong": "kết thúc",
+                            "GachCheo": false,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2225575,
+                            "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                            "SoLuong": "1 bắt đầu",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 3,
+                    "Value": "2026-02-28T09:00:48.658+07:00",
+                    "ValueDisplay": "09:00",
+                    "ValueMinute": 540,
+                    "NguoiTH": {
+                        "Id": 21345,
+                        "Ten": "Dương Thùy Nhung"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2225569,
+                            "Ten": "Enoxaparin natri <span style='font-weight: bold;'>(Lovenox 4000 IU/0.4ml)</span> 4000 IU/0.4ml",
+                            "SoLuong": "1",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2225575,
+                            "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                            "SoLuong": "kết thúc",
+                            "GachCheo": true,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                },
+                {
+                    "Id": 2,
+                    "Value": "2026-02-28T16:00:48.658+07:00",
+                    "ValueDisplay": "16:00",
+                    "ValueMinute": 960,
+                    "NguoiTH": {
+                        "Id": 21345,
+                        "Ten": "Dương Thùy Nhung"
+                    },
+                    "Thuocs": [
+                        {
+                            "Id": 2225568,
+                            "Ten": "Alpha chymotrypsin <span style='font-weight: bold;'>(Alpha chymotrypsin choay)</span> 21 microkatals",
+                            "SoLuong": "3 bàn giao",
+                            "GachCheo": false,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2225575,
+                            "Ten": "Paracetamol <span style='font-weight: bold;'>(Paracetamol Kabi AD)</span> 1g/100ml",
+                            "GachCheo": false,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        },
+                        {
+                            "Id": 2225577,
+                            "Ten": "Cefotaxim <span style='font-weight: bold;'>(Tenamyd-Cefotaxime 1000)</span> 1000mg",
+                            "GachCheo": false,
+                            "IsThuocNgoai": false,
+                            "IsAddFirst": false,
+                            "IsThuocNhieuNgay": false
+                        }
+                    ],
+                    "IsThuocNhieuNgay": false
+                }
+            ]
+        }
+    ],
+    "PhieuTheoDoiGiamDauSauMo": {
+        "KhoaId": 2,
+        "PhongId": 21,
+        "CanNang": 58,
+        "ChieuCao": 167,
+        "ChanDoan": "Trật khớp háng nhân tạo bên phải",
+        "PhuongPhapPTTT": "Phẫu thuật đặt lại khớp háng phải, cố định ổ cối bằng vít thay chỏm xương đùi phải",
+        "BacSyGiamDauId": 517,
+        "GiamDauTeVung": "Ngoài màng cứng (một liều-BTĐ-PCEA)",
+        "ViTriDatCaTheter1": "L2L3",
+        "ViTriDatCaTheter2": "10",
+        "ViTriDatCaTheter3": 1,
+        "ThuocGiamDau": "Ngoài màng cứng",
+        "ThoiGianBatDau": "2026-02-26T18:25:00+07:00",
+        "TenThuocSo1": "AnaRopin 350mg/70ml",
+        "TheTichThuocSo1": "350ml",
+        "NongDoThuocSo1": "0.1%",
+        "DanhSachThuocs": [
+            {
+                "Text": "Fentanyl 0,3mg/6ml"
+            },
+            {
+                "Text": "Natriclorid 0,9% 274ml"
+            }
+        ],
+        "TocDoToiDa": "6",
+        "DuKienThoiGianKetThuc": "Sau 58 giờ",
+        "DanhSachChamSocGiamDau": [
+            {
+                "ThoiGian": "2026-02-26T18:25",
+                "TocDo": "6",
+                "LieuBolus": "5",
+                "ThoiGianKhoaPhut": "30",
+                "LieuToiDa4H": "/",
+                "BacSyChiDinhId": 517
+            }
+        ],
+        "KetThucVaRutCantheter": 1,
+        "NgayThucHien": "2026-02-28T21:00:00+07:00",
+        "NguoiThucHienId": 24,
+        "BangTheoDoiGiamDau": {
+            "ThoiGian": [
+                "2026-02-26T18:25",
+                "2026-02-27T09:00",
+                "2026-02-27T15:00",
+                "2026-02-28T09:00",
+                "2026-02-28T14:00"
+            ],
+            "DiaDiem": [
+                "607",
+                "1003",
+                "1003",
+                "1003",
+                "1003"
+            ],
+            "Thuoc_TocDo": [
+                "6",
+                "6",
+                "6",
+                "6",
+                "6"
+            ],
+            "Thuoc_Bolus": [
+                "5",
+                "5",
+                "5",
+                "5",
+                "5"
+            ],
+            "Mach": [
+                74,
+                70,
+                72,
+                75,
+                73
+            ],
+            "HuyetAp": [
+                "138/80",
+                "130/80",
+                "125/79",
+                "121/73",
+                "126/75"
+            ],
+            "NhipTho": [
+                19,
+                16,
+                17,
+                18,
+                18
+            ],
+            "SpO2": [
+                99,
+                100,
+                100,
+                97,
+                97
+            ],
+            "DiemDauKhiNghi": [
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+            ],
+            "DiemDauKhiVD": [
+                "1",
+                "1",
+                "1",
+                "1",
+                "1"
+            ],
+            "DiemVanDong": [
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+            ],
+            "MucPhongBeToiDa": [
+                "/",
+                "/",
+                "/",
+                "/",
+                "/"
+            ],
+            "NhanXetLamSang": [
+                "Dhst ổn định",
+                "không nôn, không buồn nôn",
+                "không nôn, không buồn nôn",
+                "BN ổn định",
+                "BN ổn định"
+            ],
+            "DieuDuongTheoDoi": [
+                "Công Quốc Hiếu",
+                "Dương Thị Loan.",
+                "Dương Thị Loan.",
+                "Lê Diệu Linh.",
+                "Lê Diệu Linh."
+            ],
+            "BSThamKham": [
+                "BSCKI Nguyễn Quốc Sơn",
+                "BS Nguyễn Minh Hà",
+                "BS Nguyễn Minh Hà",
+                "TS.Bs Nguyễn Mạnh Hồng",
+                "TS.Bs Nguyễn Mạnh Hồng"
+            ]
+        },
+        "BacSyKyId": 517,
+        "DieuDuongKyId": 455
+    },
+    "GiayChungNhanPhauThuat": {
+        "SoLuuTru": "26001548",
+        "ChanDoan": "Z98 - Trật khớp háng nhân tạo bên phải",
+        "TinhTrangRaVienText": "Ổn định",
+        "TinhTrangRaVienId": 1,
+        "NgayThangNam": "2026-03-01T00:00:00+07:00",
+        "NgayThangNamText": "03/01/2026 12:00 AM",
+        "TruongKhoaId": 894,
+        "TruongKhoa": "Hoàng Ngọc Minh",
+        "GiamDocChuyenMonId": 76,
+        "GiamDocChuyenMon": "Nguyễn Thắng Lợi",
+        "NoiTruHoSoKhacId": 1218404,
+        "PhuongThucPhauThuat": "Phẫu thuật đặt lại khớp háng phải, cố định ổ cối bằng vít thay chỏm xương đùi phải",
+        "DichVuPTTTId": 0,
+        "infor": [
+            {
+                "KeyId": 3743591,
+                "DisplayName": "Phẫu thuật đặt lại khớp, găm kim cố định (buộc vòng chỉ thép)",
+                "PhauThuatNgay": "02/26/2026 12:00 AM",
+                "PhuongThucVoCamId": 5,
+                "PhuongThucVoCamText": "Gây tê tủy sống",
+                "PhauThuatVienId": 450,
+                "PhauThuatVienIdNew": [
+                    561,
+                    450
+                ],
+                "PhauThuatVienText": "Nguyễn Đức Âu",
+                "TenPhuongPhapPTTT": "Phẫu thuật đặt lại khớp háng phải, cố định ổ cối bằng vít thay chỏm xương đùi phải",
+                "YeuCauDichVuKyThuatTuongTrinhPTTTId": 3743591
+            }
+        ],
+        "listLan": [
+            3743591
+        ],
+        "NgayThucHienReadonly": "01/03/2026 09:04",
+        "NguoiThucHienReadonly": "Bùi Đình Bính",
+        "NhomMau": 2,
+        "YeuToRh": 2
+    },
+    "TomTatHoSoBenhAn": {
+        "ThongTinHanhChinh": {
+            "HoTen": "NGUYỄN VĂN KHƯƠNG",
+            "Tuoi": 48,
+            "GioiTinh": "Nam",
+            "DiaChi": "Thôn 2, Xã Sơn Đồng, Thành phố Hà Nội",
+            "SoTheBHYT": "GD4019794849988",
+            "SoCCCD": "001078018241",
+            "DanToc": "Kinh",
+            "NgaySinh": 1,
+            "ThangSinh": 1,
+            "NamSinh": 1978,
+            "ThoiDiemVaoVien": "26/02/2026",
+            "ThoiDiemRaVien": "01/03/2026"
+        },
+        "ChanDoanVaoVien": "Z96 - Trật khớp háng nhân tạo bên phải",
+        "ChanDoanRaVien": "Z98 - Trật khớp háng nhân tạo bên phải",
+        "LyDoVaoVien": "Trật khớp háng nhân tạo phải",
+        "TomTatQuaTrinhBenhLy": "Theo lời kể bệnh nhân phẫu thuật thay khớp háng phải từ 30/1/2026, sau mổ 10 ngày có trật khớp háng nhân tạo phải. Nay vào viện Bắc Hà khám và điều trị",
+        "TienSuBenh": "Thay khớp háng nhân tạo phải",
+        "NhungDauHieuLamSangChinh": "f",
+        "TomTatKetQuaXetNghiemCLS": "<p>CĐHA/TDCN: gfgfgfgfg</p><p></p><p>test nhân tạohgh</p><p>hyghgjhj</p><p>jhjgjghjhg</p><p>jhj</p><p>ghj</p>",
+        "PhuongPhapDieuTriNoiKhoa": false,
+        "PhuongPhapDieuTriPTTT": false,
+        "TinhTrangRaVien": 2,
+        "TinhTrangRaVienText": "Đỡ",
+        "HuongDieuTri": "Dùng thuốc theo đơn.\nTập phục hồi chức năng theo hướng dẫn.\nThay băng 2 ngày/ lần, cắt chỉ sau mổ 14 ngày.\nKhám lại theo hẹn của phẫu thuật viên. Liên hệ trợ lý Oanh 0961518668.\nNghỉ lao động từ 2/3/2026 đến 31/3/2026",
+        "DaiDienDonViId": 76,
+        "NgayThucHien": "2026-06-10T11:05:53.8755446+07:00"
+    },
+    "GiayRaVien": {
+        "ChanDoan": "Z98 - Trật khớp háng nhân tạo bên trái",
+        "PhuongPhapDieuTri": "Phẫu thuật đặt lại khớp háng phải, cố định ổ cối bằng vít thay chỏm xương đùi phải.\nĐiều trị: Truyền dịch, kháng sinh, giảm đau, giảm phù nề, giảm tiết dịch vị, dự phòng huyết khối.",
+        "GhiChu": "Dùng thuốc theo đơn.\nTập phục hồi chức năng theo hướng dẫn.\nThay băng 2 ngày/ lần, cắt chỉ sau mổ 14 ngày.\nKhám lại theo hẹn của phẫu thuật viên. Liên hệ trợ lý Oanh 0961518668.\nNghỉ lao động từ 2/3/2026 đến 31/3/2026",
+        "TruongKhoaId": 76,
+        "GiamDocChuyenMonId": 76
+    },
+    "ThongTinTongKetBenhAn": {
+        "YeuCauTiepNhanId": 1003213,
+        "QuaTrinhBenhLy": "Theo lời kể bệnh nhân phẫu thuật thay khớp háng phải từ 30/1/2026, sau mổ 10 ngày có trật khớp háng nhân tạo phải. Nay vào viện Bắc Hà khám và điều trị",
+        "TomTatKetQuaCLSNgoaiTru": "test nhân tạo",
+        "XQuang": "gfgfgfgfg",
+        "PhuongPhapDieuTri": "Phẫu thuật đặt lại khớp háng phải, cố định ổ cối bằng vít thay chỏm xương đùi phải.\nĐiều trị: Truyền dịch, kháng sinh, giảm đau, giảm phù nề, giảm tiết dịch vị, dự phòng huyết khối.",
+        "TinhTrangNguoiBenhKhiRaVien": "Bệnh nhân tỉnh\nDa niêm mạc hồng\nHuyết động ổn định\nKhông sốt\nĐau nhức nhẹ vết mổ\nVết mổ nề nhẹ, khô\nĐầu chi hồng ấm, vận động cảm giác bình thường\nTim nhịp đều, mạch rõ, phổi thông khí tốt, không khó thở",
+        "HuongDieuTri": "Dùng thuốc theo đơn.\nTập phục hồi chức năng theo hướng dẫn.\nThay băng 2 ngày/ lần, cắt chỉ sau mổ 14 ngày.\nKhám lại theo hẹn của phẫu thuật viên. Liên hệ trợ lý Oanh 0961518668.\nNghỉ lao động từ 2/3/2026 đến 31/3/2026",
+        "PhauThuatThuThuat": 1,
+        "gridPhauThuatThuThuat": [
+            {
+                "IdView": 0,
+                "PTTTNgayGio": "2026-02-26T16:20:00+07:00",
+                "PTTTPhuongPhap": "Phẫu thuật đặt lại khớp háng phải, cố định ổ cối bằng vít thay chỏm xương đùi phải;Gây tê tủy sống",
+                "PTTT": "Phẫu thuật đặt lại khớp háng phải, cố định ổ cối bằng vít thay chỏm xương đùi phải",
+                "VoCam": "Gây tê tủy sống",
+                "PTTTPhauThuatVien": 450,
+                "PTTTPhauThuatVienNew": [
+                    450
+                ],
+                "PTTTBacSyGayMeNew": [
+                    517
+                ],
+                "PTTTBacSyGayMe": 517,
+                "Id": 0
+            }
+        ],
+        "SoToXQuang": 1,
+        "SoToCTScanner": 0,
+        "SoToSieuAm": 0,
+        "SoToXetNghiem": 2,
+        "SoToKhac": 3,
+        "LanPhauThuats": [
+            {
+                "IdView": 0,
+                "PTTTNgayGio": "2026-02-26T16:20:00+07:00",
+                "PTTTPhuongPhap": "Phẫu thuật đặt lại khớp háng phải, cố định ổ cối bằng vít thay chỏm xương đùi phải;Gây tê tủy sống",
+                "PTTT": "Phẫu thuật đặt lại khớp háng phải, cố định ổ cối bằng vít thay chỏm xương đùi phải",
+                "VoCam": "Gây tê tủy sống",
+                "PTTTPhauThuatVien": 450,
+                "PTTTPhauThuatVienNew": [
+                    450
+                ],
+                "PTTTBacSyGayMeNew": [
+                    517
+                ],
+                "PTTTBacSyGayMe": 517,
+                "Id": 0
+            }
+        ],
+        "NhanVienNhanHoSoId": 21264,
+        "NhanVienGiaoHoSoId": 21322,
+        "Id": 0
+    },
+    "ThongTinRaVien": {
+        "YeuCauTiepNhanId": 1003213,
+        "ChuanDoanKKBCapCuuId": 22735,
+        "TenChuanDoanKKBCapCuu": "Z96 - Tồn tại của dụng cụ cấy ghép chức năng khác",
+        "GhiChuChuanDoanKKBCapCuu": "Trật khớp háng nhân tạo bên phải",
+        "NoiChuanDoanKhiVaoKhoaDieuTriId": 22735,
+        "TenNoiChuanDoanKhiVaoKhoaDieuTri": "Z96 - Tồn tại của dụng cụ cấy ghép chức năng khác",
+        "GhiChuNoiChuanDoanKhiVaoKhoaDieuTri": "Trật khớp háng nhân tạo bên phải",
+        "NoiChuanDoanLucVaoDeId": 22735,
+        "TenNoiChuanDoanLucVaoDe": "Z96 - Tồn tại của dụng cụ cấy ghép chức năng khác",
+        "GhiChuNoiChuanDoanLucVaoDe": "Trật khớp háng nhân tạo bên phải",
+        "TongSoNgayDieuTriSauPT": 3,
+        "TongSoLanPT": 1,
+        "ChuanDoanRaVienId": 22754,
+        "TenChuanDoanRaVien": "Các tình trạng hậu phẫu thuật",
+        "GhiChuChuanDoanRaVien": "Trật khớp háng nhân tạo bên trái",
+        "ChuanDoanTruocPhauThuatId": 22754,
+        "TenChuanDoanTruocPhauThuat": "Z98 - Các tình trạng hậu phẫu thuật",
+        "GhiChuChuanDoanTruocPhauThuat": "Trật khớp háng nhân tạo bên phải",
+        "ChuanDoanSauPhauThuatId": 22754,
+        "TenChuanDoanSauPhauThuat": "Z98 - Các tình trạng hậu phẫu thuật",
+        "GhiChuChuanDoanSauPhauThuat": "Trật khớp háng nhân tạo bên phải",
+        "ThoiGianRaVien": "2026-04-01T12:00:00+07:00",
+        "TruongKhoaId": 894,
+        "TenTruongKhoa": "Hoàng Ngọc Minh",
+        "GiamDocBenhVienId": 76,
+        "TenGiamDocBenhVien": "Nguyễn Thắng Lợi",
+        "BacSiLamBenhAnId": 894,
+        "TenBacSiLamBenhAn": "Hoàng Ngọc Minh",
+        "BacSiTongKetBenhAnId": 21322,
+        "TenBacSiTongKetBenhAn": "Phùng Văn Toán",
+        "KetQuaDieuTriId": 2,
+        "TenKetQuaDieuTri": "Đỡ",
+        "HinhThucRaVienId": 1,
+        "TenHinhThucRaVien": "Ra viện",
+        "HenTaiKham": true,
+        "NgayHienTaiKham": "2026-04-02T08:00:00+07:00",
+        "NguoiTuVanText": "KD3. Bùi Thị Kim Oanh - 0961518668",
+        "KhoaPhongText": "Phòng Kinh Doanh",
+        "NgayLamPhieu": "2026-03-01T08:33:00+07:00",
+        "SoDienThoai": "0961518668",
+        "TongSoNgayDieuTri": 119,
+        "NguoiSuaCuoiCung": "Hoàng Văn Duy",
+        "NgaySuaCuoiCung": "2026-06-24T14:36:06.9331301+07:00",
+        "NgaySuaCuoiCungDislay": "24/06/2026 14:36",
+        "LoaiBenhAn": 6
+    },
+    "ThongTinBenhAn": {
+        "YeuCauTiepNhanId": 1003213,
+        "LyDoVaoVien": "Trật khớp háng nhân tạo phải",
+        "QuaTrinhHoiBenh": "Theo lời kể bệnh nhân phẫu thuật thay khớp háng phải từ 30/1/2026, sau mổ 10 ngày có trật khớp háng nhân tạo phải. Nay vào viện Bắc Hà khám và điều trị",
+        "TienSuBenhBanThan": "Thay khớp háng nhân tạo phải",
+        "TienSuBenhGiaDinh": "Chưa phát hiện bất thường.",
+        "KhamBenhToanThan": "Bệnh nhân tỉnh\nDa niêm mạc hồng",
+        "ChiSoSinhTons": [
+            {
+                "NhipTim": 70,
+                "NhipTho": 20,
+                "ThanNhiet": 36.6,
+                "ChieuCao": 167.0,
+                "CanNang": 58.0,
+                "BMI": 20.796729893506402,
+                "NgayThucHien": "26/02/2026 10:49",
+                "HuyetApTamThu": 140.0,
+                "HuyetApTamTruong": 90.0,
+                "Id": 0
+            }
+        ],
+        "TuanHoan": "Tim T1, T2 đều rõ , nghe chưa thấy tiếng bệnh lý.",
+        "HoHap": "Phổi rì rào phế nang êm dịu, không có rale.",
+        "TieuHoa": "Bụng mềm không chướng, không có điểm đau khu trú.",
+        "ThanTietNieu": "Hố thận hai bên không nề, ấn điểm sườn lưng hai bên không đau.",
+        "ThanKinh": "Chưa phát hiện dấu hiệu liệt thần kinh khu trú",
+        "CoXuongKhop": "Đau, hạn chế vận động khớp háng phải",
+        "TaiMuiHong": "Hiện chưa ghi nhận dấu hiệu bệnh lý",
+        "RangHamMat": "Hiện chưa ghi nhận dấu hiệu bệnh lý",
+        "Mat": "Hiện chưa ghi nhận dấu hiệu bệnh lý",
+        "NoiTiet": "Hiện chưa ghi nhận dấu hiệu bệnh lý",
+        "CacXetNghiemCanLam": "Tổng phân tích tế bào máu ngoại vi (bằng máy đếm laser)",
+        "TomTatBenhAn": "Theo lời kể bệnh nhân phẫu thuật thay khớp háng phải từ 30/1/2026, sau mổ 10 ngày có trật khớp háng nhân tạo phải. Nay vào viện Bắc Hà khám và điều trị",
+        "ICDChinh": 22735,
+        "TenICDChinh": "Z96 - Tồn tại của dụng cụ cấy ghép chức năng khác",
+        "ChuanDoan": "Trật khớp háng nhân tạo bên phải",
+        "TienLuong": "Trung bình",
+        "HuongDanDieuTri": "Phẫu thuật",
+        "KyHieuDiUng": "Dị ứng",
+        "KyHieuMaTuy": "Ma túy",
+        "KyHieuRuouBia": "Rượu bia",
+        "KyHieuThuocLa": "Thuốc lá",
+        "KyHieuThuocLao": "Thuốc lào",
+        "KyHieuKhac": "Khác",
+        "BoPhanTonThuongs": [
+            {
+                "Id": 0,
+                "MoTa": "Trật khớp háng nhân tạo phải",
+                "HinhAnh": "https://his-api.benhvienbacha.vn/Assets/Source/13c8caff-bed9-4dfb-abeb-d3a94ec2ce54.jpg"
+            }
+        ],
+        "NamSinh": 1978,
+        "Phu": false,
+        "BungCoSoCu": false,
+        "HuongXuLyLoiDanBs": "Dùng thuốc theo đơn.\nTập phục hồi chức năng theo hướng dẫn.\nThay băng 2 ngày/ lần, cắt chỉ sau mổ 14 ngày.\nKhám lại theo hẹn của phẫu thuật viên. Liên hệ trợ lý Oanh 0961518668.\nNghỉ lao động từ 2/3/2026 đến 31/3/2026"
+    }
+}

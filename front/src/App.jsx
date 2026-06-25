@@ -21,6 +21,29 @@ const modes = [
   },
 ];
 
+const recordReviewSections = [
+  {
+    key: 'TomTatHoSoBenhAn',
+    label: 'Tóm tắt hồ sơ bệnh án',
+  },
+  {
+    key: 'GiayRaVien',
+    label: 'Giấy ra viện',
+  },
+  {
+    key: 'ThongTinTongKetBenhAn',
+    label: 'Thông tin tổng kết bệnh án',
+  },
+  {
+    key: 'ThongTinRaVien',
+    label: 'Thông tin ra viện',
+  },
+  {
+    key: 'ThongTinBenhAn',
+    label: 'Thông tin bệnh án',
+  },
+];
+
 function getAssistantText(data) {
   if (typeof data === 'string') return data;
 
@@ -43,11 +66,28 @@ function getAssistantText(data) {
 }
 
 function hasReviewError(text) {
-  return String(text ?? '').includes('❌');
+  const value = String(text ?? '').toUpperCase();
+  return value.includes('❌') || value.includes('NÊN XEM LẠI') || value.includes('NEN XEM LAI');
 }
 
 function getReviewStatus(text) {
-  return hasReviewError(text) ? 'Cần kiểm tra' : 'Đạt';
+  const value = String(text ?? '').toUpperCase();
+  if (value.includes('NÊN XEM LẠI') || value.includes('NEN XEM LAI') || value.includes('❌')) {
+    return {
+      className: 'is-warning',
+      label: 'Nên Xem Lại',
+    };
+  }
+  if (value.includes('ĐẠT') || value.includes('DAT')) {
+    return {
+      className: 'is-ok',
+      label: 'Đạt',
+    };
+  }
+  return {
+    className: 'is-unknown',
+    label: 'Chưa rõ',
+  };
 }
 
 function createThreadId() {
@@ -346,36 +386,24 @@ export default function App() {
             {recordCheckResult && (
               <section className="record-check-result">
                 <h3>
-                  {[
-                    recordCheckResult.details?.identity,
-                    recordCheckResult.details?.logic,
-                    recordCheckResult.details?.pharmacy,
-                  ].some(hasReviewError)
+                  {recordReviewSections
+                    .map((section) => recordCheckResult.details?.[section.key])
+                    .some(hasReviewError)
                     ? 'Cần rà soát bệnh án'
                     : 'Bệnh án hợp lệ'}
                 </h3>
                 <div className="record-check-grid">
-                  <article>
-                    <span>Hành chính</span>
-                    <strong className={hasReviewError(recordCheckResult.details?.identity) ? 'is-warning' : 'is-ok'}>
-                      {getReviewStatus(recordCheckResult.details?.identity)}
-                    </strong>
-                    <p>{recordCheckResult.details?.identity}</p>
-                  </article>
-                  <article>
-                    <span>Logic chuyên môn</span>
-                    <strong className={hasReviewError(recordCheckResult.details?.logic) ? 'is-warning' : 'is-ok'}>
-                      {getReviewStatus(recordCheckResult.details?.logic)}
-                    </strong>
-                    <p>{recordCheckResult.details?.logic}</p>
-                  </article>
-                  <article>
-                    <span>Đơn thuốc</span>
-                    <strong className={hasReviewError(recordCheckResult.details?.pharmacy) ? 'is-warning' : 'is-ok'}>
-                      {getReviewStatus(recordCheckResult.details?.pharmacy)}
-                    </strong>
-                    <p>{recordCheckResult.details?.pharmacy}</p>
-                  </article>
+                  {recordReviewSections.map((section) => {
+                    const detail = recordCheckResult.details?.[section.key] ?? '';
+                    const status = getReviewStatus(detail);
+                    return (
+                      <article key={section.key}>
+                        <span>{section.label}</span>
+                        <strong className={status.className}>{status.label}</strong>
+                        <p>{detail}</p>
+                      </article>
+                    );
+                  })}
                 </div>
               </section>
             )}
