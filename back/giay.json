@@ -2872,7 +2872,7 @@
         "KhamBenhToanThan": "Bệnh nhân tỉnh\nDa niêm mạc hồng",
         "ChiSoSinhTons": [
             {
-                "NhipTim": 70,
+                "NhipTim": 70 ,
                 "NhipTho": 20,
                 "ThanNhiet": 36.6,
                 "ChieuCao": 167.0,
