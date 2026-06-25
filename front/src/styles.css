@@ -627,7 +627,6 @@ textarea {
 .app-shell.is-sidebar-collapsed .sidebar-parent-button span,
 .app-shell.is-sidebar-collapsed .sidebar-parent-button svg:last-child,
 .app-shell.is-sidebar-collapsed .sidebar-link-button span,
-.app-shell.is-sidebar-collapsed .sidebar-submenu,
 .app-shell.is-sidebar-collapsed .sidebar-user-text {
   max-width: 0;
   max-height: 0;
@@ -654,6 +653,41 @@ textarea {
 
 .app-shell.is-sidebar-collapsed .sidebar-parent-button.is-open {
   box-shadow: none;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar-submenu {
+  gap: 6px;
+  max-height: 96px;
+  margin: 4px 0 0;
+  opacity: 1;
+  overflow: visible;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+.app-shell.is-sidebar-collapsed .sidebar-subitem {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  width: 38px;
+  min-height: 38px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar-subitem svg {
+  display: block;
+  color: #536b80;
+}
+
+.app-shell.is-sidebar-collapsed .sidebar-subitem span {
+  max-width: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-8px);
+}
+
+.app-shell.is-sidebar-collapsed .sidebar-subitem span::before {
+  content: "";
 }
 
 .app-shell.is-sidebar-collapsed .sidebar-user {

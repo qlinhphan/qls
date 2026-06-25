@@ -141,7 +141,6 @@ export default function App() {
   const [recordCheckResult, setRecordCheckResult] = useState(null);
   const [recordCheckError, setRecordCheckError] = useState('');
   const [isCheckingRecord, setIsCheckingRecord] = useState(false);
-  const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const modeTitle = useMemo(
@@ -342,8 +341,7 @@ export default function App() {
           <p className="sidebar-menu-label">Menu chính</p>
 
           <button
-            className={`sidebar-parent-button ${isAccountMenuOpen ? 'is-open' : ''}`}
-            onClick={() => setIsAccountMenuOpen((current) => !current)}
+            className="sidebar-parent-button is-open"
             type="button"
           >
             <User aria-hidden="true" size={17} />
@@ -351,25 +349,23 @@ export default function App() {
             <ChevronDown aria-hidden="true" size={15} />
           </button>
 
-          {isAccountMenuOpen && (
-            <div className="sidebar-submenu">
-              {modes.map((mode) => {
-                const Icon = mode.icon;
-                return (
-                  <button
-                    className={`sidebar-subitem ${activeMode === mode.id ? 'is-active' : ''}`}
-                    key={mode.id}
-                    onClick={() => setActiveMode(mode.id)}
-                    type="button"
-                    title={mode.label}
-                  >
-                    <Icon aria-hidden="true" size={14} />
-                    <span>{mode.label}</span>
-                  </button>
-                );
-              })}
-            </div>
-          )}
+          <div className="sidebar-submenu">
+            {modes.map((mode) => {
+              const Icon = mode.icon;
+              return (
+                <button
+                  className={`sidebar-subitem ${activeMode === mode.id ? 'is-active' : ''}`}
+                  key={mode.id}
+                  onClick={() => setActiveMode(mode.id)}
+                  type="button"
+                  title={mode.label}
+                >
+                  <Icon aria-hidden="true" size={14} />
+                  <span>{mode.label}</span>
+                </button>
+              );
+            })}
+          </div>
         </nav>
 
         <div className="sidebar-user">
