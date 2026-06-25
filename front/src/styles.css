@@ -490,15 +490,24 @@ textarea {
   display: grid;
   gap: 1px;
   margin: 3px 0 7px 25px;
-  max-height: 180px;
+  max-height: 96px;
   opacity: 1;
   overflow: hidden;
   transform: translateX(0);
   transition:
-    max-height 0.34s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.22s ease 0.08s,
+    max-height 0.36s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.22s ease,
     margin 0.34s cubic-bezier(0.4, 0, 0.2, 1),
     transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-submenu.is-closed {
+  max-height: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
 }
 
 .sidebar-subitem {
@@ -663,6 +672,14 @@ textarea {
   overflow: visible;
   pointer-events: auto;
   transform: translateX(0);
+}
+
+.app-shell.is-sidebar-collapsed .sidebar-submenu.is-closed {
+  max-height: 0;
+  margin-top: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
 }
 
 .app-shell.is-sidebar-collapsed .sidebar-subitem {

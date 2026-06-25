@@ -141,6 +141,7 @@ export default function App() {
   const [recordCheckResult, setRecordCheckResult] = useState(null);
   const [recordCheckError, setRecordCheckError] = useState('');
   const [isCheckingRecord, setIsCheckingRecord] = useState(false);
+  const [isMainMenuOpen, setIsMainMenuOpen] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const modeTitle = useMemo(
@@ -341,7 +342,8 @@ export default function App() {
           <p className="sidebar-menu-label">Menu chính</p>
 
           <button
-            className="sidebar-parent-button is-open"
+            className={`sidebar-parent-button ${isMainMenuOpen ? 'is-open' : ''}`}
+            onClick={() => setIsMainMenuOpen((current) => !current)}
             type="button"
           >
             <User aria-hidden="true" size={17} />
@@ -349,7 +351,7 @@ export default function App() {
             <ChevronDown aria-hidden="true" size={15} />
           </button>
 
-          <div className="sidebar-submenu">
+          <div className={`sidebar-submenu ${isMainMenuOpen ? 'is-open' : 'is-closed'}`}>
             {modes.map((mode) => {
               const Icon = mode.icon;
               return (
