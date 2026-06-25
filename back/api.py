@@ -224,7 +224,10 @@ def _review_has_error(result: str) -> bool:
 async def _read_json_upload(file: UploadFile) -> Any:
     filename = file.filename or ""
     if filename and not filename.lower().endswith(".json"):
-        raise HTTPException(status_code=400, detail="Chi chap nhan file .json")
+        raise HTTPException(status_code=400, detail="Sai định dạng file, bạn phải truyền file JSON")
+
+    if file.content_type and file.content_type not in {"application/json", "text/json"}:
+        raise HTTPException(status_code=400, detail="Sai định dạng file, bạn phải truyền file JSON")
 
     content = await file.read()
     if not content:
