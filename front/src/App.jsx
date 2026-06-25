@@ -350,7 +350,7 @@ export default function App() {
         </div>
 
         <nav className="mode-panel" aria-label="Menu chính">
-          <p className="sidebar-menu-label">Menu chính</p>
+          <p className="sidebar-menu-label">Chức năng chính</p>
 
           <button
             className={`sidebar-parent-button ${isMainMenuOpen ? 'is-open' : ''}`}
@@ -358,7 +358,7 @@ export default function App() {
             type="button"
           >
             <User aria-hidden="true" size={17} />
-            <span>Chức năng chính</span>
+            <span>Phân luồng bệnh nhân</span>
             <ChevronDown aria-hidden="true" size={15} />
           </button>
 
