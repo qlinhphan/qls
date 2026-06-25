@@ -1,0 +1,56 @@
+{
+    "ThongTinTongKetBenhAn": {
+        "YeuCauTiepNhanId": 1003213,
+        "QuaTrinhBenhLy": "Theo lời kể bệnh nhân phẫu thuật thay khớp háng phải từ 30/1/2026, sau mổ 10 ngày có trật khớp háng nhân tạo phải. Nay vào viện Bắc Hà khám và điều trị",
+        "TomTatKetQuaCLSNgoaiTru": "test nhân tạo",
+        "XQuang": "gfgfgfgfg",
+        "PhuongPhapDieuTri": "Phẫu thuật đặt lại khớp háng phải, cố định ổ cối bằng vít thay chỏm xương đùi phải.\nĐiều trị: Truyền dịch, kháng sinh, giảm đau, giảm phù nề, giảm tiết dịch vị, dự phòng huyết khối.",
+        "TinhTrangNguoiBenhKhiRaVien": "Bệnh nhân tỉnh\nDa niêm mạc hồng\nHuyết động ổn định\nKhông sốt\nĐau nhức nhẹ vết mổ\nVết mổ nề nhẹ, khô\nĐầu chi hồng ấm, vận động cảm giác bình thường\nTim nhịp đều, mạch rõ, phổi thông khí tốt, không khó thở",
+        "HuongDieuTri": "Dùng thuốc theo đơn.\nTập phục hồi chức năng theo hướng dẫn.\nThay băng 2 ngày/ lần, cắt chỉ sau mổ 14 ngày.\nKhám lại theo hẹn của phẫu thuật viên. Liên hệ trợ lý Oanh 0961518668.\nNghỉ lao động từ 2/3/2026 đến 31/3/2026",
+        "PhauThuatThuThuat": 1,
+        "gridPhauThuatThuThuat": [
+            {
+                "IdView": 0,
+                "PTTTNgayGio": "2026-02-26T16:20:00+07:00",
+                "PTTTPhuongPhap": "Phẫu thuật đặt lại khớp háng phải, cố định ổ cối bằng vít thay chỏm xương đùi phải;Gây tê tủy sống",
+                "PTTT": "Phẫu thuật đặt lại khớp háng phải, cố định ổ cối bằng vít thay chỏm xương đùi phải",
+                "VoCam": "Gây tê tủy sống",
+                "PTTTPhauThuatVien": 450,
+                "PTTTPhauThuatVienNew": [
+                    450
+                ],
+                "PTTTBacSyGayMeNew": [
+                    517
+                ],
+                "PTTTBacSyGayMe": 517,
+                "Id": 0
+            }
+        ],
+        "SoToXQuang": 1,
+        "SoToCTScanner": 0,
+        "SoToSieuAm": 0,
+        "SoToXetNghiem": 2,
+        "SoToKhac": 3,
+        "LanPhauThuats": [
+            {
+                "IdView": 0,
+                "PTTTNgayGio": "2026-02-26T16:20:00+07:00",
+                "PTTTPhuongPhap": "Phẫu thuật đặt lại khớp háng phải, cố định ổ cối bằng vít thay chỏm xương đùi phải;Gây tê tủy sống",
+                "PTTT": "Phẫu thuật đặt lại khớp háng phải, cố định ổ cối bằng vít thay chỏm xương đùi phải",
+                "VoCam": "Gây tê tủy sống",
+                "PTTTPhauThuatVien": 450,
+                "PTTTPhauThuatVienNew": [
+                    450
+                ],
+                "PTTTBacSyGayMeNew": [
+                    517
+                ],
+                "PTTTBacSyGayMe": 517,
+                "Id": 0
+            }
+        ],
+        "NhanVienNhanHoSoId": 21264,
+        "NhanVienGiaoHoSoId": 21322,
+        "Id": 0
+    }
+}
