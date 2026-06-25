@@ -1,5 +1,22 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ChevronDown, ChevronLeft, ChevronRight, ClipboardCheck, Send, Settings, Stethoscope, Upload } from 'lucide-react';
+import {
+  Archive,
+  BarChart3,
+  Bell,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ClipboardCheck,
+  Folder,
+  KeyRound,
+  LogOut,
+  Send,
+  Settings,
+  Stethoscope,
+  User,
+  Users,
+  Upload,
+} from 'lucide-react';
 
 const API_URL = 'http://10.10.50.226:8001/chat';
 const SYSTEM_PROMPT_API_URL = 'http://10.10.50.226:8001/system-prompt';
@@ -130,6 +147,7 @@ export default function App() {
   const [recordCheckResult, setRecordCheckResult] = useState(null);
   const [recordCheckError, setRecordCheckError] = useState('');
   const [isCheckingRecord, setIsCheckingRecord] = useState(false);
+  const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(true);
   const [isModeMenuOpen, setIsModeMenuOpen] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
@@ -319,44 +337,104 @@ export default function App() {
 
         <div className="brand">
           <div className="brand-mark">
-            <Stethoscope aria-hidden="true" size={42} strokeWidth={1.8} />
+            <Stethoscope aria-hidden="true" size={24} strokeWidth={2} />
           </div>
           <div className="brand-text">
-            <p className="brand-kicker">Bệnh Viện ĐKQT Bắc Hà</p>
             <h1>Medic AI</h1>
+            <p>Bệnh Viện ĐKQT Bắc Hà</p>
           </div>
         </div>
 
-        <nav className="mode-panel" aria-label="Chọn chế độ">
+        <nav className="mode-panel" aria-label="Menu chính">
+          <p className="sidebar-menu-label">Menu chính</p>
+
           <button
-            className={`mode-parent-button ${isModeMenuOpen ? 'is-open' : ''}`}
+            className={`sidebar-parent-button ${isAccountMenuOpen ? 'is-open' : ''}`}
+            onClick={() => setIsAccountMenuOpen((current) => !current)}
+            type="button"
+          >
+            <User aria-hidden="true" size={17} />
+            <span>Quản Lý Tài Khoản</span>
+            <ChevronDown aria-hidden="true" size={15} />
+          </button>
+
+          {isAccountMenuOpen && (
+            <div className="sidebar-submenu">
+              <button className="sidebar-subitem" type="button">
+                <KeyRound aria-hidden="true" size={14} />
+                <span>Thông tin cá nhân</span>
+              </button>
+              <button className="sidebar-subitem" type="button">
+                <Settings aria-hidden="true" size={14} />
+                <span>Cài đặt mật khẩu</span>
+              </button>
+              <button className="sidebar-subitem" type="button">
+                <Users aria-hidden="true" size={14} />
+                <span>Danh sách người dùng</span>
+              </button>
+              <button className="sidebar-subitem" type="button">
+                <Archive aria-hidden="true" size={14} />
+                <span>Phân quyền</span>
+              </button>
+            </div>
+          )}
+
+          <button
+            className={`sidebar-parent-button ${isModeMenuOpen ? 'is-open' : ''}`}
             onClick={() => setIsModeMenuOpen((current) => !current)}
             type="button"
           >
-            <span>Chế độ</span>
-            <ChevronDown aria-hidden="true" size={18} />
+            <Folder aria-hidden="true" size={17} />
+            <span>Quản Lý Tài Liệu</span>
+            <ChevronDown aria-hidden="true" size={15} />
           </button>
 
           {isModeMenuOpen && (
-            <div className="mode-list">
+            <div className="sidebar-submenu">
               {modes.map((mode) => {
                 const Icon = mode.icon;
                 return (
                   <button
-                    className={`mode-button ${activeMode === mode.id ? 'is-active' : ''}`}
+                    className={`sidebar-subitem ${activeMode === mode.id ? 'is-active' : ''}`}
                     key={mode.id}
                     onClick={() => setActiveMode(mode.id)}
                     type="button"
                     title={mode.label}
                   >
-                    <Icon aria-hidden="true" size={20} />
+                    <Icon aria-hidden="true" size={14} />
                     <span>{mode.label}</span>
                   </button>
                 );
               })}
             </div>
           )}
+
+          <button className="sidebar-link-button" type="button">
+            <Settings aria-hidden="true" size={17} />
+            <span>Cấu hình Hệ thống</span>
+          </button>
+          <button className="sidebar-link-button" type="button">
+            <BarChart3 aria-hidden="true" size={17} />
+            <span>Báo cáo & Thống kê</span>
+          </button>
+          <button className="sidebar-link-button" type="button">
+            <Bell aria-hidden="true" size={17} />
+            <span>Thông báo & Tin nhắn</span>
+          </button>
         </nav>
+
+        <div className="sidebar-user">
+          <div className="sidebar-avatar" aria-hidden="true">
+            AI
+          </div>
+          <div className="sidebar-user-text">
+            <strong>Admin</strong>
+            <span>Medic AI</span>
+          </div>
+          <button className="sidebar-logout" type="button" title="Đăng xuất">
+            <LogOut aria-hidden="true" size={18} />
+          </button>
+        </div>
       </aside>
 
       <section className="chat-area">
