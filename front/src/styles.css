@@ -1106,6 +1106,28 @@ textarea {
   overflow-wrap: anywhere;
 }
 
+.record-note-box {
+  display: grid;
+  gap: 6px;
+  width: min(100%, 760px);
+  padding: 13px 14px;
+  border: 1px solid #ead8a4;
+  border-radius: 8px;
+  color: #5f4a16;
+  background: #fff8df;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.record-note-box strong {
+  color: #4b3910;
+  font-size: 0.92rem;
+}
+
+.record-note-box span {
+  overflow-wrap: anywhere;
+}
+
 .record-upload-panel button {
   width: fit-content;
   min-height: 42px;

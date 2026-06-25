@@ -550,6 +550,15 @@ export default function App() {
                 </fieldset>
               )}
 
+              <div className="record-note-box">
+                <strong>Lưu ý:</strong>
+                <span>TTHSBA: Tóm tắt hồ sơ bệnh án</span>
+                <span>GRV: Giấy ra viện</span>
+                <span>TTTKBA: Thông tin tổng kết bệnh án</span>
+                <span>TTRV: Thông tin ra viện</span>
+                <span>TTBA: Thông tin bệnh án</span>
+              </div>
+
               <button
                 disabled={
                   !recordFile ||
