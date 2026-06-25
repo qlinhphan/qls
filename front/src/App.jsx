@@ -1,20 +1,14 @@
 import { useEffect, useMemo, useState } from 'react';
 import {
-  Archive,
-  BarChart3,
-  Bell,
   ChevronDown,
   ChevronLeft,
   ChevronRight,
   ClipboardCheck,
-  Folder,
-  KeyRound,
   LogOut,
   Send,
   Settings,
   Stethoscope,
   User,
-  Users,
   Upload,
 } from 'lucide-react';
 
@@ -28,12 +22,12 @@ const welcomeMessage =
 const modes = [
   {
     id: 'classification',
-    label: 'Phân loại bệnh nhân',
+    label: 'Phân Chuyên Khoa',
     icon: Stethoscope,
   },
   {
     id: 'record-check',
-    label: 'Kiểm tra bệnh án',
+    label: 'Check Tài Liệu',
     icon: ClipboardCheck,
   },
 ];
@@ -148,7 +142,6 @@ export default function App() {
   const [recordCheckError, setRecordCheckError] = useState('');
   const [isCheckingRecord, setIsCheckingRecord] = useState(false);
   const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(true);
-  const [isModeMenuOpen, setIsModeMenuOpen] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const modeTitle = useMemo(
@@ -304,7 +297,7 @@ export default function App() {
       const data = await response.json();
       setRecordCheckResult(data);
     } catch (error) {
-      setRecordCheckError(`Không thể kiểm tra bệnh án: ${error.message}`);
+      setRecordCheckError(`Không thể kiểm tra tài liệu: ${error.message}`);
     } finally {
       setIsCheckingRecord(false);
     }
@@ -354,42 +347,11 @@ export default function App() {
             type="button"
           >
             <User aria-hidden="true" size={17} />
-            <span>Quản Lý Tài Khoản</span>
+            <span>Chức năng chính</span>
             <ChevronDown aria-hidden="true" size={15} />
           </button>
 
           {isAccountMenuOpen && (
-            <div className="sidebar-submenu">
-              <button className="sidebar-subitem" type="button">
-                <KeyRound aria-hidden="true" size={14} />
-                <span>Thông tin cá nhân</span>
-              </button>
-              <button className="sidebar-subitem" type="button">
-                <Settings aria-hidden="true" size={14} />
-                <span>Cài đặt mật khẩu</span>
-              </button>
-              <button className="sidebar-subitem" type="button">
-                <Users aria-hidden="true" size={14} />
-                <span>Danh sách người dùng</span>
-              </button>
-              <button className="sidebar-subitem" type="button">
-                <Archive aria-hidden="true" size={14} />
-                <span>Phân quyền</span>
-              </button>
-            </div>
-          )}
-
-          <button
-            className={`sidebar-parent-button ${isModeMenuOpen ? 'is-open' : ''}`}
-            onClick={() => setIsModeMenuOpen((current) => !current)}
-            type="button"
-          >
-            <Folder aria-hidden="true" size={17} />
-            <span>Quản Lý Tài Liệu</span>
-            <ChevronDown aria-hidden="true" size={15} />
-          </button>
-
-          {isModeMenuOpen && (
             <div className="sidebar-submenu">
               {modes.map((mode) => {
                 const Icon = mode.icon;
@@ -408,19 +370,6 @@ export default function App() {
               })}
             </div>
           )}
-
-          <button className="sidebar-link-button" type="button">
-            <Settings aria-hidden="true" size={17} />
-            <span>Cấu hình Hệ thống</span>
-          </button>
-          <button className="sidebar-link-button" type="button">
-            <BarChart3 aria-hidden="true" size={17} />
-            <span>Báo cáo & Thống kê</span>
-          </button>
-          <button className="sidebar-link-button" type="button">
-            <Bell aria-hidden="true" size={17} />
-            <span>Thông báo & Tin nhắn</span>
-          </button>
         </nav>
 
         <div className="sidebar-user">
@@ -459,7 +408,7 @@ export default function App() {
             <form className="record-upload-panel" onSubmit={handleRecordCheck}>
               <label className="record-file-picker">
                 <Upload aria-hidden="true" size={24} />
-                <span>{recordFile ? recordFile.name : 'Chọn file JSON bệnh án'}</span>
+                <span>{recordFile ? recordFile.name : 'Chọn file JSON tài liệu'}</span>
                 <input
                   accept="application/json,.json"
                   disabled={isCheckingRecord}
@@ -473,7 +422,7 @@ export default function App() {
               </label>
 
               <button disabled={!recordFile || isCheckingRecord} type="submit">
-                {isCheckingRecord ? 'Đang kiểm tra...' : 'Kiểm tra bệnh án'}
+                {isCheckingRecord ? 'Đang kiểm tra...' : 'Kiểm tra tài liệu'}
               </button>
             </form>
 
@@ -485,8 +434,8 @@ export default function App() {
                   {recordReviewSections
                     .map((section) => cleanReviewText(recordCheckResult.details?.[section.key]))
                     .some(hasReviewError)
-                    ? 'Cần rà soát bệnh án'
-                    : 'Bệnh án hợp lệ'}
+                    ? 'Cần rà soát tài liệu'
+                    : 'Tài liệu hợp lệ'}
                 </h3>
                 <div className="record-check-grid">
                   {recordReviewSections.map((section) => {
