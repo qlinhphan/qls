@@ -19,15 +19,23 @@ const THREAD_STORAGE_KEY = 'medical-chat-thread-id';
 const welcomeMessage =
   'Xin chào, tôi là trợ lý AI của bạn, sẽ giúp đỡ bạn hôm nay.';
 
-const modes = [
+const mainModes = [
   {
     id: 'classification',
     label: 'Phân Chuyên Khoa',
     icon: Stethoscope,
   },
+];
+
+const documentCheckModes = [
   {
-    id: 'record-check',
-    label: 'Check Tài Liệu',
+    id: 'record-check-single',
+    label: 'Check một tài liệu',
+    icon: ClipboardCheck,
+  },
+  {
+    id: 'record-check-multiple',
+    label: 'Check nhiều tài liệu',
     icon: ClipboardCheck,
   },
 ];
@@ -124,7 +132,7 @@ function getThreadId() {
 }
 
 export default function App() {
-  const [activeMode, setActiveMode] = useState(modes[0].id);
+  const [activeMode, setActiveMode] = useState(mainModes[0].id);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
   const [isSending, setIsSending] = useState(false);
@@ -142,10 +150,13 @@ export default function App() {
   const [recordCheckError, setRecordCheckError] = useState('');
   const [isCheckingRecord, setIsCheckingRecord] = useState(false);
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(true);
+  const [isDocumentMenuOpen, setIsDocumentMenuOpen] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const modeTitle = useMemo(
-    () => modes.find((mode) => mode.id === activeMode)?.label ?? modes[0].label,
+    () =>
+      [...mainModes, ...documentCheckModes].find((mode) => mode.id === activeMode)?.label ??
+      mainModes[0].label,
     [activeMode],
   );
 
@@ -352,7 +363,7 @@ export default function App() {
           </button>
 
           <div className={`sidebar-submenu ${isMainMenuOpen ? 'is-open' : 'is-closed'}`}>
-            {modes.map((mode) => {
+            {mainModes.map((mode) => {
               const Icon = mode.icon;
               return (
                 <button
@@ -365,6 +376,45 @@ export default function App() {
                   <Icon aria-hidden="true" size={14} />
                   <span>{mode.label}</span>
                 </button>
+              );
+            })}
+          </div>
+
+          <button
+            className={`sidebar-parent-button ${isDocumentMenuOpen ? 'is-open' : ''}`}
+            onClick={() => setIsDocumentMenuOpen((current) => !current)}
+            type="button"
+          >
+            <ClipboardCheck aria-hidden="true" size={17} />
+            <span>Check Tài Liệu</span>
+            <ChevronDown aria-hidden="true" size={15} />
+          </button>
+
+          <div className={`sidebar-submenu ${isDocumentMenuOpen ? 'is-open' : 'is-closed'}`}>
+            {documentCheckModes.map((mode) => {
+              const Icon = mode.icon;
+              const isMultipleCheck = mode.id === 'record-check-multiple';
+
+              return (
+                <div className="sidebar-subitem-wrap" key={mode.id}>
+                  <button
+                    className={`sidebar-subitem ${activeMode === mode.id ? 'is-active' : ''}`}
+                    onClick={() => setActiveMode(mode.id)}
+                    type="button"
+                    title={mode.label}
+                  >
+                    <Icon aria-hidden="true" size={14} />
+                    <span>{mode.label}</span>
+                  </button>
+
+                  {isMultipleCheck && (
+                    <div className="document-hover-menu">
+                      {recordReviewSections.map((section) => (
+                        <span key={section.key}>{section.label}</span>
+                      ))}
+                    </div>
+                  )}
+                </div>
               );
             })}
           </div>
@@ -385,7 +435,7 @@ export default function App() {
       </aside>
 
       <section className="chat-area">
-        {activeMode === 'record-check' && isCheckingRecord && (
+        {activeMode.startsWith('record-check') && isCheckingRecord && (
           <div className="top-loading-bar" aria-hidden="true" />
         )}
         <header className="chat-header">
@@ -401,7 +451,7 @@ export default function App() {
           </div>
         </header>
 
-        {activeMode === 'record-check' ? (
+        {activeMode.startsWith('record-check') ? (
           <div className="record-check-area">
             <form className="record-upload-panel" onSubmit={handleRecordCheck}>
               <label className="record-file-picker">
