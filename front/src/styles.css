@@ -29,6 +29,7 @@ textarea {
   grid-template-columns: minmax(180px, 15%) minmax(0, 85%);
   height: 100vh;
   overflow: hidden;
+  overflow-x: clip;
   transition: grid-template-columns 0.24s ease;
 }
 
@@ -43,6 +44,7 @@ textarea {
   gap: 34px;
   min-width: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 28px;
   color: #f6fbfb;
   background: linear-gradient(160deg, #103a43 0%, #1d5b58 55%, #517955 100%);
@@ -51,7 +53,7 @@ textarea {
 .sidebar-toggle {
   position: absolute;
   top: 16px;
-  right: -14px;
+  right: 14px;
   z-index: 5;
   display: grid;
   place-items: center;
@@ -132,24 +134,53 @@ textarea {
 }
 
 .mode-parent-button {
-  display: flex;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
   width: 100%;
-  min-height: 48px;
-  padding: 12px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.46);
-  border-left: 4px solid #d8f3e8;
+  min-height: 52px;
+  padding: 12px 14px 12px 13px;
+  overflow: hidden;
+  border: 1px solid rgba(219, 244, 235, 0.38);
   border-radius: 8px;
   color: #f6fbfb;
-  background: rgba(255, 255, 255, 0.2);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.08)),
+    rgba(9, 34, 38, 0.18);
   cursor: pointer;
-  font-size: 0.86rem;
+  font-size: 0.78rem;
   font-weight: 900;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 12px 26px rgba(6, 27, 30, 0.14);
+}
+
+.mode-parent-button::before {
+  content: "";
+  width: 9px;
+  height: 26px;
+  border-radius: 999px;
+  background: #bfeede;
+  box-shadow: 0 0 18px rgba(191, 238, 222, 0.48);
+}
+
+.mode-parent-button:hover,
+.mode-parent-button.is-open {
+  border-color: rgba(219, 244, 235, 0.68);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.12)),
+    rgba(9, 34, 38, 0.22);
+}
+
+.mode-parent-button span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .app-shell.is-sidebar-collapsed .mode-panel {
@@ -157,10 +188,13 @@ textarea {
 }
 
 .app-shell.is-sidebar-collapsed .mode-parent-button {
+  grid-template-columns: 1fr;
   justify-content: center;
-  min-height: 44px;
+  justify-items: center;
+  width: 48px;
+  min-height: 48px;
+  margin: 0 auto;
   padding: 10px;
-  border-left-width: 1px;
 }
 
 .app-shell.is-sidebar-collapsed .mode-parent-button span,
@@ -177,6 +211,22 @@ textarea {
 .mode-parent-button svg {
   flex: 0 0 auto;
   transition: transform 0.2s ease;
+}
+
+.app-shell.is-sidebar-collapsed .mode-parent-button::before {
+  content: "";
+  width: 18px;
+  height: 14px;
+  border-radius: 0;
+  background: linear-gradient(
+    to bottom,
+    #f6fbfb 0 2px,
+    transparent 2px 6px,
+    #f6fbfb 6px 8px,
+    transparent 8px 12px,
+    #f6fbfb 12px 14px
+  );
+  box-shadow: none;
 }
 
 .mode-parent-button.is-open svg {
