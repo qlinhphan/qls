@@ -1045,6 +1045,67 @@ textarea {
   display: none;
 }
 
+.record-document-type-picker {
+  display: grid;
+  gap: 10px;
+  width: min(100%, 760px);
+  margin: 0;
+  padding: 14px;
+  border: 1px solid #d6e3e1;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.record-document-type-picker legend {
+  padding: 0 6px;
+  color: #35504d;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.record-document-type-picker > div {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.record-document-type-picker label {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 9px 10px;
+  border: 1px solid #d6e3e1;
+  border-radius: 8px;
+  color: #334757;
+  background: #fbfdfc;
+  cursor: pointer;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.record-document-type-picker label:hover {
+  border-color: #8fb8b3;
+  background: #eef7f5;
+}
+
+.record-document-type-picker label.is-selected {
+  border-color: #246963;
+  color: #174d47;
+  background: #e4f3f0;
+  box-shadow: inset 3px 0 0 #246963;
+}
+
+.record-document-type-picker input {
+  accent-color: #246963;
+}
+
+.record-document-type-picker span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .record-upload-panel button {
   width: fit-content;
   min-height: 42px;
@@ -1331,6 +1392,10 @@ textarea {
 
   .record-check-area {
     padding: 16px;
+  }
+
+  .record-document-type-picker > div {
+    grid-template-columns: 1fr;
   }
 
   .record-check-grid {

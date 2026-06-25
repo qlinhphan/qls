@@ -146,6 +146,7 @@ export default function App() {
   const [toastMessage, setToastMessage] = useState('');
   const [isToastVisible, setIsToastVisible] = useState(false);
   const [recordFile, setRecordFile] = useState(null);
+  const [selectedRecordDocumentType, setSelectedRecordDocumentType] = useState('');
   const [recordCheckResult, setRecordCheckResult] = useState(null);
   const [recordCheckError, setRecordCheckError] = useState('');
   const [isCheckingRecord, setIsCheckingRecord] = useState(false);
@@ -287,9 +288,13 @@ export default function App() {
   async function handleRecordCheck(event) {
     event.preventDefault();
     if (!recordFile || isCheckingRecord) return;
+    if (activeMode === 'record-check-single' && !selectedRecordDocumentType) return;
 
     const formData = new FormData();
     formData.append('file', recordFile);
+    if (activeMode === 'record-check-single') {
+      formData.append('document_type', selectedRecordDocumentType);
+    }
 
     setIsCheckingRecord(true);
     setRecordCheckError('');
@@ -469,7 +474,39 @@ export default function App() {
                 />
               </label>
 
-              <button disabled={!recordFile || isCheckingRecord} type="submit">
+              {activeMode === 'record-check-single' && (
+                <fieldset className="record-document-type-picker" disabled={isCheckingRecord}>
+                  <legend>Chọn loại giấy tờ</legend>
+                  <div>
+                    {recordReviewSections.map((section) => (
+                      <label
+                        className={
+                          selectedRecordDocumentType === section.key ? 'is-selected' : ''
+                        }
+                        key={section.key}
+                      >
+                        <input
+                          checked={selectedRecordDocumentType === section.key}
+                          name="record-document-type"
+                          onChange={() => setSelectedRecordDocumentType(section.key)}
+                          type="radio"
+                          value={section.key}
+                        />
+                        <span>{section.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+              )}
+
+              <button
+                disabled={
+                  !recordFile ||
+                  isCheckingRecord ||
+                  (activeMode === 'record-check-single' && !selectedRecordDocumentType)
+                }
+                type="submit"
+              >
                 {isCheckingRecord ? 'Đang kiểm tra...' : 'Kiểm tra tài liệu'}
               </button>
             </form>
