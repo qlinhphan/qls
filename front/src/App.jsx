@@ -90,6 +90,10 @@ function getReviewStatus(text) {
   };
 }
 
+function cleanReviewText(text) {
+  return String(text ?? '').replaceAll('*', '');
+}
+
 function createThreadId() {
   if (crypto.randomUUID) {
     return `record-${crypto.randomUUID()}`;
@@ -387,14 +391,14 @@ export default function App() {
               <section className="record-check-result">
                 <h3>
                   {recordReviewSections
-                    .map((section) => recordCheckResult.details?.[section.key])
+                    .map((section) => cleanReviewText(recordCheckResult.details?.[section.key]))
                     .some(hasReviewError)
                     ? 'Cần rà soát bệnh án'
                     : 'Bệnh án hợp lệ'}
                 </h3>
                 <div className="record-check-grid">
                   {recordReviewSections.map((section) => {
-                    const detail = recordCheckResult.details?.[section.key] ?? '';
+                    const detail = cleanReviewText(recordCheckResult.details?.[section.key]);
                     const status = getReviewStatus(detail);
                     return (
                       <article key={section.key}>
