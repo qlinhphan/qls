@@ -407,7 +407,7 @@ async def check_medical_record_json(file: UploadFile = File(...)) -> Dict[str, A
         "GiayRaVien": prompt_GiayRaVien,
         "ThongTinTongKetBenhAn": prompt_ThongTinTongKetBenhAn,
         "ThongTinRaVien": prompt_ThongTinRaVien,
-        "ThongTinBenhAn": prompt_ThongTinBenhAn,
+        "ThongTinBenhAn": prompt_ThongTinBenhAn, 
     }
     missing_fields = [field for field in required_fields if field not in data]
     if missing_fields:

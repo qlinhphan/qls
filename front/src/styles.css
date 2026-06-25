@@ -502,19 +502,19 @@ textarea {
 }
 
 .sidebar-subitem {
-  grid-template-columns: 0 minmax(0, 1fr);
-  min-height: 27px;
-  padding: 5px 9px 5px 12px;
+  grid-template-columns: 18px minmax(0, 1fr);
+  min-height: 32px;
+  padding: 6px 9px 6px 10px;
   color: #334757;
-  font-size: 0.76rem;
+  font-size: 0.78rem;
 }
 
 .sidebar-subitem svg {
-  display: none;
+  display: block;
 }
 
 .sidebar-subitem span::before {
-  content: "- ";
+  content: "";
   color: #627486;
 }
 
