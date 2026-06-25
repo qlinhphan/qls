@@ -185,3 +185,35 @@ YÊU CẦU: Trả ra kết quả kiểm toán ngắn gọn:
 
 """
     return prompt 
+
+def prompt_CheckNguNghiaGiuaCacFile(data):
+    prompt = f"""
+    Bạn là Trưởng phòng Kiểm toán Lâm sàng AI tối cao tại hệ thống y tế. 
+Nhiệm vụ của bạn là thực hiện SIÊU KIỂM TOÁN CHÉO (Super Cross-matching) giữa các phân mục dữ liệu của cùng một hồ sơ bệnh án dưới đây nhằm phát hiện ra các sai sót logic mâu thuẫn nghiêm trọng.
+
+DỮ LIỆU HỒ SƠ BỆNH ÁN THỰC TẾ:
+=========================================
+{data}
+=========================================
+
+HƯỚNG DẪN CHIẾN LƯỢC KIỂM TOÁN CHÉO (AI BẮT BUỘC PHẢI QUÉT):
+1. ĐỐI CHIẾU ĐỊNH VỊ GIẢI PHẪU VÀ VỊ TRÍ TỔN THƯƠNG:
+   Rà soát chéo các trường chẩn đoán và xử lý: "Bộ phận tổn thương" (ở THÔNG TIN BỆNH ÁN), "Chẩn đoán vào viện/ra viện" (ở TÓM TẮT HỒ SƠ BỆNH ÁN), "Chẩn đoán" (ở GIẤY RA VIỆN), và các trường "Ghi chú chẩn đoán trước/sau phẫu thuật" (ở THÔNG TIN RA VIỆN).
+   👉 Bắt lỗi ngay nếu có sự tráo đổi hoặc mâu thuẫn vị trí cơ thể giải phẫu (Ví dụ: Lúc vào viện ghi tổn thương bên TRÁI hoặc chi TRÊN, nhưng lúc phẫu thuật và làm Giấy ra viện bác sĩ lại gõ nhầm thành bên PHẢI hoặc chi DƯỚI).
+
+2. ĐỐI CHIẾU TƯƠNG THÍCH GIỮA LÂM SÀNG VÀ ĐIỀU TRỊ:
+   So khớp các trường "Lý do vào viện", "Quá trình hỏi bệnh" với các trường "Phương pháp điều trị", "Lưới phẫu thuật thủ thuật" (ở THÔNG TIN TỔNG KẾT BỆNH ÁN) và "Hướng dẫn điều trị".
+   👉 Kiểm tra xem phương pháp phẫu thuật hay y lệnh dùng thuốc thực tế có phù hợp logic với bệnh danh chẩn đoán hay không.
+
+3. ĐỐI CHIẾU TIỀN SỬ VÀ DIỄN BIẾN LÂM SÀNG:
+   So sánh "Tiền sử bệnh bản thân" với "Tóm tắt quá trình bệnh lý" và "Tình trạng người bệnh khi ra viện" xem diễn biến qua các mốc thời gian ghi nhận có bị xung đột logic hay không.
+
+BẮT BUỘC xuất báo cáo kiểm toán chi tiết bằng tiếng Việt có dấu theo đúng định dạng Markdown nghiêm ngặt dưới đây (Tuyệt đối không tự bịa thông tin nằm ngoài tệp dữ liệu được cung cấp):
+
+### ❌ PHÁT HIỆN ĐIỂM NGHI VẤN TRÊN BỆNH ÁN
+- **Sai lệch về Chẩn đoán & Vị trí giải phẫu:** [Chỉ rõ trường nào, phiếu nào ghi mâu thuẫn vị trí tổn thương hoặc sai lệch bệnh danh, nếu không có ghi "Không phát hiện bất thường"]
+- **Sai lệch về Quy trình & Phương pháp điều trị:** [Ghi rõ nếu phương pháp phẫu thuật, thủ thuật hoặc lời dặn điều trị không tương thích với lý do vào viện và chẩn đoán lâm sàng, nếu không có ghi "Không phát hiện bất thường"]
+- **Mâu thuẫn về Diễn biến & Tiền sử:** [Ghi rõ mâu thuẫn logic giữa tiền sử bệnh án cũ và bệnh lý đợt này nếu có, nếu không có ghi "Không phát hiện bất thường"]
+- **Rủi ro Pháp lý & Nguy cơ xuất toán Bảo hiểm (BHYT):** [Phân tích cụ thể xem các lỗi lệch pha dữ liệu ở trên sẽ khiến hồ sơ này bị cơ quan giám định Bảo hiểm từ chối thanh toán ở những điểm nào]
+"""
+    return prompt

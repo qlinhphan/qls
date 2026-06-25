@@ -30,7 +30,7 @@ const welcomeMessage =
 const mainModes = [
   {
     id: 'classification',
-    label: 'Phân Chuyên Khoa',
+    label: 'Phân chuyên Khoa',
     icon: Stethoscope,
   },
 ];
@@ -38,12 +38,12 @@ const mainModes = [
 const documentCheckModes = [
   {
     id: 'record-check-single',
-    label: 'Check một tài liệu',
+    label: 'Trên một tài liệu',
     icon: ClipboardCheck,
   },
   {
     id: 'record-check-multiple',
-    label: 'Check nhiều tài liệu',
+    label: 'Trên nhiều tài liệu',
     icon: ClipboardCheck,
   },
 ];
@@ -70,6 +70,10 @@ const recordReviewSections = [
     label: 'Thông tin bệnh án',
   },
 ];
+
+const extraRecordReviewLabels = {
+  KiemTraNguNghiaGiuaCacFile: 'Kiểm tra ngữ nghĩa giữa các file',
+};
 
 function getAssistantText(data) {
   if (typeof data === 'string') return data;
@@ -174,9 +178,17 @@ export default function App() {
     const details = recordCheckResult?.details;
     if (!details) return recordReviewSections;
 
-    return recordReviewSections.filter((section) =>
+    const knownSections = recordReviewSections.filter((section) =>
       Object.prototype.hasOwnProperty.call(details, section.key),
     );
+    const extraSections = Object.keys(details)
+      .filter((key) => !recordReviewSections.some((section) => section.key === key))
+      .map((key) => ({
+        key,
+        label: extraRecordReviewLabels[key] ?? key,
+      }));
+
+    return [...knownSections, ...extraSections];
   }, [recordCheckResult]);
 
   function showToast(message, variant = 'success') {
@@ -364,8 +376,8 @@ export default function App() {
         >
           <div className="toast-success-icon">{toastVariant === 'error' ? '!' : '✓'}</div>
           <div>
-            <strong>{toastVariant === 'error' ? 'Lỗi check file' : 'Thành công'}</strong>
-            <span>{toastMessage.replace('Thành công, ', '').replace('Lỗi check file - ', '')}</span>
+            <strong>{toastVariant === 'error' ? 'Lỗi định dạng' : 'Thành công'}</strong>
+            <span>{toastMessage.replace('Thành công, ', '').replace('Lỗi định dạng file - ', '')}</span>
           </div>
         </div>
       )}
@@ -430,7 +442,7 @@ export default function App() {
             type="button"
           >
             <ClipboardCheck aria-hidden="true" size={17} />
-            <span>Check Tài Liệu</span>
+            <span>Kiểm Tra Tài Liệu</span>
             <ChevronDown aria-hidden="true" size={15} />
           </button>
 

@@ -22,6 +22,7 @@ from llm.llama_review_medical_record import (
     llama_check_phamarcy,
 )
 from prompts.prompt_review_medical_record import (
+    prompt_CheckNguNghiaGiuaCacFile,
     prompt_GiayRaVien,
     prompt_ThongTinBenhAn,
     prompt_ThongTinRaVien,
@@ -445,6 +446,87 @@ async def _check_one_medical_document(
     }
 
 
+def _build_cross_document_check_data(data: Dict[str, Any]) -> Dict[str, Any]:
+    try:
+        data_check = {}
+
+        TomTatHoSoBenhAn = data["TomTatHoSoBenhAn"]
+        GiayRaVien = data["GiayRaVien"]
+        ThongTinTongKetBenhAn = data["ThongTinTongKetBenhAn"]
+        ThongTinRaVien = data["ThongTinRaVien"]
+        ThongTinBenhAn = data["ThongTinBenhAn"]
+
+        data_check["TTHSBA_ChanDoanVaoVien"] = TomTatHoSoBenhAn["ChanDoanVaoVien"]
+        data_check["TTHSBA_ChanDoanRaVien"] = TomTatHoSoBenhAn["ChanDoanRaVien"]
+        data_check["TTHSBA_HuongDieuTri"] = TomTatHoSoBenhAn["HuongDieuTri"]
+        data_check["TTHSBA_LyDoVaoVien"] = TomTatHoSoBenhAn["LyDoVaoVien"]
+        data_check["TTHSBA_TienSuBenh"] = TomTatHoSoBenhAn["TienSuBenh"]
+        data_check["TTHSBA_TomTatKetQuaXetNghiemCLS"] = TomTatHoSoBenhAn[
+            "TomTatKetQuaXetNghiemCLS"
+        ]
+        data_check["TTHSBA_TomTatQuaTrinhBenhLy"] = TomTatHoSoBenhAn[
+            "TomTatQuaTrinhBenhLy"
+        ]
+
+        data_check["GRV_ChanDoan"] = GiayRaVien["ChanDoan"]
+        data_check["GRV_GhiChu"] = GiayRaVien["GhiChu"]
+        data_check["GRV_PhuongPhapDieuTri"] = GiayRaVien["PhuongPhapDieuTri"]
+
+        data_check["TTTKBA_HuongDieuTri"] = ThongTinTongKetBenhAn["HuongDieuTri"]
+        data_check["TTTKBA_LanPhauThuats"] = ThongTinTongKetBenhAn["LanPhauThuats"]
+        data_check["TTTKBA_PhuongPhapDieuTri"] = ThongTinTongKetBenhAn[
+            "PhuongPhapDieuTri"
+        ]
+        data_check["TTTKBA_QuaTrinhBenhLy"] = ThongTinTongKetBenhAn["QuaTrinhBenhLy"]
+        data_check["TTTKBA_TinhTrangNguoiBenhKhiRaVien"] = ThongTinTongKetBenhAn[
+            "TinhTrangNguoiBenhKhiRaVien"
+        ]
+        data_check["TTTKBA_gridPhauThuatThuThuat"] = ThongTinTongKetBenhAn[
+            "gridPhauThuatThuThuat"
+        ]
+
+        data_check["TTRV_GhiChuChuanDoanKKBCapCuu"] = ThongTinRaVien[
+            "GhiChuChuanDoanKKBCapCuu"
+        ]
+        data_check["TTRV_GhiChuChuanDoanRaVien"] = ThongTinRaVien[
+            "GhiChuChuanDoanRaVien"
+        ]
+        data_check["TTRV_GhiChuChuanDoanSauPhauThuat"] = ThongTinRaVien[
+            "GhiChuChuanDoanSauPhauThuat"
+        ]
+        data_check["TTRV_GhiChuChuanDoanTruocPhauThuat"] = ThongTinRaVien[
+            "GhiChuChuanDoanTruocPhauThuat"
+        ]
+        data_check["TTRV_GhiChuNoiChuanDoanKhiVaoKhoaDieuTri"] = ThongTinRaVien[
+            "GhiChuNoiChuanDoanKhiVaoKhoaDieuTri"
+        ]
+        data_check["TTRV_GhiChuNoiChuanDoanLucVaoDe"] = ThongTinRaVien[
+            "GhiChuNoiChuanDoanLucVaoDe"
+        ]
+
+        data_check["TTBA_BoPhanTonThuongs"] = ThongTinBenhAn["BoPhanTonThuongs"]
+        data_check["TTBA_CacXetNghiemCanLam"] = ThongTinBenhAn["CacXetNghiemCanLam"]
+        data_check["TTBA_ChiSoSinhTons"] = ThongTinBenhAn["ChiSoSinhTons"]
+        data_check["TTBA_ChuanDoan"] = ThongTinBenhAn["ChuanDoan"]
+        data_check["TTBA_HuongDanDieuTri"] = ThongTinBenhAn["HuongDanDieuTri"]
+        data_check["TTBA_HuongXuLyLoiDanBs"] = ThongTinBenhAn["HuongXuLyLoiDanBs"]
+        data_check["TTBA_KhamBenhToanThan"] = ThongTinBenhAn["KhamBenhToanThan"]
+        data_check["TTBA_LyDoVaoVien"] = ThongTinBenhAn["LyDoVaoVien"]
+        data_check["TTBA_Mat"] = ThongTinBenhAn["Mat"]
+        data_check["TTBA_QuaTrinhHoiBenh"] = ThongTinBenhAn["QuaTrinhHoiBenh"]
+        data_check["TTBA_TaiMuiHong"] = ThongTinBenhAn["TaiMuiHong"]
+        data_check["TTBA_ThanKinh"] = ThongTinBenhAn["ThanKinh"]
+        data_check["TTBA_ThanTietNieu"] = ThongTinBenhAn["ThanTietNieu"]
+        data_check["TTBA_TienSuBenhBanThan"] = ThongTinBenhAn["TienSuBenhBanThan"]
+        data_check["TTBA_TieuHoa"] = ThongTinBenhAn["TieuHoa"]
+        data_check["TTBA_TomTatBenhAn"] = ThongTinBenhAn["TomTatBenhAn"]
+        data_check["TTBA_TuanHoan"] = ThongTinBenhAn["TuanHoan"]
+
+        return data_check
+    except Exception:
+        raise _invalid_document_type_error()
+
+
 @app.post("/medical-record/check-json/tom-tat-ho-so-benh-an")
 async def check_tom_tat_ho_so_benh_an(file: UploadFile = File(...)) -> Dict[str, Any]:
     return await _check_one_medical_document(file, "TomTatHoSoBenhAn", prompt_TomTatBenhAn)
@@ -477,23 +559,20 @@ async def check_thong_tin_benh_an(file: UploadFile = File(...)) -> Dict[str, Any
 @app.post("/medical-record/check-json")
 async def check_medical_record_json(file: UploadFile = File(...)) -> Dict[str, Any]:
     data = await _read_json_upload(file)
+    data_check = _build_cross_document_check_data(data)
 
-    missing_fields = [field for field in DOCUMENT_CHECKS if field not in data]
-    if missing_fields:
-        raise _invalid_document_type_error()
-
-    details = {}
-    checks = {}
-    for field, prompt_func in DOCUMENT_CHECKS.items():
-        result = llama_KiemTraCacGiayHoacPhieu(prompt_func, data[field])
-        details[field] = result
-        checks[field] = not _review_has_error(result)
+    result = llama_KiemTraCacGiayHoacPhieu(prompt_CheckNguNghiaGiuaCacFile, data_check)
+    is_valid = not _review_has_error(result)
 
     return {
         "filename": file.filename,
-        "is_valid": all(checks.values()),
-        "checks": checks,
-        "details": details,
+        "is_valid": is_valid,
+        "checks": {
+            "KiemTraNguNghiaGiuaCacFile": is_valid,
+        },
+        "details": {
+            "KiemTraNguNghiaGiuaCacFile": result,
+        },
     }
 
 
