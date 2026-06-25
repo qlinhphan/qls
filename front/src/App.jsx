@@ -15,6 +15,14 @@ import {
 const API_URL = 'http://10.10.50.226:8001/chat';
 const SYSTEM_PROMPT_API_URL = 'http://10.10.50.226:8001/system-prompt';
 const MEDICAL_RECORD_CHECK_API_URL = 'http://10.10.50.226:8001/medical-record/check-json';
+const SINGLE_DOCUMENT_CHECK_API_URLS = {
+  TomTatHoSoBenhAn: 'http://10.10.50.226:8001/medical-record/check-json/tom-tat-ho-so-benh-an',
+  GiayRaVien: 'http://10.10.50.226:8001/medical-record/check-json/giay-ra-vien',
+  ThongTinTongKetBenhAn:
+    'http://10.10.50.226:8001/medical-record/check-json/thong-tin-tong-ket-benh-an',
+  ThongTinRaVien: 'http://10.10.50.226:8001/medical-record/check-json/thong-tin-ra-vien',
+  ThongTinBenhAn: 'http://10.10.50.226:8001/medical-record/check-json/thong-tin-benh-an',
+};
 const THREAD_STORAGE_KEY = 'medical-chat-thread-id';
 const welcomeMessage =
   'Xin chào, tôi là trợ lý AI của bạn, sẽ giúp đỡ bạn hôm nay.';
@@ -144,6 +152,7 @@ export default function App() {
   const [isPromptLoading, setIsPromptLoading] = useState(false);
   const [promptStatus, setPromptStatus] = useState('');
   const [toastMessage, setToastMessage] = useState('');
+  const [toastVariant, setToastVariant] = useState('success');
   const [isToastVisible, setIsToastVisible] = useState(false);
   const [recordFile, setRecordFile] = useState(null);
   const [selectedRecordDocumentType, setSelectedRecordDocumentType] = useState('');
@@ -160,6 +169,23 @@ export default function App() {
       mainModes[0].label,
     [activeMode],
   );
+
+  const displayedRecordReviewSections = useMemo(() => {
+    const details = recordCheckResult?.details;
+    if (!details) return recordReviewSections;
+
+    return recordReviewSections.filter((section) =>
+      Object.prototype.hasOwnProperty.call(details, section.key),
+    );
+  }, [recordCheckResult]);
+
+  function showToast(message, variant = 'success') {
+    setToastMessage(message);
+    setToastVariant(variant);
+    setIsToastVisible(true);
+    window.setTimeout(() => setIsToastVisible(false), 2600);
+    window.setTimeout(() => setToastMessage(''), 3200);
+  }
 
   useEffect(() => {
     if (messages.length > 0) return undefined;
@@ -274,10 +300,7 @@ export default function App() {
       setSystemPrompt(savedPrompt);
       setSavedSystemPrompt(savedPrompt);
       setPromptStatus('');
-      setToastMessage('Thành công, bạn đã lưu thay đổi prompt thành công');
-      setIsToastVisible(true);
-      window.setTimeout(() => setIsToastVisible(false), 2600);
-      window.setTimeout(() => setToastMessage(''), 3200);
+      showToast('Thành công, bạn đã lưu thay đổi prompt thành công', 'success');
     } catch (error) {
       setPromptStatus(`Không thể lưu prompt: ${error.message}`);
     } finally {
@@ -295,25 +318,37 @@ export default function App() {
     if (activeMode === 'record-check-single') {
       formData.append('document_type', selectedRecordDocumentType);
     }
+    const checkApiUrl =
+      activeMode === 'record-check-single'
+        ? SINGLE_DOCUMENT_CHECK_API_URLS[selectedRecordDocumentType]
+        : MEDICAL_RECORD_CHECK_API_URL;
 
     setIsCheckingRecord(true);
     setRecordCheckError('');
     setRecordCheckResult(null);
 
     try {
-      const response = await fetch(MEDICAL_RECORD_CHECK_API_URL, {
+      const response = await fetch(checkApiUrl, {
         method: 'POST',
         body: formData,
       });
 
       if (!response.ok) {
-        throw new Error(`API trả về lỗi ${response.status}`);
+        let detail = `API trả về lỗi ${response.status}`;
+        try {
+          const errorData = await response.json();
+          detail = errorData.detail ?? detail;
+        } catch {
+          // Giữ lỗi HTTP mặc định nếu server không trả JSON.
+        }
+        throw new Error(detail);
       }
 
       const data = await response.json();
       setRecordCheckResult(data);
     } catch (error) {
       setRecordCheckError(`Không thể kiểm tra tài liệu: ${error.message}`);
+      showToast(error.message, 'error');
     } finally {
       setIsCheckingRecord(false);
     }
@@ -322,11 +357,15 @@ export default function App() {
   return (
     <main className={`app-shell ${isSidebarOpen ? '' : 'is-sidebar-collapsed'}`}>
       {toastMessage && (
-        <div className={`toast-success ${isToastVisible ? 'is-visible' : 'is-hidden'}`}>
-          <div className="toast-success-icon">✓</div>
+        <div
+          className={`toast-success toast-${toastVariant} ${
+            isToastVisible ? 'is-visible' : 'is-hidden'
+          }`}
+        >
+          <div className="toast-success-icon">{toastVariant === 'error' ? '!' : '✓'}</div>
           <div>
-            <strong>Thành công</strong>
-            <span>{toastMessage.replace('Thành công, ', '')}</span>
+            <strong>{toastVariant === 'error' ? 'Lỗi check file' : 'Thành công'}</strong>
+            <span>{toastMessage.replace('Thành công, ', '').replace('Lỗi check file - ', '')}</span>
           </div>
         </div>
       )}
@@ -516,14 +555,14 @@ export default function App() {
             {recordCheckResult && (
               <section className="record-check-result">
                 <h3>
-                  {recordReviewSections
+                  {displayedRecordReviewSections
                     .map((section) => cleanReviewText(recordCheckResult.details?.[section.key]))
                     .some(hasReviewError)
                     ? 'Cần rà soát tài liệu'
                     : 'Tài liệu hợp lệ'}
                 </h3>
                 <div className="record-check-grid">
-                  {recordReviewSections.map((section) => {
+                  {displayedRecordReviewSections.map((section) => {
                     const detail = cleanReviewText(recordCheckResult.details?.[section.key]);
                     const status = getReviewStatus(detail);
                     return (

@@ -401,27 +401,90 @@ def clear_thread(thread_id: str) -> Dict[str, str]:
     return {"message": f"Da xoa history cua thread_id={thread_id}"}
 
 
+DOCUMENT_CHECKS = {
+    "TomTatHoSoBenhAn": prompt_TomTatBenhAn,
+    "GiayRaVien": prompt_GiayRaVien,
+    "ThongTinTongKetBenhAn": prompt_ThongTinTongKetBenhAn,
+    "ThongTinRaVien": prompt_ThongTinRaVien,
+    "ThongTinBenhAn": prompt_ThongTinBenhAn,
+}
+
+
+def _invalid_document_type_error() -> HTTPException:
+    return HTTPException(
+        status_code=400,
+        detail="Lỗi check file - kiểm tra xem đã chọn đúng loại giấy tờ chưa",
+    )
+
+
+async def _check_one_medical_document(
+    file: UploadFile,
+    field_name: str,
+    prompt_func,
+) -> Dict[str, Any]:
+    data = await _read_json_upload(file)
+
+    try:
+        document_data = data[field_name]
+    except Exception:
+        raise _invalid_document_type_error()
+
+    result = llama_KiemTraCacGiayHoacPhieu(prompt_func, document_data)
+    is_valid = not _review_has_error(result)
+
+    return {
+        "filename": file.filename,
+        "document_type": field_name,
+        "is_valid": is_valid,
+        "checks": {
+            field_name: is_valid,
+        },
+        "details": {
+            field_name: result,
+        },
+    }
+
+
+@app.post("/medical-record/check-json/tom-tat-ho-so-benh-an")
+async def check_tom_tat_ho_so_benh_an(file: UploadFile = File(...)) -> Dict[str, Any]:
+    return await _check_one_medical_document(file, "TomTatHoSoBenhAn", prompt_TomTatBenhAn)
+
+
+@app.post("/medical-record/check-json/giay-ra-vien")
+async def check_giay_ra_vien(file: UploadFile = File(...)) -> Dict[str, Any]:
+    return await _check_one_medical_document(file, "GiayRaVien", prompt_GiayRaVien)
+
+
+@app.post("/medical-record/check-json/thong-tin-tong-ket-benh-an")
+async def check_thong_tin_tong_ket_benh_an(file: UploadFile = File(...)) -> Dict[str, Any]:
+    return await _check_one_medical_document(
+        file,
+        "ThongTinTongKetBenhAn",
+        prompt_ThongTinTongKetBenhAn,
+    )
+
+
+@app.post("/medical-record/check-json/thong-tin-ra-vien")
+async def check_thong_tin_ra_vien(file: UploadFile = File(...)) -> Dict[str, Any]:
+    return await _check_one_medical_document(file, "ThongTinRaVien", prompt_ThongTinRaVien)
+
+
+@app.post("/medical-record/check-json/thong-tin-benh-an")
+async def check_thong_tin_benh_an(file: UploadFile = File(...)) -> Dict[str, Any]:
+    return await _check_one_medical_document(file, "ThongTinBenhAn", prompt_ThongTinBenhAn)
+
+
 @app.post("/medical-record/check-json")
 async def check_medical_record_json(file: UploadFile = File(...)) -> Dict[str, Any]:
     data = await _read_json_upload(file)
 
-    required_fields = {
-        "TomTatHoSoBenhAn": prompt_TomTatBenhAn,
-        "GiayRaVien": prompt_GiayRaVien,
-        "ThongTinTongKetBenhAn": prompt_ThongTinTongKetBenhAn,
-        "ThongTinRaVien": prompt_ThongTinRaVien,
-        "ThongTinBenhAn": prompt_ThongTinBenhAn, 
-    }
-    missing_fields = [field for field in required_fields if field not in data]
+    missing_fields = [field for field in DOCUMENT_CHECKS if field not in data]
     if missing_fields:
-        raise HTTPException(
-            status_code=400,
-            detail=f"File json thieu cac truong: {', '.join(missing_fields)}",
-        )
+        raise _invalid_document_type_error()
 
     details = {}
     checks = {}
-    for field, prompt_func in required_fields.items():
+    for field, prompt_func in DOCUMENT_CHECKS.items():
         result = llama_KiemTraCacGiayHoacPhieu(prompt_func, data[field])
         details[field] = result
         checks[field] = not _review_has_error(result)
@@ -432,6 +495,42 @@ async def check_medical_record_json(file: UploadFile = File(...)) -> Dict[str, A
         "checks": checks,
         "details": details,
     }
+
+
+# up ca 1 file json lon len va check vai phieu
+# @app.post("/medical-record/check-json")
+# async def check_medical_record_json(file: UploadFile = File(...)) -> Dict[str, Any]:
+#     data = await _read_json_upload(file)
+
+#     required_fields = {
+#         "TomTatHoSoBenhAn": prompt_TomTatBenhAn,
+#         "GiayRaVien": prompt_GiayRaVien,
+#         "ThongTinTongKetBenhAn": prompt_ThongTinTongKetBenhAn,
+#         "ThongTinRaVien": prompt_ThongTinRaVien,
+#         "ThongTinBenhAn": prompt_ThongTinBenhAn, 
+#     }
+#     missing_fields = [field for field in required_fields if field not in data]
+#     if missing_fields:
+#         raise HTTPException(
+#             status_code=400,
+#             detail=f"File json thieu cac truong: {', '.join(missing_fields)}",
+#         )
+
+#     details = {}
+#     checks = {}
+#     for field, prompt_func in required_fields.items():
+#         result = llama_KiemTraCacGiayHoacPhieu(prompt_func, data[field])
+#         details[field] = result
+#         checks[field] = not _review_has_error(result)
+
+#     return {
+#         "filename": file.filename,
+#         "is_valid": all(checks.values()),
+#         "checks": checks,
+#         "details": details,
+#     }
+
+
 
 
 # python -m uvicorn api:app --reload --host 0.0.0.0 --port 8000

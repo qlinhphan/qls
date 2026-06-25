@@ -8,22 +8,52 @@ from prompts.prompt_review_medical_record import prompt_TomTatBenhAn, prompt_Gia
 from llm.llama_review_medical_record import llama_KiemTraCacGiayHoacPhieu
 
 load_dotenv()
-
-with open('5_to.json', 'r', encoding='utf-8') as fo:
-    data = json.load(fo)
-    
-    keys = list(data.keys())
-    # print(keys)
-
-    # print("=TÓM TẮT HỒ SƠ BỆNH ÁN========================================")
-    pprint(data['TomTatHoSoBenhAn'])               #'TomTatHoSoBenhAn', 'GiayRaVien', 'ThongTinTongKetBenhAn', 'ThongTinRaVien', 'ThongTinBenhAn'
+              #'TomTatHoSoBenhAn', 'GiayRaVien', 'ThongTinTongKetBenhAn', 'ThongTinRaVien', 'ThongTinBenhAn'
 
 
     # start = time.time()
-    # res_TomTatHoSoBenhAn = llama_KiemTraCacGiayHoacPhieu(prompt_TomTatBenhAn, data['TomTatHoSoBenhAn'])
-    # res_GiayRaVien = llama_KiemTraCacGiayHoacPhieu(prompt_GiayRaVien, data["GiayRaVien"])
-    # res_ThongTinTongKetBenhAn = llama_KiemTraCacGiayHoacPhieu(prompt_ThongTinTongKetBenhAn,data['ThongTinTongKetBenhAn'] )
-    # res_ThongTinRaVien = llama_KiemTraCacGiayHoacPhieu(prompt_ThongTinRaVien, data['ThongTinRaVien'])
-    # res_ThongTinBenhAn = llama_KiemTraCacGiayHoacPhieu(prompt_ThongTinBenhAn, data['ThongTinBenhAn'])
+with open('tom_tat_ho_so_benh_an.json', 'r', encoding='utf-8') as fo:
+    try:
+        data = json.load(fo)
+        res_TomTatHoSoBenhAn = llama_KiemTraCacGiayHoacPhieu(prompt_TomTatBenhAn, data['TomTatHoSoBenhAn'])
+        print(res_TomTatHoSoBenhAn)
+    except:
+        print("SAI LOAI PHIEU")
+print("========================================================================================================")
+with open('giay_ra_vien.json', 'r', encoding='utf-8') as fo:
+    try:
+        data = json.load(fo)
+        res_GiayRaVien = llama_KiemTraCacGiayHoacPhieu(prompt_GiayRaVien, data["GiayRaVien"])
+        print(res_GiayRaVien)
+    except:
+        print("SAI LOAI PHIEU")
+print("========================================================================================================")
+with open('thong_tin_tong_ket_benh_an.json', 'r', encoding='utf-8') as fo:
+    try:
+        data = json.load(fo)
+        res_ThongTinTongKetBenhAn = llama_KiemTraCacGiayHoacPhieu(prompt_ThongTinTongKetBenhAn,data['ThongTinTongKetBenhAn'] )
+        print(res_ThongTinTongKetBenhAn)
+    except:
+        print("SAI LOAI PHIEU")
+print("========================================================================================================")
+with open('thong_tin_ra_vien.json', 'r', encoding='utf-8') as fo:
+    try:
+        data = json.load(fo)
+        res_ThongTinRaVien = llama_KiemTraCacGiayHoacPhieu(prompt_ThongTinRaVien, data['ThongTinRaVien'])
+        print(res_ThongTinRaVien)
+    except:
+        print("SAI LOAI PHIEU")
+print("========================================================================================================")
+with open('thong_tin_benh_an.json', 'r', encoding='utf-8') as fo:
+    try:
+        data = json.load(fo)
+        res_ThongTinBenhAn = llama_KiemTraCacGiayHoacPhieu(prompt_ThongTinBenhAn, data['ThongTinBenhAn'])
+        print(res_ThongTinBenhAn)
+    except:
+        print("SAI LOAI PHIEU")
+# 
+# 
+# 
+# 
 
 
