@@ -29,9 +29,15 @@ textarea {
   grid-template-columns: minmax(180px, 15%) minmax(0, 85%);
   height: 100vh;
   overflow: hidden;
+  transition: grid-template-columns 0.24s ease;
+}
+
+.app-shell.is-sidebar-collapsed {
+  grid-template-columns: 72px minmax(0, 1fr);
 }
 
 .sidebar {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 34px;
@@ -40,6 +46,23 @@ textarea {
   padding: 28px;
   color: #f6fbfb;
   background: linear-gradient(160deg, #103a43 0%, #1d5b58 55%, #517955 100%);
+}
+
+.sidebar-toggle {
+  position: absolute;
+  top: 16px;
+  right: -14px;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 8px;
+  color: #f6fbfb;
+  background: #1d5b58;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(10, 28, 31, 0.24);
 }
 
 .brand {
@@ -78,6 +101,31 @@ textarea {
   line-height: 1.12;
 }
 
+.app-shell.is-sidebar-collapsed .sidebar {
+  align-items: center;
+  gap: 26px;
+  padding: 24px 10px;
+}
+
+.app-shell.is-sidebar-collapsed .brand {
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.app-shell.is-sidebar-collapsed .brand-mark {
+  width: 48px;
+  height: 48px;
+}
+
+.app-shell.is-sidebar-collapsed .brand-mark svg {
+  width: 28px;
+  height: 28px;
+}
+
+.app-shell.is-sidebar-collapsed .brand-text {
+  display: none;
+}
+
 .mode-panel {
   display: grid;
   gap: 10px;
@@ -104,6 +152,28 @@ textarea {
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
+.app-shell.is-sidebar-collapsed .mode-panel {
+  width: 100%;
+}
+
+.app-shell.is-sidebar-collapsed .mode-parent-button {
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px;
+  border-left-width: 1px;
+}
+
+.app-shell.is-sidebar-collapsed .mode-parent-button span,
+.app-shell.is-sidebar-collapsed .mode-parent-button svg {
+  display: none;
+}
+
+.app-shell.is-sidebar-collapsed .mode-parent-button::before {
+  content: "☰";
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
 .mode-parent-button svg {
   flex: 0 0 auto;
   transition: transform 0.2s ease;
@@ -118,6 +188,12 @@ textarea {
   gap: 10px;
   padding-left: 12px;
   border-left: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.app-shell.is-sidebar-collapsed .mode-list {
+  padding-left: 0;
+  border-left: 0;
+  justify-items: center;
 }
 
 .mode-button {
@@ -145,6 +221,17 @@ textarea {
   min-width: 0;
   overflow-wrap: anywhere;
   font-weight: 700;
+}
+
+.app-shell.is-sidebar-collapsed .mode-button {
+  justify-content: center;
+  width: 48px;
+  min-height: 48px;
+  padding: 0;
+}
+
+.app-shell.is-sidebar-collapsed .mode-button span {
+  display: none;
 }
 
 .chat-area {

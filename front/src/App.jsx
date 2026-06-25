@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ChevronDown, ClipboardCheck, Send, Settings, Stethoscope, Upload } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight, ClipboardCheck, Send, Settings, Stethoscope, Upload } from 'lucide-react';
 
 const API_URL = 'http://10.10.50.226:8001/chat';
 const SYSTEM_PROMPT_API_URL = 'http://10.10.50.226:8001/system-prompt';
@@ -131,6 +131,7 @@ export default function App() {
   const [recordCheckError, setRecordCheckError] = useState('');
   const [isCheckingRecord, setIsCheckingRecord] = useState(false);
   const [isModeMenuOpen, setIsModeMenuOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const modeTitle = useMemo(
     () => modes.find((mode) => mode.id === activeMode)?.label ?? modes[0].label,
@@ -292,7 +293,7 @@ export default function App() {
   }
 
   return (
-    <main className="app-shell">
+    <main className={`app-shell ${isSidebarOpen ? '' : 'is-sidebar-collapsed'}`}>
       {toastMessage && (
         <div className={`toast-success ${isToastVisible ? 'is-visible' : 'is-hidden'}`}>
           <div className="toast-success-icon">✓</div>
@@ -304,11 +305,23 @@ export default function App() {
       )}
 
       <aside className="sidebar">
+        <button
+          className="sidebar-toggle"
+          onClick={() => setIsSidebarOpen((current) => !current)}
+          type="button"
+        >
+          {isSidebarOpen ? (
+            <ChevronLeft aria-hidden="true" size={18} />
+          ) : (
+            <ChevronRight aria-hidden="true" size={18} />
+          )}
+        </button>
+
         <div className="brand">
           <div className="brand-mark">
             <Stethoscope aria-hidden="true" size={42} strokeWidth={1.8} />
           </div>
-          <div>
+          <div className="brand-text">
             <p className="brand-kicker">Bệnh Viện ĐKQT Bắc Hà</p>
             <h1>Medic AI</h1>
           </div>
@@ -334,6 +347,7 @@ export default function App() {
                     key={mode.id}
                     onClick={() => setActiveMode(mode.id)}
                     type="button"
+                    title={mode.label}
                   >
                     <Icon aria-hidden="true" size={20} />
                     <span>{mode.label}</span>
