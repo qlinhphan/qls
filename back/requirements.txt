@@ -2,6 +2,7 @@ python-dotenv
 openai
 langchain-core
 langchain-community
+langchain-openai
 langchain-text-splitters
 faiss-cpu==1.14.3
 numpy==2.4.6

@@ -6,7 +6,8 @@ import os
 from langchain_classic.tools import tool
 from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
 from pydantic import Field, BaseModel
-from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.messages import HumanMessage, AIMessage
 
 
 class Baseinp(BaseModel):
@@ -37,6 +38,7 @@ prompt = ChatPromptTemplate.from_messages([
 - Nếu không liên quan thì yêu cầu nhập một câu tiếng Anh.
 - Luôn trả lời bằng tiếng Việt.
 """),
+    MessagesPlaceholder(variable_name="history"),
     ("user", "{input}"),
     ("placeholder", "{agent_scratchpad}")
 ])
@@ -52,9 +54,22 @@ executor = AgentExecutor(
     tools=[toolCheckVocab]
 )
 
-result = executor.invoke({
-    "input": "I am bad at studying"
-})
+hisory = []
 
-print(result["output"])
+while True:
+    q = input("Ban: ")
+
+    result = executor.invoke({
+        "input": q,
+        "history": hisory
+    })
+
+    # hisory.append({
+    #     HumanMessage(content=q), AIMessage(content=result["output"])
+    # })
+    hisory.append(HumanMessage(content=q))
+    hisory.append(AIMessage(content=result['output']))
+
+    print(result["output"])
+
 

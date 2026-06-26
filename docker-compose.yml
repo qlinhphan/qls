@@ -30,6 +30,9 @@ services:
       - "8001:8001"
     environment:
       MODEL_CHAT: ${MODEL_CHAT:-qwen2.5:14b}
+      GPT_MODEL: ${GPT_MODEL:-gpt-4o-mini}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      BASE_URL: ${BASE_URL:-}
       MODEL_EMB: ${MODEL_EMB:-bge-m3}
       CHAT_API_SERVER: ${CHAT_API_SERVER:-http://10.10.61.29:11434/api/generate}
       EMBED_API_SERVER: ${EMBED_API_SERVER:-http://10.10.61.29:11434/api/embed}
