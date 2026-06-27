@@ -15,7 +15,7 @@ class MyDatas():         # 0 ham, 1 spam
             t = t.lower().split()
             # print("======================================")
             words.extend(t)
-        words = list(set(words))
+        words = list(dict.fromkeys(words))
 
         self.vocab = {}            # word: index
         self.vocab['<pad>'] = 0
@@ -60,3 +60,4 @@ if __name__ == "__main__":
     print(lb)
     vc, vc_re = my.__getvocab__()
     print(len(vc))
+    print("len: ", my.__len__())

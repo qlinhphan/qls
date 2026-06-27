@@ -13,7 +13,6 @@ import {
 } from 'lucide-react';
 
 const API_URL = 'http://10.10.50.226:8001/chat';
-const GPT_API_URL = 'http://10.10.50.226:8001/chat-gpt';
 const SYSTEM_PROMPT_API_URL = 'http://10.10.50.226:8001/system-prompt';
 const MEDICAL_RECORD_CHECK_API_URL = 'http://10.10.50.226:8001/medical-record/check-json';
 const SINGLE_DOCUMENT_CHECK_API_URLS = {
@@ -32,14 +31,6 @@ const mainModes = [
   {
     id: 'classification',
     label: 'Phân chuyên Khoa',
-    icon: Stethoscope,
-  },
-];
-
-const gptPatientFlowModes = [
-  {
-    id: 'classification-gpt',
-    label: 'Phân chuyên khoa',
     icon: Stethoscope,
   },
 ];
@@ -173,15 +164,12 @@ export default function App() {
   const [recordCheckError, setRecordCheckError] = useState('');
   const [isCheckingRecord, setIsCheckingRecord] = useState(false);
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(true);
-  const [isGptPatientFlowMenuOpen, setIsGptPatientFlowMenuOpen] = useState(true);
   const [isDocumentMenuOpen, setIsDocumentMenuOpen] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const modeTitle = useMemo(
     () =>
-      [...mainModes, ...gptPatientFlowModes, ...documentCheckModes].find(
-        (mode) => mode.id === activeMode,
-      )?.label ??
+      [...mainModes, ...documentCheckModes].find((mode) => mode.id === activeMode)?.label ??
       mainModes[0].label,
     [activeMode],
   );
@@ -239,7 +227,7 @@ export default function App() {
     setMessages((current) => [...current, { role: 'user', text: value }]);
 
     try {
-      const response = await fetch(activeMode === 'classification-gpt' ? GPT_API_URL : API_URL, {
+      const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -432,38 +420,6 @@ export default function App() {
 
           <div className={`sidebar-submenu ${isMainMenuOpen ? 'is-open' : 'is-closed'}`}>
             {mainModes.map((mode) => {
-              const Icon = mode.icon;
-              return (
-                <button
-                  className={`sidebar-subitem ${activeMode === mode.id ? 'is-active' : ''}`}
-                  key={mode.id}
-                  onClick={() => setActiveMode(mode.id)}
-                  type="button"
-                  title={mode.label}
-                >
-                  <Icon aria-hidden="true" size={14} />
-                  <span>{mode.label}</span>
-                </button>
-              );
-            })}
-          </div>
-
-          <button
-            className={`sidebar-parent-button ${isGptPatientFlowMenuOpen ? 'is-open' : ''}`}
-            onClick={() => setIsGptPatientFlowMenuOpen((current) => !current)}
-            type="button"
-          >
-            <Stethoscope aria-hidden="true" size={17} />
-            <span>Phân luồng bệnh nhân - GPT</span>
-            <ChevronDown aria-hidden="true" size={15} />
-          </button>
-
-          <div
-            className={`sidebar-submenu ${
-              isGptPatientFlowMenuOpen ? 'is-open' : 'is-closed'
-            }`}
-          >
-            {gptPatientFlowModes.map((mode) => {
               const Icon = mode.icon;
               return (
                 <button

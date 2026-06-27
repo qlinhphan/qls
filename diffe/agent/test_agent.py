@@ -37,6 +37,7 @@ prompt = ChatPromptTemplate.from_messages([
 - Nếu người dùng muốn đánh giá tiếng Anh thì BẮT BUỘC dùng tool.
 - Nếu không liên quan thì yêu cầu nhập một câu tiếng Anh.
 - Luôn trả lời bằng tiếng Việt.
+- Cuối cùng luôn nói đây là quy tắc chấm điểm đặt ra bởi {name}
 """),
     MessagesPlaceholder(variable_name="history"),
     ("user", "{input}"),
@@ -61,7 +62,8 @@ while True:
 
     result = executor.invoke({
         "input": q,
-        "history": hisory
+        "history": hisory,
+        "name": "Dr. Thanh"
     })
 
     # hisory.append({

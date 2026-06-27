@@ -10,8 +10,6 @@ import faiss
 from dotenv import load_dotenv
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field
 
 from chunking.chunks import load_data
@@ -219,63 +217,6 @@ def active_llama_clients_prompt(knowledge, context, q):
     return _render_system_prompt_template(template, knowledge, context, q)
 
 
-GPT_CLASSIFICATION_PROMPT = ChatPromptTemplate.from_messages(
-    [
-        (
-            "system",
-            """
-Bạn là trợ lý AI y tế của Bệnh viện Đa khoa Quốc tế Bắc Hà. Nhiệm vụ duy nhất của bạn là đọc các "Kiến thức được cung cấp" dưới đây để đề xuất chuyên khoa khám phù hợp cho người bệnh.
-
-Kiến thức được cung cấp (Chỉ dùng dữ liệu này để trả lời):
-{knowledge}
-
-Lịch sử hội thoại:
-{context}
-
-[QUY TẮC PHẢN HỒI NẰM LÒNG]:
-- Đi thẳng vào câu trả lời.
-- CHỈ SỬ DỤNG TIẾNG VIỆT CÓ DẤU.
-- TUYỆT ĐỐI KHÔNG THÊM CÁC TỪ KHÔNG LIÊN QUAN.
-- Nếu được hỏi danh tính hoặc nguồn gốc: Trả lời ngay "Tôi là trợ lý AI y tế được tạo ra bởi Phòng CNTT thuộc Bệnh viện Đa khoa Quốc tế Bắc Hà."
-- Trong {knowledge} có bao nhiêu Khoa/Khám thì phải trả ra bấy nhiêu Khoa/Khám
-- Nếu triệu chứng chưa rõ ràng hoặc kiến thức được cung cấp không chứa triệu chứng tương thích: Hãy lịch sự báo chưa tìm thấy hướng phù hợp dựa trên kiến thức hiện có và chủ động hỏi thêm triệu chứng chi tiết.
-
-[QUY TẮC ĐẶT TÊN CHUYÊN KHOA]:
-- Tên file có "KHÁM CẤP CỨU" -> Khám Cấp Cứu
-- Tên file có "K. NGOẠI" -> Chuyên Khoa Ngoại
-- Tên file có "K. NHI" -> Chuyên Khoa Nhi
-- Tên file có "K. NỘI" -> Chuyên Khoa Nội
-- Tên file có "K. SẢN" -> Khám Chuyên Khoa Sản
-- Tên file có "KHÁM TMH,RHM,MẮT" -> Khám chuyên khoa Tai Mũi Họng, Chuyên khoa Răng Hàm Mặt, hoặc Khám Chuyên Khoa Mắt theo triệu chứng phù hợp.
-
-[CẤU TRÚC ĐẦU RA BẮT BUỘC]:
-Chuyên khoa đề xuất:
-
-🩺 Kiến nghị: [Điền tên khoa theo quy định trên]
-📝 Lý do: [Diễn đạt phần dấu hiệu lâm sàng gợi ý hoặc tên bệnh lý tương ứng có trong kiến thức, không tự bịa thêm]
-""",
-        ),
-        ("user", "{input}"),
-    ]
-)
-
-
-def _ask_gpt_classification(knowledge, context, question: str) -> str:
-    llm = ChatOpenAI(
-        model=os.getenv("GPT_MODEL", "gpt-4o-mini"),
-        api_key=os.getenv("OPENAI_API_KEY"),
-        base_url=os.getenv("BASE_URL") or None,
-    )
-    messages = GPT_CLASSIFICATION_PROMPT.invoke(
-        {
-            "knowledge": knowledge,
-            "context": context,
-            "input": question,
-        }
-    )
-    response = llm.invoke(messages)
-    return response.content
-
 
 def _review_has_error(result: str) -> bool:
     normalized = str(result).upper()
@@ -415,50 +356,6 @@ def chat(payload: ChatRequest) -> Dict[str, Any]:
     try:
         answer = llama_clients(active_llama_clients_prompt, knowledge, history, question)
     except RuntimeError as exc:
-        raise HTTPException(status_code=502, detail=str(exc))
-
-    _save_thread_history(payload.thread_id, question, answer)
-
-    return {
-        "thread_id": payload.thread_id,
-        "question": question,
-        "answer": answer,
-    }
-
-
-@app.post("/chat-gpt")
-def chat_gpt(payload: ChatRequest) -> Dict[str, Any]:
-    question = payload.message.strip()
-    if not question:
-        raise HTTPException(status_code=400, detail="message khong duoc de trong")
-
-    quick_answer = _quick_answer(question)
-    if quick_answer:
-        _save_thread_history(payload.thread_id, question, quick_answer)
-        return {
-            "thread_id": payload.thread_id,
-            "question": question,
-            "answer": quick_answer,
-        }
-
-    question_vector = get_embedding(question)
-    if question_vector is None:
-        raise HTTPException(status_code=502, detail="Khong tao duoc embedding")
-
-    with app.state.thread_lock:
-        history = list(app.state.thread_histories.get(payload.thread_id, []))
-
-    knowledge = rechieval_data(
-        question_vector=question_vector,
-        index_file=app.state.index_file,
-        top_k=3,
-        mycol=app.state.knowledge_data,
-        min_score=payload.min_score,
-    )
-
-    try:
-        answer = _ask_gpt_classification(knowledge, history, question)
-    except Exception as exc:
         raise HTTPException(status_code=502, detail=str(exc))
 
     _save_thread_history(payload.thread_id, question, answer)

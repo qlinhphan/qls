@@ -9,11 +9,11 @@ from tqdm import tqdm
 
 def trains():
     data = MyDatas(path = "dataset/spam_ham_dataset.csv")
-    data_loader = DataLoader(dataset=data, batch_size=32, drop_last=True, shuffle=True)
+    data_loader = DataLoader(dataset=data, batch_size=64, drop_last=True, shuffle=True)
 
-    model = MyModels(50616, 128, 2)
-    epochs = 100
-    criterion = nn.CrossEntropyLoss(ignore_index=0)
+    model = MyModels(50616, 105, 2)
+    epochs = 50
+    criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(model.parameters(), lr = 0.001, momentum=0.9)
 
     for e in range(epochs):
