@@ -7,8 +7,9 @@ from pathlib import Path
 from typing import Any, Dict, List
 
 import faiss
+import requests
 from dotenv import load_dotenv
-from fastapi import FastAPI, File, Form, HTTPException, UploadFile
+from fastapi import FastAPI, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
@@ -50,6 +51,9 @@ DEFAULT_MIN_SCORE = float(os.getenv("MIN_SCORE_RECHIEVAL", "0.55"))
 API_VERSION = "2026-06-22-cors-5173"
 PROMPT_CONFIG_PATH = Path("prompt_config_chat.json")
 DOCUMENT_PROMPT_DIR = Path(__file__).resolve().parent / "prompts"
+MEDICAL_RECORD_SOURCE_API = (
+    "http://10.10.60.125:5300/api/HoSoKhac/GetThongTinDuLieuBenhNhanTheoYCTN"
+)
 IDENTITY_ANSWER = "Tôi là trợ lý AI y tế hỗ trợ trích xuất phác đồ điều trị."
 CREATOR_ANSWER = (
     "Tôi được tạo ra bởi Phòng CNTT thuộc Bệnh viện Đa khoa Quốc tế Bắc Hà."
@@ -180,6 +184,14 @@ class ChatFeedbackRequest(BaseModel):
     thread_id: str = Field(default="thread_123", min_length=1)
     like: bool
     content: str = Field(..., min_length=1)
+
+
+class MedicalRecordCheckRequest(BaseModel):
+    ma_tiep_nhan: str = Field(..., min_length=1)
+
+
+class OneMedicalRecordCheckRequest(MedicalRecordCheckRequest):
+    type: str = Field(..., min_length=1)
 
 
 def _default_system_prompt_template() -> str:
@@ -467,6 +479,58 @@ def _ensure_json_object(data: Any) -> Dict[str, Any]:
     return data
 
 
+def _extract_medical_record_payload(data: Any) -> Dict[str, Any]:
+    if isinstance(data, str):
+        try:
+            return _extract_medical_record_payload(json.loads(data))
+        except json.JSONDecodeError:
+            raise _invalid_document_type_error()
+
+    if isinstance(data, list):
+        if not data:
+            raise _invalid_document_type_error()
+        return _extract_medical_record_payload(data[0])
+
+    data = _ensure_json_object(data)
+
+    if any(key in data for key in DOCUMENT_CHECKS):
+        return data
+
+    for wrapper_key in ("data", "Data", "result", "Result", "value", "Value"):
+        wrapped_data = data.get(wrapper_key)
+        if wrapped_data is not None:
+            try:
+                return _extract_medical_record_payload(wrapped_data)
+            except HTTPException:
+                pass
+
+    raise _invalid_document_type_error()
+
+
+def _fetch_medical_record_data(ma_tiep_nhan: str) -> Dict[str, Any]:
+    code = ma_tiep_nhan.strip()
+    if not code:
+        raise HTTPException(status_code=400, detail="Mã tiếp nhận không được để trống")
+
+    try:
+        response = requests.get(f"{MEDICAL_RECORD_SOURCE_API}/{code}", timeout=30)
+    except requests.RequestException as exc:
+        raise HTTPException(status_code=502, detail=f"Không thể lấy dữ liệu bệnh án: {exc}")
+
+    if response.status_code != 200:
+        raise HTTPException(
+            status_code=502,
+            detail=f"API dữ liệu bệnh án trả về lỗi {response.status_code}",
+        )
+
+    try:
+        data = response.json()
+    except ValueError:
+        raise HTTPException(status_code=502, detail="API dữ liệu bệnh án không trả JSON hợp lệ")
+
+    return _extract_medical_record_payload(data)
+
+
 def _valid_document_keys(data: Dict[str, Any]) -> List[str]:
     return [key for key in data if key in DOCUMENT_CHECKS]
 
@@ -633,14 +697,45 @@ def update_document_prompt(document_type: str, payload: SystemPromptRequest) -> 
     }
 
 
-async def _check_one_medical_document(
-    file: UploadFile,
+# Code cũ: nhận file JSON upload từ frontend.
+# async def _check_one_medical_document(
+#     file: UploadFile,
+#     field_name: str,
+#     prompt_func,
+# ) -> Dict[str, Any]:
+#     data = _ensure_json_object(await _read_json_upload(file))
+#
+#     if len(data.keys()) != 1 or field_name not in data:
+#         raise _invalid_document_type_error()
+#
+#     try:
+#         document_data = data[field_name]
+#     except Exception:
+#         raise _invalid_document_type_error()
+#
+#     result = llama_KiemTraCacGiayHoacPhieu(prompt_func, document_data)
+#     is_valid = not _review_has_error(result)
+#
+#     return {
+#         "filename": file.filename,
+#         "document_type": field_name,
+#         "is_valid": is_valid,
+#         "checks": {
+#             field_name: is_valid,
+#         },
+#         "details": {
+#             field_name: result,
+#         },
+#     }
+
+
+def _check_one_medical_document_from_data(
+    data: Dict[str, Any],
+    ma_tiep_nhan: str,
     field_name: str,
     prompt_func,
 ) -> Dict[str, Any]:
-    data = _ensure_json_object(await _read_json_upload(file))
-
-    if len(data.keys()) != 1 or field_name not in data:
+    if field_name not in data:
         raise _invalid_document_type_error()
 
     try:
@@ -652,7 +747,7 @@ async def _check_one_medical_document(
     is_valid = not _review_has_error(result)
 
     return {
-        "filename": file.filename,
+        "ma_tiep_nhan": ma_tiep_nhan,
         "document_type": field_name,
         "is_valid": is_valid,
         "checks": {
@@ -749,21 +844,61 @@ def _build_cross_document_check_data(data: Dict[str, Any]) -> Dict[str, Any]:
         raise _invalid_document_type_error()
 
 
+# Code cũ: frontend upload file JSON.
+# @app.post("/medical-record/check-json/one")
+# async def check_one_medical_record_json(
+#     type: str = Form(...),
+#     file: UploadFile = File(...),
+# ) -> Dict[str, Any]:
+#     if type not in DOCUMENT_CHECKS:
+#         raise _invalid_document_type_error()
+#
+#     prompt_func = _document_prompt_func(type)
+#     return await _check_one_medical_document(file, type, prompt_func)
+#
+#
+# @app.post("/medical-record/check-json")
+# async def check_medical_record_json(file: UploadFile = File(...)) -> Dict[str, Any]:
+#     data = _ensure_json_object(await _read_json_upload(file))
+#     missing_keys = [key for key in DOCUMENT_CHECKS if key not in data]
+#     if missing_keys:
+#         raise _invalid_document_type_error()
+#
+#     data_check = _build_cross_document_check_data(data)
+#
+#     result = llama_KiemTraCacGiayHoacPhieu(_multi_document_prompt_func, data_check)
+#     is_valid = not _review_has_error(result)
+#
+#     return {
+#         "filename": file.filename,
+#         "is_valid": is_valid,
+#         "checks": {
+#             "KiemTraNguNghiaGiuaCacFile": is_valid,
+#         },
+#         "details": {
+#             "KiemTraNguNghiaGiuaCacFile": result,
+#         },
+#     }
+
+
 @app.post("/medical-record/check-json/one")
-async def check_one_medical_record_json(
-    type: str = Form(...),
-    file: UploadFile = File(...),
-) -> Dict[str, Any]:
-    if type not in DOCUMENT_CHECKS:
+def check_one_medical_record_json(payload: OneMedicalRecordCheckRequest) -> Dict[str, Any]:
+    if payload.type not in DOCUMENT_CHECKS:
         raise _invalid_document_type_error()
 
-    prompt_func = _document_prompt_func(type)
-    return await _check_one_medical_document(file, type, prompt_func)
+    data = _fetch_medical_record_data(payload.ma_tiep_nhan)
+    prompt_func = _document_prompt_func(payload.type)
+    return _check_one_medical_document_from_data(
+        data=data,
+        ma_tiep_nhan=payload.ma_tiep_nhan,
+        field_name=payload.type,
+        prompt_func=prompt_func,
+    )
 
 
 @app.post("/medical-record/check-json")
-async def check_medical_record_json(file: UploadFile = File(...)) -> Dict[str, Any]:
-    data = _ensure_json_object(await _read_json_upload(file))
+def check_medical_record_json(payload: MedicalRecordCheckRequest) -> Dict[str, Any]:
+    data = _fetch_medical_record_data(payload.ma_tiep_nhan)
     missing_keys = [key for key in DOCUMENT_CHECKS if key not in data]
     if missing_keys:
         raise _invalid_document_type_error()
@@ -774,7 +909,7 @@ async def check_medical_record_json(file: UploadFile = File(...)) -> Dict[str, A
     is_valid = not _review_has_error(result)
 
     return {
-        "filename": file.filename,
+        "ma_tiep_nhan": payload.ma_tiep_nhan,
         "is_valid": is_valid,
         "checks": {
             "KiemTraNguNghiaGiuaCacFile": is_valid,

@@ -1100,6 +1100,52 @@ textarea {
   display: none;
 }
 
+.record-code-picker {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px 12px;
+  width: min(100%, 760px);
+  min-height: 92px;
+  padding: 18px;
+  border: 1px solid #d6e3e1;
+  border-radius: 8px;
+  color: #246963;
+  background: #ffffff;
+}
+
+.record-code-picker > span {
+  min-width: 0;
+  color: #35504d;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.record-code-picker input {
+  grid-column: 2;
+  min-width: 0;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #d6e3e1;
+  border-radius: 8px;
+  color: #17343a;
+  background: #fbfdfc;
+  font: inherit;
+  font-weight: 700;
+  outline: none;
+}
+
+.record-code-picker input:focus {
+  border-color: #246963;
+  box-shadow: 0 0 0 3px rgba(36, 105, 99, 0.12);
+}
+
+.record-code-picker input:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
 .record-document-type-picker {
   display: grid;
   gap: 10px;

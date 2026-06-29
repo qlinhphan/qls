@@ -7,11 +7,11 @@ import {
   LogOut,
   Send,
   Settings,
+  Search,
   Stethoscope,
   ThumbsDown,
   ThumbsUp,
   User,
-  Upload,
 } from 'lucide-react';
 
 const API_URL = 'http://10.10.50.226:8001/chat';
@@ -166,7 +166,7 @@ export default function App() {
   const [toastMessage, setToastMessage] = useState('');
   const [toastVariant, setToastVariant] = useState('success');
   const [isToastVisible, setIsToastVisible] = useState(false);
-  const [recordFile, setRecordFile] = useState(null);
+  const [recordReceptionCode, setRecordReceptionCode] = useState('');
   const [selectedRecordDocumentType, setSelectedRecordDocumentType] = useState('');
   const [recordCheckResult, setRecordCheckResult] = useState(null);
   const [recordCheckResultMode, setRecordCheckResultMode] = useState('');
@@ -240,7 +240,7 @@ export default function App() {
   }, [messages.length]);
 
   useEffect(() => {
-    setRecordFile(null);
+    setRecordReceptionCode('');
     setSelectedRecordDocumentType('');
     setRecordCheckResult(null);
     setRecordCheckResultMode('');
@@ -583,14 +583,16 @@ export default function App() {
 
   async function handleRecordCheck(event) {
     event.preventDefault();
-    if (!recordFile || isCheckingRecord) return;
+    const maTiepNhan = recordReceptionCode.trim();
+    if (!maTiepNhan || isCheckingRecord) return;
     if (activeMode === 'record-check-single' && !selectedRecordDocumentType) return;
 
     const submittedMode = activeMode;
-    const formData = new FormData();
-    formData.append('file', recordFile);
+    const requestBody = {
+      ma_tiep_nhan: maTiepNhan,
+    };
     if (submittedMode === 'record-check-single') {
-      formData.append('type', selectedRecordDocumentType);
+      requestBody.type = selectedRecordDocumentType;
     }
     const checkApiUrl =
       submittedMode === 'record-check-single'
@@ -605,7 +607,10 @@ export default function App() {
     try {
       const response = await fetch(checkApiUrl, {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
       });
 
       if (!response.ok) {
@@ -774,18 +779,22 @@ export default function App() {
         {activeMode.startsWith('record-check') ? (
           <div className="record-check-area">
             <form className="record-upload-panel" onSubmit={handleRecordCheck}>
-              <label className="record-file-picker">
-                <Upload aria-hidden="true" size={24} />
-                <span>{recordFile ? recordFile.name : 'Chọn file JSON tài liệu'}</span>
+              {/* Code cũ: upload file JSON tài liệu. */}
+              {/* <label className="record-file-picker">...</label> */}
+              <label className="record-code-picker">
+                <Search aria-hidden="true" size={24} />
+                <span>Mã tiếp nhận</span>
                 <input
-                  accept="application/json,.json"
                   disabled={isCheckingRecord}
                   onChange={(event) => {
-                    setRecordFile(event.target.files?.[0] ?? null);
+                    setRecordReceptionCode(event.target.value);
                     setRecordCheckError('');
                     setRecordCheckResult(null);
+                    setRecordCheckResultMode('');
                   }}
-                  type="file"
+                  placeholder="Nhập mã tiếp nhận, ví dụ: 2602260097"
+                  type="text"
+                  value={recordReceptionCode}
                 />
               </label>
 
@@ -865,7 +874,7 @@ export default function App() {
               <div className="record-action-row">
                 <button
                   disabled={
-                    !recordFile ||
+                    !recordReceptionCode.trim() ||
                     isCheckingRecord ||
                     (activeMode === 'record-check-single' && !selectedRecordDocumentType)
                   }
