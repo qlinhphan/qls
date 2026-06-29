@@ -16,6 +16,7 @@ const API_URL = 'http://10.10.50.226:8001/chat';
 const SYSTEM_PROMPT_API_URL = 'http://10.10.50.226:8001/system-prompt';
 const MEDICAL_RECORD_CHECK_API_URL = 'http://10.10.50.226:8001/medical-record/check-json';
 const SINGLE_DOCUMENT_CHECK_API_URL = 'http://10.10.50.226:8001/medical-record/check-json/one';
+const DOCUMENT_PROMPT_API_URL = 'http://10.10.50.226:8001/medical-record/document-prompt';
 const THREAD_STORAGE_KEY = 'medical-chat-thread-id';
 const welcomeMessage =
   'Xin chào, tôi là trợ lý AI của bạn, sẽ giúp đỡ bạn hôm nay.';
@@ -157,6 +158,10 @@ export default function App() {
   const [recordCheckResultMode, setRecordCheckResultMode] = useState('');
   const [recordCheckError, setRecordCheckError] = useState('');
   const [isCheckingRecord, setIsCheckingRecord] = useState(false);
+  const [documentPrompt, setDocumentPrompt] = useState('');
+  const [savedDocumentPrompt, setSavedDocumentPrompt] = useState('');
+  const [isDocumentPromptLoading, setIsDocumentPromptLoading] = useState(false);
+  const [documentPromptStatus, setDocumentPromptStatus] = useState('');
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(true);
   const [isDocumentMenuOpen, setIsDocumentMenuOpen] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -184,6 +189,11 @@ export default function App() {
 
     return [...knownSections, ...extraSections];
   }, [recordCheckResult]);
+
+  const selectedRecordDocument = useMemo(
+    () => recordReviewSections.find((section) => section.key === selectedRecordDocumentType),
+    [selectedRecordDocumentType],
+  );
 
   function showToast(message, variant = 'success') {
     setToastMessage(message);
@@ -216,7 +226,55 @@ export default function App() {
     setRecordCheckResult(null);
     setRecordCheckResultMode('');
     setRecordCheckError('');
+    setDocumentPrompt('');
+    setSavedDocumentPrompt('');
+    setDocumentPromptStatus('');
   }, [activeMode]);
+
+  useEffect(() => {
+    if (activeMode !== 'record-check-single' || !selectedRecordDocumentType) {
+      setDocumentPrompt('');
+      setSavedDocumentPrompt('');
+      setDocumentPromptStatus('');
+      return undefined;
+    }
+
+    const controller = new AbortController();
+
+    async function loadDocumentPrompt() {
+      setIsDocumentPromptLoading(true);
+      setDocumentPromptStatus('');
+
+      try {
+        const response = await fetch(`${DOCUMENT_PROMPT_API_URL}/${selectedRecordDocumentType}`, {
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error(`API trả về lỗi ${response.status}`);
+        }
+
+        const data = await response.json();
+        const prompt = data.prompt ?? '';
+        setDocumentPrompt(prompt);
+        setSavedDocumentPrompt(prompt);
+      } catch (error) {
+        if (error.name !== 'AbortError') {
+          setDocumentPrompt('');
+          setSavedDocumentPrompt('');
+          setDocumentPromptStatus(`Không thể tải prompt: ${error.message}`);
+        }
+      } finally {
+        if (!controller.signal.aborted) {
+          setIsDocumentPromptLoading(false);
+        }
+      }
+    }
+
+    loadDocumentPrompt();
+
+    return () => controller.abort();
+  }, [activeMode, selectedRecordDocumentType]);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -319,6 +377,48 @@ export default function App() {
       setPromptStatus(`Không thể lưu prompt: ${error.message}`);
     } finally {
       setIsPromptLoading(false);
+    }
+  }
+
+  async function saveDocumentPrompt() {
+    const value = documentPrompt.trim();
+    if (
+      !value ||
+      value === savedDocumentPrompt.trim() ||
+      isDocumentPromptLoading ||
+      !selectedRecordDocumentType
+    ) {
+      return;
+    }
+
+    setIsDocumentPromptLoading(true);
+    setDocumentPromptStatus('');
+
+    try {
+      const response = await fetch(`${DOCUMENT_PROMPT_API_URL}/${selectedRecordDocumentType}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          prompt: value,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`API trả về lỗi ${response.status}`);
+      }
+
+      const data = await response.json();
+      const savedPrompt = data.prompt ?? value;
+      setDocumentPrompt(savedPrompt);
+      setSavedDocumentPrompt(savedPrompt);
+      setDocumentPromptStatus('');
+      showToast('Thành công, bạn đã lưu prompt giấy tờ thành công', 'success');
+    } catch (error) {
+      setDocumentPromptStatus(`Không thể lưu prompt: ${error.message}`);
+    } finally {
+      setIsDocumentPromptLoading(false);
     }
   }
 
@@ -544,7 +644,12 @@ export default function App() {
                         <input
                           checked={selectedRecordDocumentType === section.key}
                           name="record-document-type"
-                          onChange={() => setSelectedRecordDocumentType(section.key)}
+                          onChange={() => {
+                            setSelectedRecordDocumentType(section.key);
+                            setRecordCheckError('');
+                            setRecordCheckResult(null);
+                            setRecordCheckResultMode('');
+                          }}
                           type="radio"
                           value={section.key}
                         />
@@ -553,6 +658,40 @@ export default function App() {
                     ))}
                   </div>
                 </fieldset>
+              )}
+
+              {activeMode === 'record-check-single' && selectedRecordDocumentType && (
+                <section className="record-document-prompt-panel">
+                  <div className="record-document-prompt-header">
+                    <div>
+                      <span>Giấy tờ đã chọn</span>
+                      <strong>{selectedRecordDocument?.label ?? selectedRecordDocumentType}</strong>
+                    </div>
+                    <button
+                      disabled={
+                        isDocumentPromptLoading ||
+                        !documentPrompt.trim() ||
+                        documentPrompt.trim() === savedDocumentPrompt.trim()
+                      }
+                      onClick={saveDocumentPrompt}
+                      type="button"
+                    >
+                      {isDocumentPromptLoading ? 'Đang xử lý...' : 'Lưu prompt'}
+                    </button>
+                  </div>
+                  <label className="record-document-prompt-editor">
+                    <span>Prompt tương ứng</span>
+                    <textarea
+                      disabled={isDocumentPromptLoading}
+                      onChange={(event) => setDocumentPrompt(event.target.value)}
+                      placeholder="Prompt kiểm tra giấy tờ"
+                      value={documentPrompt}
+                    />
+                  </label>
+                  {documentPromptStatus && (
+                    <p className="record-document-prompt-status">{documentPromptStatus}</p>
+                  )}
+                </section>
               )}
 
               <div className="record-note-box">

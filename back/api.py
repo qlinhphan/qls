@@ -47,7 +47,8 @@ load_dotenv()
 
 DEFAULT_MIN_SCORE = float(os.getenv("MIN_SCORE_RECHIEVAL", "0.55"))
 API_VERSION = "2026-06-22-cors-5173"
-PROMPT_CONFIG_PATH = Path("prompt_config.json")
+PROMPT_CONFIG_PATH = Path("prompt_config_chat.json")
+DOCUMENT_PROMPT_DIR = Path(__file__).resolve().parent / "prompts"
 IDENTITY_ANSWER = "Tôi là trợ lý AI y tế hỗ trợ trích xuất phác đồ điều trị."
 CREATOR_ANSWER = (
     "Tôi được tạo ra bởi Phòng CNTT thuộc Bệnh viện Đa khoa Quốc tế Bắc Hà."
@@ -411,6 +412,14 @@ DOCUMENT_CHECKS = {
     "ThongTinBenhAn": prompt_ThongTinBenhAn,
 }
 
+DOCUMENT_PROMPT_FILES = {
+    "TomTatHoSoBenhAn": "prompt_TomTatBenhAn.json",
+    "GiayRaVien": "prompt_GiayRaVien.json",
+    "ThongTinTongKetBenhAn": "prompt_ThongTinTongKetBenhAn.json",
+    "ThongTinRaVien": "prompt_ThongTinRaVien.json",
+    "ThongTinBenhAn": "prompt_ThongTinBenhAn.json",
+}
+
 
 def _invalid_document_type_error() -> HTTPException:
     return HTTPException(
@@ -427,6 +436,104 @@ def _ensure_json_object(data: Any) -> Dict[str, Any]:
 
 def _valid_document_keys(data: Dict[str, Any]) -> List[str]:
     return [key for key in data if key in DOCUMENT_CHECKS]
+
+
+def _document_prompt_file(field_name: str) -> Path:
+    filename = DOCUMENT_PROMPT_FILES.get(field_name)
+    if not filename:
+        raise _invalid_document_type_error()
+    return DOCUMENT_PROMPT_DIR / filename
+
+
+def _default_document_prompt_template(field_name: str) -> str:
+    prompt_func = DOCUMENT_CHECKS.get(field_name)
+    if not prompt_func:
+        raise _invalid_document_type_error()
+    return prompt_func("{data}")
+
+
+def _load_document_prompt_template(field_name: str) -> str:
+    prompt_file = _document_prompt_file(field_name)
+    if prompt_file.exists():
+        with prompt_file.open("r", encoding="utf-8") as file:
+            data = json.load(file)
+        prompt = data.get("prompt")
+        if isinstance(prompt, str) and prompt.strip():
+            return prompt
+
+    return _default_document_prompt_template(field_name)
+
+
+def _save_document_prompt_template(field_name: str, prompt: str) -> Path:
+    prompt_file = _document_prompt_file(field_name)
+    prompt_file.parent.mkdir(parents=True, exist_ok=True)
+    with prompt_file.open("w", encoding="utf-8") as file:
+        json.dump(
+            {
+                "type": field_name,
+                "prompt": prompt,
+            },
+            file,
+            ensure_ascii=False,
+            indent=2,
+        )
+    return prompt_file
+
+
+def _stringify_document_data(data: Any) -> str:
+    try:
+        return json.dumps(data, ensure_ascii=False, indent=2, default=str)
+    except TypeError:
+        return str(data)
+
+
+def _render_document_prompt(template: str, data: Any) -> str:
+    document_text = _stringify_document_data(data)
+    if "{data}" in template:
+        return template.replace("{data}", document_text)
+    return f"{template}\n\nDữ liệu cần kiểm tra:\n{document_text}"
+
+
+def _document_prompt_func(field_name: str):
+    template = _load_document_prompt_template(field_name)
+
+    def build_prompt(data: Any) -> str:
+        return _render_document_prompt(template, data)
+
+    return build_prompt
+
+
+@app.get("/medical-record/document-prompt/{document_type}")
+def get_document_prompt(document_type: str) -> Dict[str, Any]:
+    prompt_file = _document_prompt_file(document_type)
+    prompt = _load_document_prompt_template(document_type)
+
+    return {
+        "type": document_type,
+        "filename": prompt_file.name,
+        "is_default": not prompt_file.exists(),
+        "prompt": prompt,
+    }
+
+
+@app.put("/medical-record/document-prompt/{document_type}")
+def update_document_prompt(document_type: str, payload: SystemPromptRequest) -> Dict[str, Any]:
+    if document_type not in DOCUMENT_CHECKS:
+        raise _invalid_document_type_error()
+
+    prompt = payload.prompt.strip()
+    if not prompt:
+        raise HTTPException(status_code=400, detail="Prompt không được để trống")
+
+    prompt_file = _save_document_prompt_template(document_type, prompt)
+
+    return {
+        "message": "Đã cập nhật prompt giấy tờ",
+        "type": document_type,
+        "filename": prompt_file.name,
+        "is_default": False,
+        "prompt": prompt,
+    }
 
 
 async def _check_one_medical_document(
@@ -550,10 +657,10 @@ async def check_one_medical_record_json(
     type: str = Form(...),
     file: UploadFile = File(...),
 ) -> Dict[str, Any]:
-    prompt_func = DOCUMENT_CHECKS.get(type)
-    if not prompt_func:
+    if type not in DOCUMENT_CHECKS:
         raise _invalid_document_type_error()
 
+    prompt_func = _document_prompt_func(type)
     return await _check_one_medical_document(file, type, prompt_func)
 
 

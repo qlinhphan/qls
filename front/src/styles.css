@@ -1109,6 +1109,80 @@ textarea {
   overflow-wrap: anywhere;
 }
 
+.record-document-prompt-panel {
+  display: grid;
+  gap: 12px;
+  width: min(100%, 760px);
+  padding: 14px;
+  border: 1px solid #d6e3e1;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 10px 28px rgba(21, 46, 48, 0.06);
+}
+
+.record-document-prompt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.record-document-prompt-header div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.record-document-prompt-header span,
+.record-document-prompt-editor span {
+  color: #637572;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.record-document-prompt-header strong {
+  min-width: 0;
+  color: #17343a;
+  overflow-wrap: anywhere;
+  font-size: 0.98rem;
+}
+
+.record-document-prompt-header button {
+  flex: 0 0 auto;
+}
+
+.record-document-prompt-editor {
+  display: grid;
+  gap: 8px;
+}
+
+.record-document-prompt-editor textarea {
+  width: 100%;
+  min-height: 220px;
+  resize: vertical;
+  padding: 12px 13px;
+  border: 1px solid #d6e3e1;
+  border-radius: 8px;
+  color: #17212b;
+  background: #fbfdfc;
+  font: inherit;
+  line-height: 1.5;
+  outline: none;
+}
+
+.record-document-prompt-editor textarea:focus {
+  border-color: #246963;
+  box-shadow: 0 0 0 3px rgba(36, 105, 99, 0.12);
+}
+
+.record-document-prompt-status {
+  margin: 0;
+  color: #8a2b2b;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
 .record-note-box {
   display: grid;
   gap: 6px;
