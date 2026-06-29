@@ -8,7 +8,7 @@ from typing import Any, Dict, List
 
 import faiss
 from dotenv import load_dotenv
-from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
@@ -545,33 +545,16 @@ def _build_cross_document_check_data(data: Dict[str, Any]) -> Dict[str, Any]:
         raise _invalid_document_type_error()
 
 
-@app.post("/medical-record/check-json/tom-tat-ho-so-benh-an")
-async def check_tom_tat_ho_so_benh_an(file: UploadFile = File(...)) -> Dict[str, Any]:
-    return await _check_one_medical_document(file, "TomTatHoSoBenhAn", prompt_TomTatBenhAn)
+@app.post("/medical-record/check-json/one")
+async def check_one_medical_record_json(
+    type: str = Form(...),
+    file: UploadFile = File(...),
+) -> Dict[str, Any]:
+    prompt_func = DOCUMENT_CHECKS.get(type)
+    if not prompt_func:
+        raise _invalid_document_type_error()
 
-
-@app.post("/medical-record/check-json/giay-ra-vien")
-async def check_giay_ra_vien(file: UploadFile = File(...)) -> Dict[str, Any]:
-    return await _check_one_medical_document(file, "GiayRaVien", prompt_GiayRaVien)
-
-
-@app.post("/medical-record/check-json/thong-tin-tong-ket-benh-an")
-async def check_thong_tin_tong_ket_benh_an(file: UploadFile = File(...)) -> Dict[str, Any]:
-    return await _check_one_medical_document(
-        file,
-        "ThongTinTongKetBenhAn",
-        prompt_ThongTinTongKetBenhAn,
-    )
-
-
-@app.post("/medical-record/check-json/thong-tin-ra-vien")
-async def check_thong_tin_ra_vien(file: UploadFile = File(...)) -> Dict[str, Any]:
-    return await _check_one_medical_document(file, "ThongTinRaVien", prompt_ThongTinRaVien)
-
-
-@app.post("/medical-record/check-json/thong-tin-benh-an")
-async def check_thong_tin_benh_an(file: UploadFile = File(...)) -> Dict[str, Any]:
-    return await _check_one_medical_document(file, "ThongTinBenhAn", prompt_ThongTinBenhAn)
+    return await _check_one_medical_document(file, type, prompt_func)
 
 
 @app.post("/medical-record/check-json")

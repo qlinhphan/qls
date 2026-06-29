@@ -15,14 +15,7 @@ import {
 const API_URL = 'http://10.10.50.226:8001/chat';
 const SYSTEM_PROMPT_API_URL = 'http://10.10.50.226:8001/system-prompt';
 const MEDICAL_RECORD_CHECK_API_URL = 'http://10.10.50.226:8001/medical-record/check-json';
-const SINGLE_DOCUMENT_CHECK_API_URLS = {
-  TomTatHoSoBenhAn: 'http://10.10.50.226:8001/medical-record/check-json/tom-tat-ho-so-benh-an',
-  GiayRaVien: 'http://10.10.50.226:8001/medical-record/check-json/giay-ra-vien',
-  ThongTinTongKetBenhAn:
-    'http://10.10.50.226:8001/medical-record/check-json/thong-tin-tong-ket-benh-an',
-  ThongTinRaVien: 'http://10.10.50.226:8001/medical-record/check-json/thong-tin-ra-vien',
-  ThongTinBenhAn: 'http://10.10.50.226:8001/medical-record/check-json/thong-tin-benh-an',
-};
+const SINGLE_DOCUMENT_CHECK_API_URL = 'http://10.10.50.226:8001/medical-record/check-json/one';
 const THREAD_STORAGE_KEY = 'medical-chat-thread-id';
 const welcomeMessage =
   'Xin chào, tôi là trợ lý AI của bạn, sẽ giúp đỡ bạn hôm nay.';
@@ -161,6 +154,7 @@ export default function App() {
   const [recordFile, setRecordFile] = useState(null);
   const [selectedRecordDocumentType, setSelectedRecordDocumentType] = useState('');
   const [recordCheckResult, setRecordCheckResult] = useState(null);
+  const [recordCheckResultMode, setRecordCheckResultMode] = useState('');
   const [recordCheckError, setRecordCheckError] = useState('');
   const [isCheckingRecord, setIsCheckingRecord] = useState(false);
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(true);
@@ -215,6 +209,14 @@ export default function App() {
 
     return () => window.clearInterval(intervalId);
   }, [messages.length]);
+
+  useEffect(() => {
+    setRecordFile(null);
+    setSelectedRecordDocumentType('');
+    setRecordCheckResult(null);
+    setRecordCheckResultMode('');
+    setRecordCheckError('');
+  }, [activeMode]);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -325,19 +327,21 @@ export default function App() {
     if (!recordFile || isCheckingRecord) return;
     if (activeMode === 'record-check-single' && !selectedRecordDocumentType) return;
 
+    const submittedMode = activeMode;
     const formData = new FormData();
     formData.append('file', recordFile);
-    if (activeMode === 'record-check-single') {
-      formData.append('document_type', selectedRecordDocumentType);
+    if (submittedMode === 'record-check-single') {
+      formData.append('type', selectedRecordDocumentType);
     }
     const checkApiUrl =
-      activeMode === 'record-check-single'
-        ? SINGLE_DOCUMENT_CHECK_API_URLS[selectedRecordDocumentType]
+      submittedMode === 'record-check-single'
+        ? SINGLE_DOCUMENT_CHECK_API_URL
         : MEDICAL_RECORD_CHECK_API_URL;
 
     setIsCheckingRecord(true);
     setRecordCheckError('');
     setRecordCheckResult(null);
+    setRecordCheckResultMode('');
 
     try {
       const response = await fetch(checkApiUrl, {
@@ -358,6 +362,7 @@ export default function App() {
 
       const data = await response.json();
       setRecordCheckResult(data);
+      setRecordCheckResultMode(submittedMode);
     } catch (error) {
       setRecordCheckError(`Không thể kiểm tra tài liệu: ${error.message}`);
       showToast(error.message, 'error');
@@ -573,7 +578,7 @@ export default function App() {
 
             {recordCheckError && <p className="record-check-error">{recordCheckError}</p>}
 
-            {recordCheckResult && (
+            {recordCheckResult && recordCheckResultMode === activeMode && (
               <section className="record-check-result">
                 <h3>
                   {displayedRecordReviewSections
