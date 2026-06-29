@@ -1205,6 +1205,13 @@ textarea {
   overflow-wrap: anywhere;
 }
 
+.record-action-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
 .record-upload-panel button {
   width: fit-content;
   min-height: 42px;

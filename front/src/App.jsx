@@ -17,6 +17,7 @@ const SYSTEM_PROMPT_API_URL = 'http://10.10.50.226:8001/system-prompt';
 const MEDICAL_RECORD_CHECK_API_URL = 'http://10.10.50.226:8001/medical-record/check-json';
 const SINGLE_DOCUMENT_CHECK_API_URL = 'http://10.10.50.226:8001/medical-record/check-json/one';
 const DOCUMENT_PROMPT_API_URL = 'http://10.10.50.226:8001/medical-record/document-prompt';
+const MULTI_DOCUMENT_PROMPT_API_URL = 'http://10.10.50.226:8001/medical-record/multi-document-prompt';
 const THREAD_STORAGE_KEY = 'medical-chat-thread-id';
 const welcomeMessage =
   'Xin chào, tôi là trợ lý AI của bạn, sẽ giúp đỡ bạn hôm nay.';
@@ -162,6 +163,11 @@ export default function App() {
   const [savedDocumentPrompt, setSavedDocumentPrompt] = useState('');
   const [isDocumentPromptLoading, setIsDocumentPromptLoading] = useState(false);
   const [documentPromptStatus, setDocumentPromptStatus] = useState('');
+  const [isMultiDocumentPromptOpen, setIsMultiDocumentPromptOpen] = useState(false);
+  const [multiDocumentPrompt, setMultiDocumentPrompt] = useState('');
+  const [savedMultiDocumentPrompt, setSavedMultiDocumentPrompt] = useState('');
+  const [isMultiDocumentPromptLoading, setIsMultiDocumentPromptLoading] = useState(false);
+  const [multiDocumentPromptStatus, setMultiDocumentPromptStatus] = useState('');
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(true);
   const [isDocumentMenuOpen, setIsDocumentMenuOpen] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -229,6 +235,10 @@ export default function App() {
     setDocumentPrompt('');
     setSavedDocumentPrompt('');
     setDocumentPromptStatus('');
+    setIsMultiDocumentPromptOpen(false);
+    setMultiDocumentPrompt('');
+    setSavedMultiDocumentPrompt('');
+    setMultiDocumentPromptStatus('');
   }, [activeMode]);
 
   useEffect(() => {
@@ -419,6 +429,72 @@ export default function App() {
       setDocumentPromptStatus(`Không thể lưu prompt: ${error.message}`);
     } finally {
       setIsDocumentPromptLoading(false);
+    }
+  }
+
+  async function openMultiDocumentPrompt() {
+    setIsMultiDocumentPromptOpen(true);
+    setIsMultiDocumentPromptLoading(true);
+    setMultiDocumentPromptStatus('');
+
+    try {
+      const response = await fetch(MULTI_DOCUMENT_PROMPT_API_URL);
+
+      if (!response.ok) {
+        throw new Error(`API trả về lỗi ${response.status}`);
+      }
+
+      const data = await response.json();
+      const prompt = data.prompt ?? '';
+      setMultiDocumentPrompt(prompt);
+      setSavedMultiDocumentPrompt(prompt);
+    } catch (error) {
+      setMultiDocumentPrompt('');
+      setSavedMultiDocumentPrompt('');
+      setMultiDocumentPromptStatus(`Không thể tải prompt: ${error.message}`);
+    } finally {
+      setIsMultiDocumentPromptLoading(false);
+    }
+  }
+
+  async function saveMultiDocumentPrompt() {
+    const value = multiDocumentPrompt.trim();
+    if (
+      !value ||
+      value === savedMultiDocumentPrompt.trim() ||
+      isMultiDocumentPromptLoading
+    ) {
+      return;
+    }
+
+    setIsMultiDocumentPromptLoading(true);
+    setMultiDocumentPromptStatus('');
+
+    try {
+      const response = await fetch(MULTI_DOCUMENT_PROMPT_API_URL, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          prompt: value,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`API trả về lỗi ${response.status}`);
+      }
+
+      const data = await response.json();
+      const savedPrompt = data.prompt ?? value;
+      setMultiDocumentPrompt(savedPrompt);
+      setSavedMultiDocumentPrompt(savedPrompt);
+      setMultiDocumentPromptStatus('');
+      showToast('Thành công, bạn đã lưu prompt nhiều tài liệu thành công', 'success');
+    } catch (error) {
+      setMultiDocumentPromptStatus(`Không thể lưu prompt: ${error.message}`);
+    } finally {
+      setIsMultiDocumentPromptLoading(false);
     }
   }
 
@@ -703,16 +779,62 @@ export default function App() {
                 <span>TTBA: Thông tin bệnh án</span>
               </div>
 
-              <button
-                disabled={
-                  !recordFile ||
-                  isCheckingRecord ||
-                  (activeMode === 'record-check-single' && !selectedRecordDocumentType)
-                }
-                type="submit"
-              >
-                {isCheckingRecord ? 'Đang kiểm tra...' : 'Kiểm tra tài liệu'}
-              </button>
+              <div className="record-action-row">
+                <button
+                  disabled={
+                    !recordFile ||
+                    isCheckingRecord ||
+                    (activeMode === 'record-check-single' && !selectedRecordDocumentType)
+                  }
+                  type="submit"
+                >
+                  {isCheckingRecord ? 'Đang kiểm tra...' : 'Kiểm tra tài liệu'}
+                </button>
+
+                {activeMode === 'record-check-multiple' && (
+                  <button
+                    disabled={isMultiDocumentPromptLoading}
+                    onClick={openMultiDocumentPrompt}
+                    type="button"
+                  >
+                    {isMultiDocumentPromptOpen ? 'Xem prompt' : 'Xem/chỉnh prompt'}
+                  </button>
+                )}
+              </div>
+
+              {activeMode === 'record-check-multiple' && isMultiDocumentPromptOpen && (
+                <section className="record-document-prompt-panel">
+                  <div className="record-document-prompt-header">
+                    <div>
+                      <span>Prompt đang dùng</span>
+                      <strong>Nhiều tài liệu</strong>
+                    </div>
+                    <button
+                      disabled={
+                        isMultiDocumentPromptLoading ||
+                        !multiDocumentPrompt.trim() ||
+                        multiDocumentPrompt.trim() === savedMultiDocumentPrompt.trim()
+                      }
+                      onClick={saveMultiDocumentPrompt}
+                      type="button"
+                    >
+                      {isMultiDocumentPromptLoading ? 'Đang xử lý...' : 'Lưu prompt'}
+                    </button>
+                  </div>
+                  <label className="record-document-prompt-editor">
+                    <span>Prompt tương ứng</span>
+                    <textarea
+                      disabled={isMultiDocumentPromptLoading}
+                      onChange={(event) => setMultiDocumentPrompt(event.target.value)}
+                      placeholder="Prompt kiểm tra nhiều tài liệu"
+                      value={multiDocumentPrompt}
+                    />
+                  </label>
+                  {multiDocumentPromptStatus && (
+                    <p className="record-document-prompt-status">{multiDocumentPromptStatus}</p>
+                  )}
+                </section>
+              )}
             </form>
 
             {recordCheckError && <p className="record-check-error">{recordCheckError}</p>}

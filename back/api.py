@@ -419,6 +419,8 @@ DOCUMENT_PROMPT_FILES = {
     "ThongTinRaVien": "prompt_ThongTinRaVien.json",
     "ThongTinBenhAn": "prompt_ThongTinBenhAn.json",
 }
+MULTI_DOCUMENT_PROMPT_FILE = DOCUMENT_PROMPT_DIR / "prompt_nhieutailieu.json"
+MULTI_DOCUMENT_PROMPT_TYPE = "nhieutailieu"
 
 
 def _invalid_document_type_error() -> HTTPException:
@@ -503,6 +505,41 @@ def _document_prompt_func(field_name: str):
     return build_prompt
 
 
+def _default_multi_document_prompt_template() -> str:
+    return prompt_CheckNguNghiaGiuaCacFile("{data}")
+
+
+def _load_multi_document_prompt_template() -> str:
+    if MULTI_DOCUMENT_PROMPT_FILE.exists():
+        with MULTI_DOCUMENT_PROMPT_FILE.open("r", encoding="utf-8") as file:
+            data = json.load(file)
+        prompt = data.get("prompt")
+        if isinstance(prompt, str) and prompt.strip():
+            return prompt
+
+    return _default_multi_document_prompt_template()
+
+
+def _save_multi_document_prompt_template(prompt: str) -> Path:
+    MULTI_DOCUMENT_PROMPT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with MULTI_DOCUMENT_PROMPT_FILE.open("w", encoding="utf-8") as file:
+        json.dump(
+            {
+                "type": MULTI_DOCUMENT_PROMPT_TYPE,
+                "prompt": prompt,
+            },
+            file,
+            ensure_ascii=False,
+            indent=2,
+        )
+    return MULTI_DOCUMENT_PROMPT_FILE
+
+
+def _multi_document_prompt_func(data: Any) -> str:
+    template = _load_multi_document_prompt_template()
+    return _render_document_prompt(template, data)
+
+
 @app.get("/medical-record/document-prompt/{document_type}")
 def get_document_prompt(document_type: str) -> Dict[str, Any]:
     prompt_file = _document_prompt_file(document_type)
@@ -512,6 +549,35 @@ def get_document_prompt(document_type: str) -> Dict[str, Any]:
         "type": document_type,
         "filename": prompt_file.name,
         "is_default": not prompt_file.exists(),
+        "prompt": prompt,
+    }
+
+
+@app.get("/medical-record/multi-document-prompt")
+def get_multi_document_prompt() -> Dict[str, Any]:
+    prompt = _load_multi_document_prompt_template()
+
+    return {
+        "type": MULTI_DOCUMENT_PROMPT_TYPE,
+        "filename": MULTI_DOCUMENT_PROMPT_FILE.name,
+        "is_default": not MULTI_DOCUMENT_PROMPT_FILE.exists(),
+        "prompt": prompt,
+    }
+
+
+@app.put("/medical-record/multi-document-prompt")
+def update_multi_document_prompt(payload: SystemPromptRequest) -> Dict[str, Any]:
+    prompt = payload.prompt.strip()
+    if not prompt:
+        raise HTTPException(status_code=400, detail="Prompt không được để trống")
+
+    prompt_file = _save_multi_document_prompt_template(prompt)
+
+    return {
+        "message": "Đã cập nhật prompt nhiều tài liệu",
+        "type": MULTI_DOCUMENT_PROMPT_TYPE,
+        "filename": prompt_file.name,
+        "is_default": False,
         "prompt": prompt,
     }
 
@@ -673,7 +739,7 @@ async def check_medical_record_json(file: UploadFile = File(...)) -> Dict[str, A
 
     data_check = _build_cross_document_check_data(data)
 
-    result = llama_KiemTraCacGiayHoacPhieu(prompt_CheckNguNghiaGiuaCacFile, data_check)
+    result = llama_KiemTraCacGiayHoacPhieu(_multi_document_prompt_func, data_check)
     is_valid = not _review_has_error(result)
 
     return {
