@@ -40,6 +40,7 @@ from vectordb.postgre import (
     load_knowledge_postgre,
     save_data_into_postgre,
     save_knowledge_postgre,
+    save_user_like_postgre,
 )
 from vectordb.vector_store import vector_stores
 
@@ -172,6 +173,13 @@ class SummaryRequest(BaseModel):
 
 class SystemPromptRequest(BaseModel):
     prompt: str = Field(..., min_length=1, description="Prompt he thong")
+
+
+class ChatFeedbackRequest(BaseModel):
+    user_id: str = Field(default="user_123", min_length=1)
+    thread_id: str = Field(default="thread_123", min_length=1)
+    like: bool
+    content: str = Field(..., min_length=1)
 
 
 def _default_system_prompt_template() -> str:
@@ -365,6 +373,29 @@ def chat(payload: ChatRequest) -> Dict[str, Any]:
         "thread_id": payload.thread_id,
         "question": question,
         "answer": answer,
+    }
+
+
+@app.post("/chat/feedback")
+def save_chat_feedback(payload: ChatFeedbackRequest) -> Dict[str, Any]:
+    content = payload.content.strip()
+    if not content:
+        raise HTTPException(status_code=400, detail="content khong duoc de trong")
+
+    with app.state.postgre_lock:
+        save_user_like_postgre(
+            cursor=app.state.postgre_cursor,
+            user_id=payload.user_id,
+            thread_id=payload.thread_id,
+            like_status=payload.like,
+            content=content,
+        )
+
+    return {
+        "message": "Da luu danh gia cau tra loi",
+        "user_id": payload.user_id,
+        "thread_id": payload.thread_id,
+        "like": payload.like,
     }
 
 

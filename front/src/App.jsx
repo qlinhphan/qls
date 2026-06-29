@@ -8,11 +8,14 @@ import {
   Send,
   Settings,
   Stethoscope,
+  ThumbsDown,
+  ThumbsUp,
   User,
   Upload,
 } from 'lucide-react';
 
 const API_URL = 'http://10.10.50.226:8001/chat';
+const CHAT_FEEDBACK_API_URL = 'http://10.10.50.226:8001/chat/feedback';
 const SYSTEM_PROMPT_API_URL = 'http://10.10.50.226:8001/system-prompt';
 const MEDICAL_RECORD_CHECK_API_URL = 'http://10.10.50.226:8001/medical-record/check-json';
 const SINGLE_DOCUMENT_CHECK_API_URL = 'http://10.10.50.226:8001/medical-record/check-json/one';
@@ -70,6 +73,8 @@ const extraRecordReviewLabels = {
   KiemTraNguNghiaGiuaCacFile: 'Kiểm tra ngữ nghĩa giữa các file',
 };
 
+const DEFAULT_FEEDBACK_USER_ID = 'user_123';
+
 function getAssistantText(data) {
   if (typeof data === 'string') return data;
 
@@ -126,6 +131,14 @@ function createThreadId() {
   }
 
   return `record-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
+function createMessageId() {
+  if (crypto.randomUUID) {
+    return `message-${crypto.randomUUID()}`;
+  }
+
+  return `message-${Date.now()}-${Math.random().toString(16).slice(2)}`;
 }
 
 function getThreadId() {
@@ -294,7 +307,7 @@ export default function App() {
 
     setInput('');
     setIsSending(true);
-    setMessages((current) => [...current, { role: 'user', text: value }]);
+    setMessages((current) => [...current, { id: createMessageId(), role: 'user', text: value }]);
 
     try {
       const response = await fetch(API_URL, {
@@ -316,20 +329,90 @@ export default function App() {
       setMessages((current) => [
         ...current,
         {
+          id: createMessageId(),
           role: 'assistant',
           text: getAssistantText(data),
+          question: value,
+          feedback: null,
         },
       ]);
     } catch (error) {
       setMessages((current) => [
         ...current,
         {
+          id: createMessageId(),
           role: 'assistant',
           text: `Không thể gọi API: ${error.message}`,
+          canFeedback: false,
         },
       ]);
     } finally {
       setIsSending(false);
+    }
+  }
+
+  async function handleChatFeedback(messageId, isLiked) {
+    const targetMessage = messages.find((message) => message.id === messageId);
+    if (!targetMessage || targetMessage.role !== 'assistant' || targetMessage.canFeedback === false) {
+      return;
+    }
+
+    const content = `Câu hỏi: ${targetMessage.question ?? ''}\n\nCâu trả lời: ${targetMessage.text}`;
+
+    setMessages((current) =>
+      current.map((message) =>
+        message.id === messageId
+          ? {
+              ...message,
+              feedback: isLiked,
+              isFeedbackSaving: true,
+            }
+          : message,
+      ),
+    );
+
+    try {
+      const response = await fetch(CHAT_FEEDBACK_API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user_id: DEFAULT_FEEDBACK_USER_ID,
+          thread_id: threadId,
+          like: isLiked,
+          content,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`API trả về lỗi ${response.status}`);
+      }
+
+      setMessages((current) =>
+        current.map((message) =>
+          message.id === messageId
+            ? {
+                ...message,
+                feedback: isLiked,
+                isFeedbackSaving: false,
+              }
+            : message,
+        ),
+      );
+    } catch (error) {
+      setMessages((current) =>
+        current.map((message) =>
+          message.id === messageId
+            ? {
+                ...message,
+                feedback: null,
+                isFeedbackSaving: false,
+              }
+            : message,
+        ),
+      );
+      showToast(`Không thể lưu đánh giá: ${error.message}`, 'error');
     }
   }
 
@@ -873,9 +956,34 @@ export default function App() {
                 </div>
               ) : (
                 messages.map((message, index) => (
-                  <article className={`message ${message.role}`} key={`${message.role}-${index}`}>
+                  <article
+                    className={`message ${message.role}`}
+                    key={message.id ?? `${message.role}-${index}`}
+                  >
                     <span>{message.role === 'user' ? 'Người dùng' : 'Trả lời'}</span>
                     <p>{message.text}</p>
+                    {message.role === 'assistant' && message.canFeedback !== false && (
+                      <div className="message-feedback">
+                        <button
+                          aria-label="Like câu trả lời"
+                          className={message.feedback === true ? 'is-selected' : ''}
+                          disabled={message.isFeedbackSaving}
+                          onClick={() => handleChatFeedback(message.id, true)}
+                          type="button"
+                        >
+                          <ThumbsUp aria-hidden="true" size={14} />
+                        </button>
+                        <button
+                          aria-label="Dislike câu trả lời"
+                          className={message.feedback === false ? 'is-selected is-dislike' : ''}
+                          disabled={message.isFeedbackSaving}
+                          onClick={() => handleChatFeedback(message.id, false)}
+                          type="button"
+                        >
+                          <ThumbsDown aria-hidden="true" size={14} />
+                        </button>
+                      </div>
+                    )}
                   </article>
                 ))
               )}

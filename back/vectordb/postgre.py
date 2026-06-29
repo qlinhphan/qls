@@ -35,6 +35,35 @@ def create_table_postgre(cursor):
             content TEXT NOT NULL,
             vector JSONB NOT NULL
         );
+
+        CREATE TABLE IF NOT EXISTS user_like (
+            id SERIAL PRIMARY KEY,
+            user_id VARCHAR(100) NOT NULL,
+            thread_id VARCHAR(100) NOT NULL,
+            "like" BOOLEAN NOT NULL,
+            content TEXT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+
+        DO $$
+        BEGIN
+            IF EXISTS (
+                SELECT 1 FROM information_schema.columns
+                WHERE table_name = 'user_like' AND column_name = 'like_status'
+            ) AND NOT EXISTS (
+                SELECT 1 FROM information_schema.columns
+                WHERE table_name = 'user_like' AND column_name = 'like'
+            ) THEN
+                ALTER TABLE user_like RENAME COLUMN like_status TO "like";
+            END IF;
+
+            IF NOT EXISTS (
+                SELECT 1 FROM information_schema.columns
+                WHERE table_name = 'user_like' AND column_name = 'like'
+            ) THEN
+                ALTER TABLE user_like ADD COLUMN "like" BOOLEAN DEFAULT FALSE NOT NULL;
+            END IF;
+        END $$;
     """
     cursor.execute(create_table_query)
     cursor.connection.commit()
@@ -46,6 +75,15 @@ def save_data_into_postgre(cursor, sessionId, userId, content):
         VALUES (%s, %s, %s);
     """
     cursor.execute(insert_query, (sessionId, userId, content))
+    cursor.connection.commit()
+
+
+def save_user_like_postgre(cursor, user_id, thread_id, like_status, content):
+    insert_query = """
+        INSERT INTO user_like (user_id, thread_id, "like", content)
+        VALUES (%s, %s, %s, %s);
+    """
+    cursor.execute(insert_query, (user_id, thread_id, like_status, content))
     cursor.connection.commit()
 
 

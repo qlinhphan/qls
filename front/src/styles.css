@@ -917,6 +917,7 @@ textarea {
 }
 
 .message {
+  position: relative;
   max-width: min(720px, 86%);
   padding: 14px 16px;
   border-radius: 8px;
@@ -951,8 +952,59 @@ textarea {
 
 .message.assistant {
   align-self: flex-start;
+  padding-bottom: 40px;
   border: 1px solid #e0e9e7;
   background: #ffffff;
+}
+
+.message-feedback {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  display: flex;
+  gap: 6px;
+}
+
+.message-feedback button {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #d6e3e1;
+  border-radius: 999px;
+  color: #637572;
+  background: #fbfdfc;
+  cursor: pointer;
+  transition:
+    color 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease,
+    transform 0.18s ease;
+}
+
+.message-feedback button:hover {
+  border-color: #8fb8b3;
+  color: #246963;
+  background: #eef7f5;
+  transform: translateY(-1px);
+}
+
+.message-feedback button.is-selected {
+  border-color: #1d7a52;
+  color: #1d7a52;
+  background: #e8f7ef;
+}
+
+.message-feedback button.is-dislike {
+  border-color: #c73535;
+  color: #c73535;
+  background: #fff1f1;
+}
+
+.message-feedback button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+  transform: none;
 }
 
 .chat-composer {
