@@ -114,6 +114,7 @@ DỮ LIỆU:
 QUY TẮC PHÁT HIỆN LỖI:
 1. Ghi lại chẩn đoán bệnh tại trường 'Chẩn đoán'. Đặc biệt chú ý từ khóa chỉ định vị trí bộ phận cơ thể (Trái hay Phải).
 2. Kiểm tra mục 'Phương pháp điều trị': Phương pháp phẫu thuật thực tế tác động vào bên nào (Trái hay Phải)? Có mâu thuẫn với trường 'Chẩn đoán' của chính phiếu này không?
+3. Cuối cùng đọc kĩ "Ghi chú" xem có hợp lý về mặt thực tế không
 
 YÊU CẦU: Trả ra kết quả kiểm toán ngắn gọn:
 - Chỉ in ra Tiếng Việt có dấu, Chỗ nào chứa ký tự không dấu viết liền thì chuyển thành tiếng việt chuẩn, ví dụ: BoPhanTonThuongs -> "Bộ Phận Tổn Thương"
