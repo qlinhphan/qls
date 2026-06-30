@@ -628,7 +628,7 @@ export default function App() {
       setRecordCheckResult(data);
       setRecordCheckResultMode(submittedMode);
     } catch (error) {
-      setRecordCheckError(`Không thể kiểm tra tài liệu: ${error.message}`);
+      setRecordCheckError(`Không thể kiểm tra tài liệu: do sai mã tiếp nhận hoặc người bệnh không có phiếu này`);
       showToast(error.message, 'error');
     } finally {
       setIsCheckingRecord(false);
