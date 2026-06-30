@@ -91,6 +91,8 @@ def prompt_TomTatBenhAn(data_TomTatHoSoBenhAn):
 DỮ LIỆU:
 {data_TomTatHoSoBenhAn}
 
+LƯU Ý: Dữ liệu trên là toàn bộ JSON nằm trong khóa cha TomTatHoSoBenhAn. Hãy đọc tất cả trường con có trong JSON, không chỉ các trường được nêu ví dụ trong quy tắc.
+
 QUY TẮC PHÁT HIỆN LỖI:
 1. Xem xét mục 'Thông Tin Hành chính': Trích xuất và ghi lại Họ tên, Giới tính, Ngày vào viện, Ngày ra viện.
 2. Kiểm tra tính đồng nhất lâm sàng: So sánh trường 'Chẩn đoán vào viện', 'Chẩn đoán ra viện', 'Lý do vào viện', và 'Tiền sử bệnh'. Ghi nhận bộ phận cơ thể bị tổn thương (Trái hay Phải).
@@ -110,6 +112,8 @@ def prompt_GiayRaVien(data_GiayRaVien):
 
 DỮ LIỆU:
 {data_GiayRaVien}
+
+LƯU Ý: Dữ liệu trên là toàn bộ JSON nằm trong khóa cha GiayRaVien. Hãy đọc tất cả trường con có trong JSON, không chỉ các trường được nêu ví dụ trong quy tắc.
 
 QUY TẮC PHÁT HIỆN LỖI:
 1. Ghi lại chẩn đoán bệnh tại trường 'Chẩn đoán'. Đặc biệt chú ý từ khóa chỉ định vị trí bộ phận cơ thể (Trái hay Phải).
@@ -132,6 +136,8 @@ def prompt_ThongTinTongKetBenhAn(data_ThongTinTongKetBenhAn):
 DỮ LIỆU:
 {data_ThongTinTongKetBenhAn}
 
+LƯU Ý: Dữ liệu trên là toàn bộ JSON nằm trong khóa cha ThongTinTongKetBenhAn. Hãy đọc tất cả trường con có trong JSON, không chỉ các trường được nêu ví dụ trong quy tắc.
+
 QUY TẮC PHÁT HIỆN LỖI:
 1. Vào mục "Lần Phẫu Thuật" hoặc "Lưới Phẫu Thuật Thủ Thuật": Trích xuất thời gian làm phẫu thuật ("Phẫu Thuật Thủ Thuật Ngày Giờ"), phương pháp phẫu thuật ("Phẫu Thuật Thủ Thuật Phương Pháp"), và phương pháp vô cảm ("Vô Cảm").
 2. Đối chiếu logic: Kiểm tra xem thông tin can thiệp thực tế ở các trường này có đồng nhất và logic với mục "Phương Pháp Điều Trị" và "Tình Trạng Người Bệnh Khi Ra Viện" hay không.
@@ -150,6 +156,8 @@ Bạn là giám định viên chi phí Bảo hiểm y tế. Hãy rà soát block
 
 DỮ LIỆU:
 {data_ThongTinRaVien}
+
+LƯU Ý: Dữ liệu trên là toàn bộ JSON nằm trong khóa cha ThongTinRaVien. Hãy đọc tất cả trường con có trong JSON, không chỉ các trường được nêu ví dụ trong quy tắc.
 
 QUY TẮC PHÁT HIỆN LỖI:
 1. Làm toán thời gian: Kiểm tra trường 'Ngày Lập Phiếu', 'Thời Gian Ra Viện'. 
@@ -171,6 +179,8 @@ def prompt_ThongTinBenhAn(data_ThongTinBenhAn):
 
 DỮ LIỆU:
 {data_ThongTinBenhAn}
+
+LƯU Ý: Dữ liệu trên là toàn bộ JSON nằm trong khóa cha ThongTinBenhAn. Hãy đọc tất cả trường con có trong JSON, không chỉ các trường được nêu ví dụ trong quy tắc.
 
 QUY TẮC PHÁT HIỆN LỖI:
 1. Kiểm tra mục 'Bộ Phận Tổn Thương': Trích xuất mô tả tổn thương và liên kết hình ảnh chứng minh.
@@ -196,6 +206,8 @@ DỮ LIỆU HỒ SƠ BỆNH ÁN THỰC TẾ:
 =========================================
 {data}
 =========================================
+
+LƯU Ý: Dữ liệu trên gồm toàn bộ JSON của các khóa cha TomTatHoSoBenhAn, GiayRaVien, ThongTinTongKetBenhAn, ThongTinRaVien và ThongTinBenhAn. Khi kiểm toán chéo, hãy đọc toàn bộ trường con bên trong từng khóa cha, không giới hạn ở một vài trường ví dụ trong hướng dẫn.
 
 HƯỚNG DẪN CHIẾN LƯỢC KIỂM TOÁN CHÉO (AI BẮT BUỘC PHẢI QUÉT):
 1. ĐỐI CHIẾU ĐỊNH VỊ GIẢI PHẪU VÀ VỊ TRÍ TỔN THƯƠNG:
