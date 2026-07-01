@@ -421,6 +421,11 @@ export default function App() {
 
   async function startVoiceRecording() {
     if (isSending || isTranscribingVoice || isRecordingVoice) return;
+    if (!window.isSecureContext) {
+      setVoiceError('Trinh duyet chi cho ghi am tren HTTPS hoac localhost.');
+      return;
+    }
+
     if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) {
       setVoiceError('Trinh duyet khong ho tro ghi am.');
       return;
@@ -1158,8 +1163,8 @@ export default function App() {
                 <p className={`voice-status ${voiceError ? 'is-error' : ''}`}>
                   {voiceError ||
                     (isRecordingVoice
-                      ? 'Dang ghi am trieu chung... bam lai de dung.'
-                      : 'Dang chuyen giong noi thanh van ban...')}
+                      ? 'Đang ghi âm triệu chứng, hãy bấm để dừng.'
+                      : 'Đang chuyển giọng nói thành văn bản...')}
                 </p>
               )}
             </footer>

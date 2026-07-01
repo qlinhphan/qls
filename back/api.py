@@ -341,7 +341,7 @@ def health_check() -> Dict[str, str]:
 @app.post("/voice/transcribe")
 async def transcribe_voice(file: UploadFile = File(...)) -> Dict[str, str]:
     if not file.content_type or not file.content_type.startswith("audio/"):
-        raise HTTPException(status_code=400, detail="File gui len phai la audio")
+        raise HTTPException(status_code=400, detail="File gửi lên phải là audio")
 
     suffix = Path(file.filename or "voice.webm").suffix or ".webm"
     temp_path = Path(f"voice-upload-{os.urandom(8).hex()}{suffix}")
@@ -349,14 +349,14 @@ async def transcribe_voice(file: UploadFile = File(...)) -> Dict[str, str]:
     try:
         content = await file.read()
         if not content:
-            raise HTTPException(status_code=400, detail="File audio dang trong")
+            raise HTTPException(status_code=400, detail="File audio đang trống")
 
         temp_path.write_bytes(content)
         text = _transcribe_audio_file(str(temp_path))
     except HTTPException:
         raise
     except Exception as exc:
-        raise HTTPException(status_code=500, detail=f"Khong the chuyen giong noi thanh text: {exc}")
+        raise HTTPException(status_code=500, detail=f"Không thể chuyển giọng nói thành văn bản: {exc}")
     finally:
         if temp_path.exists():
             temp_path.unlink()
