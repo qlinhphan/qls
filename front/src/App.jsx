@@ -16,14 +16,15 @@ import {
   User,
 } from 'lucide-react';
 
-const API_URL = 'http://10.10.50.226:8083/chat';
-const CHAT_FEEDBACK_API_URL = 'http://10.10.50.226:8083/chat/feedback';
-const SYSTEM_PROMPT_API_URL = 'http://10.10.50.226:8083/system-prompt';
-const MEDICAL_RECORD_CHECK_API_URL = 'http://10.10.50.226:8083/medical-record/check-json';
-const SINGLE_DOCUMENT_CHECK_API_URL = 'http://10.10.50.226:8083/medical-record/check-json/one';
-const DOCUMENT_PROMPT_API_URL = 'http://10.10.50.226:8083/medical-record/document-prompt';
-const MULTI_DOCUMENT_PROMPT_API_URL = 'http://10.10.50.226:8083/medical-record/multi-document-prompt';
-const VOICE_TRANSCRIBE_API_URL = 'http://10.10.50.226:8083/voice/transcribe';
+const API_BASE_URL = `${window.location.protocol}//${window.location.hostname}:8084`;
+const API_URL = `${API_BASE_URL}/chat`;
+const CHAT_FEEDBACK_API_URL = `${API_BASE_URL}/chat/feedback`;
+const SYSTEM_PROMPT_API_URL = `${API_BASE_URL}/system-prompt`;
+const MEDICAL_RECORD_CHECK_API_URL = `${API_BASE_URL}/medical-record/check-json`;
+const SINGLE_DOCUMENT_CHECK_API_URL = `${API_BASE_URL}/medical-record/check-json/one`;
+const DOCUMENT_PROMPT_API_URL = `${API_BASE_URL}/medical-record/document-prompt`;
+const MULTI_DOCUMENT_PROMPT_API_URL = `${API_BASE_URL}/medical-record/multi-document-prompt`;
+const VOICE_TRANSCRIBE_API_URL = `${API_BASE_URL}/voice/transcribe`;
 const THREAD_STORAGE_KEY = 'medical-chat-thread-id';
 const welcomeMessage =
   'Xin chào, tôi là trợ lý AI của bạn, sẽ giúp đỡ bạn hôm nay.';

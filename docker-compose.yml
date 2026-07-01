@@ -1,5 +1,5 @@
 version: '3.9'
-# chạy cổng 8083 back
+# Host ports: API 8084, Front 4183, Postgres 55433.
 services:
   api:
     image: bacha_api:latest
@@ -25,10 +25,10 @@ services:
         EXPOSE 8083
 
         CMD ["python", "-m", "uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8083"]
-    container_name: bacha_api
+    container_name: bacha_api_test
     restart: unless-stopped
     ports:
-      - "8083:8083"
+      - "8084:8083"
     environment:
       MODEL_CHAT: ${MODEL_CHAT:-qwen2.5:14b}
       MODEL_EMB: ${MODEL_EMB:-bge-m3}
@@ -37,7 +37,7 @@ services:
       EMBED_API_SERVER: ${EMBED_API_SERVER:-http://10.10.61.29:11434/api/embed}
       MIN_SCORE_RECHIEVAL: ${MIN_SCORE_RECHIEVAL:-0.55}
       
-      HOST_POSTGRE: postgres_wiki_db
+      HOST_POSTGRE: postgres
       PORT_POSTGRE: 5432
       
       DATABASE_PORTGRE: postgres
@@ -53,10 +53,10 @@ services:
 
   postgres:
     image: postgres:16
-    container_name: postgres_wiki_db
+    container_name: postgres_wiki_db_test
     restart: unless-stopped
     ports:
-      - "5432:5432"
+      - "55433:5432"
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin123
@@ -82,13 +82,13 @@ services:
         RUN npm install
         COPY . .
 
-        EXPOSE 4173
+        EXPOSE 5173
 
         CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
-    container_name: bacha_front
+    container_name: bacha_front_test
     restart: unless-stopped
     ports:
-      - "4173:5173"
+      - "4183:5173"
     volumes:
       - ./front:/app
       - /app/node_modules
@@ -97,4 +97,4 @@ services:
 
 volumes:
   pgdata:
-    name: postgres_wiki_data
+    name: postgres_wiki_data_test
