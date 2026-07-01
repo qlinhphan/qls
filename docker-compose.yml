@@ -1,7 +1,8 @@
 version: '3.9'
-
+# chạy cổng 8083 back
 services:
   api:
+    image: bacha_api:latest
     build:
       context: ./back
       dockerfile_inline: |
@@ -21,13 +22,13 @@ services:
 
         COPY . .
 
-        EXPOSE 8001
+        EXPOSE 8083
 
-        CMD ["python", "-m", "uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8001"]
+        CMD ["python", "-m", "uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8083"]
     container_name: bacha_api
     restart: unless-stopped
     ports:
-      - "8001:8001"
+      - "8083:8083"
     environment:
       MODEL_CHAT: ${MODEL_CHAT:-qwen2.5:14b}
       MODEL_EMB: ${MODEL_EMB:-bge-m3}
@@ -45,8 +46,6 @@ services:
       PYTHONUNBUFFERED: 1
       TZ: "Asia/Ho_Chi_Minh"
       PGTZ: "Asia/Ho_Chi_Minh"
-    volumes:
-      - ./back:/app
     depends_on:
       postgres:
         condition: service_healthy
