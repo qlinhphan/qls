@@ -9,7 +9,7 @@ from typing import Any, Dict, List
 import faiss
 import requests
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException, UploadFile
+from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
@@ -280,6 +280,9 @@ async def lifespan(app: FastAPI):
     app.state.thread_lock = threading.Lock()
     app.state.postgre_lock = threading.Lock()
     app.state.prompt_lock = threading.Lock()
+    app.state.voice_lock = threading.Lock()
+    app.state.voice_processor = None
+    app.state.voice_model = None
     app.state.system_prompt_template = _load_custom_system_prompt()
     yield
     postgre_cursor.close()
@@ -300,6 +303,32 @@ app.add_middleware(
 )
 
 
+def _get_voice_model():
+    with app.state.voice_lock:
+        if not getattr(app.state, "voice_processor", None) or not getattr(app.state, "voice_model", None):
+            from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor
+
+            app.state.voice_processor = AutoProcessor.from_pretrained("vinai/PhoWhisper-tiny")
+            app.state.voice_model = AutoModelForSpeechSeq2Seq.from_pretrained("vinai/PhoWhisper-tiny")
+
+        return app.state.voice_processor, app.state.voice_model
+
+
+def _transcribe_audio_file(audio_path: str) -> str:
+    import librosa
+    import torch
+
+    processor, model = _get_voice_model()
+    audio, _ = librosa.load(audio_path, sr=16000)
+    inputs = processor(audio, sampling_rate=16000, return_tensors="pt")
+
+    with torch.no_grad():
+        ids = model.generate(inputs.input_features)
+
+    text = processor.batch_decode(ids, skip_special_tokens=True)
+    return text[0].strip() if text else ""
+
+
 @app.get("/health")
 def health_check() -> Dict[str, str]:
     return {
@@ -307,6 +336,32 @@ def health_check() -> Dict[str, str]:
         "version": API_VERSION,
         "gio": "10:47"
     }
+
+
+@app.post("/voice/transcribe")
+async def transcribe_voice(file: UploadFile = File(...)) -> Dict[str, str]:
+    if not file.content_type or not file.content_type.startswith("audio/"):
+        raise HTTPException(status_code=400, detail="File gui len phai la audio")
+
+    suffix = Path(file.filename or "voice.webm").suffix or ".webm"
+    temp_path = Path(f"voice-upload-{os.urandom(8).hex()}{suffix}")
+
+    try:
+        content = await file.read()
+        if not content:
+            raise HTTPException(status_code=400, detail="File audio dang trong")
+
+        temp_path.write_bytes(content)
+        text = _transcribe_audio_file(str(temp_path))
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"Khong the chuyen giong noi thanh text: {exc}")
+    finally:
+        if temp_path.exists():
+            temp_path.unlink()
+
+    return {"text": text}
 
 
 @app.get("/system-prompt")

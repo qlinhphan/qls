@@ -1,13 +1,15 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
   ClipboardCheck,
   LogOut,
+  Mic,
   Send,
   Settings,
   Search,
+  Square,
   Stethoscope,
   ThumbsDown,
   ThumbsUp,
@@ -21,6 +23,7 @@ const MEDICAL_RECORD_CHECK_API_URL = 'http://10.10.50.226:8083/medical-record/ch
 const SINGLE_DOCUMENT_CHECK_API_URL = 'http://10.10.50.226:8083/medical-record/check-json/one';
 const DOCUMENT_PROMPT_API_URL = 'http://10.10.50.226:8083/medical-record/document-prompt';
 const MULTI_DOCUMENT_PROMPT_API_URL = 'http://10.10.50.226:8083/medical-record/multi-document-prompt';
+const VOICE_TRANSCRIBE_API_URL = 'http://10.10.50.226:8083/voice/transcribe';
 const THREAD_STORAGE_KEY = 'medical-chat-thread-id';
 const welcomeMessage =
   'Xin chào, tôi là trợ lý AI của bạn, sẽ giúp đỡ bạn hôm nay.';
@@ -184,6 +187,12 @@ export default function App() {
   const [isMainMenuOpen, setIsMainMenuOpen] = useState(true);
   const [isDocumentMenuOpen, setIsDocumentMenuOpen] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isRecordingVoice, setIsRecordingVoice] = useState(false);
+  const [isTranscribingVoice, setIsTranscribingVoice] = useState(false);
+  const [voiceError, setVoiceError] = useState('');
+  const mediaRecorderRef = useRef(null);
+  const voiceChunksRef = useRef([]);
+  const voiceStreamRef = useRef(null);
 
   const modeTitle = useMemo(
     () =>
@@ -238,6 +247,16 @@ export default function App() {
 
     return () => window.clearInterval(intervalId);
   }, [messages.length]);
+
+  useEffect(
+    () => () => {
+      if (mediaRecorderRef.current?.state === 'recording') {
+        mediaRecorderRef.current.stop();
+      }
+      stopVoiceStream();
+    },
+    [],
+  );
 
   useEffect(() => {
     setRecordReceptionCode('');
@@ -349,6 +368,109 @@ export default function App() {
     } finally {
       setIsSending(false);
     }
+  }
+
+  function stopVoiceStream() {
+    voiceStreamRef.current?.getTracks().forEach((track) => track.stop());
+    voiceStreamRef.current = null;
+  }
+
+  async function transcribeVoiceBlob(blob) {
+    if (!blob.size) {
+      setVoiceError('Khong thu duoc am thanh.');
+      return;
+    }
+
+    setIsTranscribingVoice(true);
+    setVoiceError('');
+
+    try {
+      const formData = new FormData();
+      formData.append('file', blob, 'voice.webm');
+
+      const response = await fetch(VOICE_TRANSCRIBE_API_URL, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        let detail = `API tra ve loi ${response.status}`;
+        try {
+          const errorData = await response.json();
+          detail = errorData.detail ?? detail;
+        } catch {
+          // Giu loi HTTP mac dinh neu server khong tra JSON.
+        }
+        throw new Error(detail);
+      }
+
+      const data = await response.json();
+      const text = String(data.text ?? '').trim();
+      if (!text) {
+        setVoiceError('Khong nhan dien duoc noi dung giong noi.');
+        return;
+      }
+
+      setInput((current) => (current.trim() ? `${current.trim()} ${text}` : text));
+    } catch (error) {
+      setVoiceError(`Khong the chuyen giong noi thanh text: ${error.message}`);
+    } finally {
+      setIsTranscribingVoice(false);
+    }
+  }
+
+  async function startVoiceRecording() {
+    if (isSending || isTranscribingVoice || isRecordingVoice) return;
+    if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) {
+      setVoiceError('Trinh duyet khong ho tro ghi am.');
+      return;
+    }
+
+    setVoiceError('');
+
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mediaRecorder = new MediaRecorder(stream);
+      voiceStreamRef.current = stream;
+      voiceChunksRef.current = [];
+
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          voiceChunksRef.current.push(event.data);
+        }
+      };
+
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(voiceChunksRef.current, { type: mediaRecorder.mimeType || 'audio/webm' });
+        voiceChunksRef.current = [];
+        stopVoiceStream();
+        transcribeVoiceBlob(blob);
+      };
+
+      mediaRecorderRef.current = mediaRecorder;
+      mediaRecorder.start();
+      setIsRecordingVoice(true);
+    } catch (error) {
+      stopVoiceStream();
+      setVoiceError(`Khong the bat micro: ${error.message}`);
+    }
+  }
+
+  function stopVoiceRecording() {
+    const mediaRecorder = mediaRecorderRef.current;
+    if (!mediaRecorder || mediaRecorder.state === 'inactive') return;
+    mediaRecorder.stop();
+    mediaRecorderRef.current = null;
+    setIsRecordingVoice(false);
+  }
+
+  function handleVoiceButton() {
+    if (isRecordingVoice) {
+      stopVoiceRecording();
+      return;
+    }
+
+    startVoiceRecording();
   }
 
   async function handleChatFeedback(messageId, isLiked) {
@@ -1007,18 +1129,39 @@ export default function App() {
 
             <footer className="chat-composer">
               <form className="message-form" onSubmit={handleSubmit}>
+                <button
+                  aria-label={isRecordingVoice ? 'Dung ghi am' : 'Ghi am trieu chung'}
+                  className={`voice-button ${isRecordingVoice ? 'is-recording' : ''}`}
+                  disabled={isSending || isTranscribingVoice}
+                  onClick={handleVoiceButton}
+                  type="button"
+                >
+                  {isRecordingVoice ? (
+                    <Square aria-hidden="true" size={17} />
+                  ) : (
+                    <Mic aria-hidden="true" size={18} />
+                  )}
+                </button>
                 <input
                   aria-label="Nhập câu hỏi"
-                  disabled={isSending}
+                  disabled={isSending || isTranscribingVoice}
                   onChange={(event) => setInput(event.target.value)}
                   placeholder="Nhập nội dung cần hỏi..."
                   type="text"
                   value={input}
                 />
-                <button aria-label="Gửi tin nhắn" disabled={isSending} type="submit">
+                <button aria-label="Gửi tin nhắn" disabled={isSending || isTranscribingVoice} type="submit">
                   <Send aria-hidden="true" size={18} />
                 </button>
               </form>
+              {(isRecordingVoice || isTranscribingVoice || voiceError) && (
+                <p className={`voice-status ${voiceError ? 'is-error' : ''}`}>
+                  {voiceError ||
+                    (isRecordingVoice
+                      ? 'Dang ghi am trieu chung... bam lai de dung.'
+                      : 'Dang chuyen giong noi thanh van ban...')}
+                </p>
+              )}
             </footer>
           </>
         )}

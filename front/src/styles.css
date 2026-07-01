@@ -1016,9 +1016,9 @@ textarea {
 
 .message-form {
   display: grid;
-  grid-template-columns: minmax(180px, 560px) 44px;
+  grid-template-columns: 44px minmax(180px, 560px) 44px;
   gap: 10px;
-  width: min(100%, 640px);
+  width: min(100%, 694px);
   margin: 0 auto;
 }
 
@@ -1050,10 +1050,39 @@ textarea {
   cursor: pointer;
 }
 
+.message-form .voice-button {
+  border: 1px solid #c9d7d5;
+  color: #246963;
+  background: #ffffff;
+}
+
+.message-form .voice-button:hover {
+  border-color: #2f7770;
+  background: #eef7f5;
+}
+
+.message-form .voice-button.is-recording {
+  border-color: #c73535;
+  color: #ffffff;
+  background: #c73535;
+}
+
 .message-form input:disabled,
 .message-form button:disabled {
   cursor: not-allowed;
   opacity: 0.65;
+}
+
+.voice-status {
+  width: min(100%, 694px);
+  margin: 8px auto 0;
+  color: #45615d;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.voice-status.is-error {
+  color: #9b2d2d;
 }
 
 .record-check-area {
@@ -1597,7 +1626,7 @@ textarea {
   }
 
   .message-form {
-    grid-template-columns: minmax(0, 1fr) 44px;
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
     width: 100%;
   }
 
