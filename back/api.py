@@ -48,6 +48,7 @@ from vectordb.vector_store import vector_stores
 load_dotenv()
 
 DEFAULT_MIN_SCORE = float(os.getenv("MIN_SCORE_RECHIEVAL", "0.55"))
+VOICE_MODEL = os.getenv("VOICE_MODEL", "vinai/PhoWhisper-tiny")
 API_VERSION = "2026-06-22-cors-5173"
 PROMPT_CONFIG_PATH = Path("prompt_config_chat.json")
 DOCUMENT_PROMPT_DIR = Path(__file__).resolve().parent / "prompts"
@@ -308,8 +309,8 @@ def _get_voice_model():
         if not getattr(app.state, "voice_processor", None) or not getattr(app.state, "voice_model", None):
             from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor
 
-            app.state.voice_processor = AutoProcessor.from_pretrained("vinai/PhoWhisper-tiny")
-            app.state.voice_model = AutoModelForSpeechSeq2Seq.from_pretrained("vinai/PhoWhisper-tiny")
+            app.state.voice_processor = AutoProcessor.from_pretrained(VOICE_MODEL)
+            app.state.voice_model = AutoModelForSpeechSeq2Seq.from_pretrained(VOICE_MODEL)
 
         return app.state.voice_processor, app.state.voice_model
 

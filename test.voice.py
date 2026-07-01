@@ -24,7 +24,7 @@ asyncio.run(main())
 import librosa
 
 processor = AutoProcessor.from_pretrained("vinai/PhoWhisper-tiny")
-model = AutoModelForSpeechSeq2Seq.from_pretrained("vinai/PhoWhisper-tiny")
+model = AutoModelForSpeechSeq2Seq.from_pretrained("vinai/PhoWhisper-small")
 
 audio, sr = librosa.load(f"sample-{uuid}.mp3", sr=19000)
 

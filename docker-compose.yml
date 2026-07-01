@@ -32,6 +32,7 @@ services:
     environment:
       MODEL_CHAT: ${MODEL_CHAT:-qwen2.5:14b}
       MODEL_EMB: ${MODEL_EMB:-bge-m3}
+      VOICE_MODEL: ${VOICE_MODEL:-vinai/PhoWhisper-tiny}
       CHAT_API_SERVER: ${CHAT_API_SERVER:-http://10.10.61.29:11434/api/generate}
       EMBED_API_SERVER: ${EMBED_API_SERVER:-http://10.10.61.29:11434/api/embed}
       MIN_SCORE_RECHIEVAL: ${MIN_SCORE_RECHIEVAL:-0.55}
