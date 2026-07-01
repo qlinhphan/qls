@@ -2,7 +2,7 @@ version: '3.9'
 # Host ports: API 8084, Front 4183, Postgres 55433.
 services:
   api:
-    image: bacha_api:latest
+    image: bacha_api_test:latest
     build:
       context: ./back
       dockerfile_inline: |
@@ -25,7 +25,6 @@ services:
         EXPOSE 8083
 
         CMD ["python", "-m", "uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8083"]
-    container_name: bacha_api_test
     restart: unless-stopped
     ports:
       - "8084:8083"
@@ -53,7 +52,6 @@ services:
 
   postgres:
     image: postgres:16
-    container_name: postgres_wiki_db_test
     restart: unless-stopped
     ports:
       - "55433:5432"
@@ -85,7 +83,6 @@ services:
         EXPOSE 5173
 
         CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
-    container_name: bacha_front_test
     restart: unless-stopped
     ports:
       - "4183:5173"
