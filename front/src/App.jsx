@@ -377,7 +377,7 @@ export default function App() {
 
   async function transcribeVoiceBlob(blob) {
     if (!blob.size) {
-      setVoiceError('Khong thu duoc am thanh.');
+      setVoiceError('Không thu được âm thanh.');
       return;
     }
 
@@ -394,7 +394,7 @@ export default function App() {
       });
 
       if (!response.ok) {
-        let detail = `API tra ve loi ${response.status}`;
+        let detail = `API trả về lỗi ${response.status}`;
         try {
           const errorData = await response.json();
           detail = errorData.detail ?? detail;
@@ -407,13 +407,13 @@ export default function App() {
       const data = await response.json();
       const text = String(data.text ?? '').trim();
       if (!text) {
-        setVoiceError('Khong nhan dien duoc noi dung giong noi.');
+        setVoiceError('Không nhận diện được nội dung giọng nói.');
         return;
       }
 
       setInput((current) => (current.trim() ? `${current.trim()} ${text}` : text));
     } catch (error) {
-      setVoiceError(`Khong the chuyen giong noi thanh text: ${error.message}`);
+      setVoiceError(`Không thể chuyển giọng nói thành văn bản: ${error.message}`);
     } finally {
       setIsTranscribingVoice(false);
     }
@@ -422,12 +422,12 @@ export default function App() {
   async function startVoiceRecording() {
     if (isSending || isTranscribingVoice || isRecordingVoice) return;
     if (!window.isSecureContext) {
-      setVoiceError('Trinh duyet chi cho ghi am tren HTTPS hoac localhost.');
+      setVoiceError('Trình duyệt chỉ cho phép ghi âm trên HTTPS hoặc localhost.');
       return;
     }
 
     if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) {
-      setVoiceError('Trinh duyet khong ho tro ghi am.');
+      setVoiceError('Trình duyệt không hỗ trợ ghi âm.');
       return;
     }
 
@@ -457,7 +457,7 @@ export default function App() {
       setIsRecordingVoice(true);
     } catch (error) {
       stopVoiceStream();
-      setVoiceError(`Khong the bat micro: ${error.message}`);
+      setVoiceError(`Không thể bật micro: ${error.message}`);
     }
   }
 

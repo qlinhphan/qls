@@ -255,17 +255,17 @@ async def _read_json_upload(file: UploadFile) -> Any:
 
     content = await file.read()
     if not content:
-        raise HTTPException(status_code=400, detail="File json dang trong")
+        raise HTTPException(status_code=400, detail="File json đang trống")
 
     try:
         text = content.decode("utf-8-sig")
         return json.loads(text)
     except UnicodeDecodeError:
-        raise HTTPException(status_code=400, detail="File json phai dung ma hoa UTF-8")
+        raise HTTPException(status_code=400, detail="File json phải dùng mã hóa UTF-8")
     except json.JSONDecodeError as exc:
         raise HTTPException(
             status_code=400,
-            detail=f"File json khong hop le: {exc.msg}",
+            detail=f"File json không hợp lệ: {exc.msg}",
         )
 
 
@@ -404,7 +404,7 @@ def update_system_prompt(payload: SystemPromptRequest) -> Dict[str, Any]:
 def chat(payload: ChatRequest) -> Dict[str, Any]:
     question = payload.message.strip()
     if not question:
-        raise HTTPException(status_code=400, detail="message khong duoc de trong")
+        raise HTTPException(status_code=400, detail="message không được để trống")
 
     quick_answer = _quick_answer(question)
     if quick_answer:
@@ -417,7 +417,7 @@ def chat(payload: ChatRequest) -> Dict[str, Any]:
 
     question_vector = get_embedding(question)
     if question_vector is None:
-        raise HTTPException(status_code=502, detail="Khong tao duoc embedding")
+        raise HTTPException(status_code=502, detail="Không tạo được embedding")
 
     with app.state.thread_lock:
         history = list(app.state.thread_histories.get(payload.thread_id, []))
@@ -448,7 +448,7 @@ def chat(payload: ChatRequest) -> Dict[str, Any]:
 def save_chat_feedback(payload: ChatFeedbackRequest) -> Dict[str, Any]:
     content = payload.content.strip()
     if not content:
-        raise HTTPException(status_code=400, detail="content khong duoc de trong")
+        raise HTTPException(status_code=400, detail="content không được để trống")
 
     with app.state.postgre_lock:
         save_user_like_postgre(
@@ -460,7 +460,7 @@ def save_chat_feedback(payload: ChatFeedbackRequest) -> Dict[str, Any]:
         )
 
     return {
-        "message": "Da luu danh gia cau tra loi",
+        "message": "Đã lưu đánh giá câu trả lời",
         "user_id": payload.user_id,
         "thread_id": payload.thread_id,
         "like": payload.like,
@@ -475,7 +475,7 @@ def summarize_thread(thread_id: str, payload: SummaryRequest) -> Dict[str, Any]:
     if not history:
         raise HTTPException(
             status_code=404,
-            detail=f"Khong tim thay hoi thoai cho thread_id={thread_id}",
+            detail=f"Không tìm thấy hội thoại cho thread_id={thread_id}",
         )
 
     summary = llama_summary_conversation(llama_summary_conversation_prompt, history)
@@ -500,7 +500,7 @@ def summarize_thread(thread_id: str, payload: SummaryRequest) -> Dict[str, Any]:
 def clear_thread(thread_id: str) -> Dict[str, str]:
     with app.state.thread_lock:
         app.state.thread_histories.pop(thread_id, None)
-    return {"message": f"Da xoa history cua thread_id={thread_id}"}
+    return {"message": f"Đã xóa history của thread_id={thread_id}"}
 
 
 DOCUMENT_CHECKS = {
